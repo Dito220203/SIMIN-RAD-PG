@@ -64,7 +64,7 @@
                                                 <td class="text-center align-middle">
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <!-- Tombol Detail -->
-                                                        <button type="button" class="btn btn-info btn-sm" title="Lihat"
+                                                        <button type="button" class="btn btn-tambah-utama btn-sm" title="Lihat"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#detailModal{{ $data->id }}">
                                                             <i class="fa-solid fa-eye"></i>

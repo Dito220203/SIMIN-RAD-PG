@@ -154,7 +154,7 @@
                                                         <td>
                                                             <div class="d-flex justify-content-center gap-1">
                                                                 <a href="{{ route('rencanaAksi.edit', $data->id) }}"
-                                                                    class="btn btn-primary btn-sm" title="Edit">
+                                                                    class="btn btn-tambah-utama btn-sm" title="Edit">
                                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                                 </a>
                                                                 <form id="formDelete-{{ $data->id }}"

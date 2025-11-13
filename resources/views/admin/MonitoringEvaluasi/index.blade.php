@@ -318,7 +318,7 @@
 
                                                     {{-- Tombol Lihat Dokumentasi --}}
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-info btn-sm"
+                                                        <button type="button" class="btn btn-tambah-utama btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#ModalDetailProduk{{ $data->id }}">
                                                             Lihat Dokumentasi
@@ -348,7 +348,7 @@
                                                                 {{-- Jika tidak terkunci, tombol berfungsi normal --}}
                                                                 <form action="{{ route('monev.edit', $data->id) }}"
                                                                     method="GET" style="display:inline;">
-                                                                    <button class="btn btn-primary btn-sm">
+                                                                    <button class="btn btn-tambah-utama btn-sm">
                                                                         <i class="fas fa-edit"></i> Edit/Lengkapi
                                                                     </button>
                                                                 </form>
@@ -375,7 +375,7 @@
                                                                     @method('PUT')
                                                                     <input type="hidden" name="status" value="">
                                                                 </form>
-                                                                <button type="button" class="btn btn-info btn-sm"
+                                                                <button type="button" class="btn btn-tambah-utama btn-sm"
                                                                     data-bs-toggle="modal" data-bs-target="#modalPesan"
                                                                     data-id="{{ $data->id }}"
                                                                     data-pesan="{{ $data->pesan ?? '' }}">

@@ -19,14 +19,14 @@
                             <!-- Header control: Tambah, Search, Tampilkan Data -->
                             <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
 
-                                <a href="{{ route('pengguna.create') }}" class="btn btn-primary">
+                                <a href="{{ route('pengguna.create') }}" class="btn btn-tambah-utama">
                                     + Tambah Pengguna
                                 </a>
                                 <div class="col-12 col-lg-auto">
                                     <form method="GET" class="input-group w-auto">
                                         <input type="text" name="search" class="form-control" placeholder="Cari Data"
                                             value="{{ request('search') }}">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
+                                        <button class="btn btn-tambah-utama" type="submit">Cari</button>
                                         @if (request('search'))
                                             <a href="{{ route('pengguna') }}" class="btn btn-secondary">Reset</a>
                                         @endif
@@ -60,7 +60,7 @@
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <form action="{{ route('pengguna.edit', $data->id) }}"
                                                             method="GET">
-                                                            <button class="btn btn-primary btn-sm">
+                                                            <button class="btn btn-tambah-utama btn-sm">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </button>
                                                         </form>

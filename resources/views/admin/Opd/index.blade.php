@@ -20,7 +20,7 @@
                             <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
 
                                 <!-- Tombol Trigger Modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-tambah-utama" data-bs-toggle="modal"
                                     data-bs-target="#modalOpd">
                                     + Tambah Opd
                                 </button>
@@ -62,7 +62,7 @@
                                     <form method="GET" class="input-group w-auto">
                                         <input type="text" name="search" class="form-control" placeholder="Cari Data"
                                             value="{{ request('search') }}">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
+                                        <button class="btn btn-tambah-utama" type="submit">Cari</button>
                                         @if (request('search'))
                                             <a href="{{ route('opd') }}" class="btn btn-secondary">Reset</a>
                                         @endif
@@ -89,7 +89,7 @@
                                                 <td> {{ $data->status }}</td>
                                                 <td>
                                                     <div>
-                                                        <button type="button" class="btn btn-primary btn-sm"
+                                                        <button type="button" class="btn btn-tambah-utama btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#Modalupdateopd{{ $data->id }}">
                                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -147,7 +147,7 @@
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-bs-dismiss="modal">Batal</button>
                                                                         <button type="submit"
-                                                                            class="btn btn-primary">Simpan</button>
+                                                                            class="btn btn-tambah-utama">Simpan</button>
                                                                     </div>
                                                                 </form>
                                                             </div>

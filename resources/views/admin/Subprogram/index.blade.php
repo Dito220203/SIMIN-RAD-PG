@@ -100,13 +100,13 @@
                                                     <td class="text-center align-middle">
                                                         <div class="d-flex justify-content-center gap-1">
                                                             <!-- Detail -->
-                                                            <button type="button" class="btn btn-info btn-sm"
+                                                            <button type="button" class="btn btn-tambah-utama btn-sm"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#ModalDetailSub{{ $data->id }}">
                                                                 <i class="fa-solid fa-circle-info"></i>
                                                             </button>
                                                             <!-- Edit -->
-                                                            <button type="button" class="btn btn-primary btn-sm"
+                                                            <button type="button" class="btn btn-tambah-utama btn-sm"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#Modalupdate{{ $data->id }}">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -167,7 +167,7 @@
                                                                                 class="btn btn-secondary"
                                                                                 data-bs-dismiss="modal">Batal</button>
                                                                             <button type="submit"
-                                                                                class="btn btn-primary">Update</button>
+                                                                                class="btn btn-success">Update</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -193,7 +193,7 @@
                             aria-labelledby="DetailSubLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-info text-white">
+                                    <div class="modal-header card-dashboard text-white">
                                         <h5 class="modal-title" id="DetailSubLabel{{ $data->id }}">Detail Sub Program
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"

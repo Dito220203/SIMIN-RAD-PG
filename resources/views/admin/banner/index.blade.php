@@ -64,7 +64,7 @@
                                     </div>
                                     {{-- AKHIR PERUBAHAN UNTUK UPDATE KE GAMBAR --}}
 
-                                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                                    <button type="submit" class="btn btn-tambah-utama w-100">Update</button>
                                     <a href="{{ route('banner') }}" class="btn btn-secondary w-100 mt-2">Batal</a>
                                 </form>
                             @else
@@ -144,7 +144,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                    <button class="btn btn-sm btn btn-tambah-utama" data-bs-toggle="modal"
                                                         data-bs-target="#fileModal{{ $data->id }}">
                                                         Lihat
                                                     </button>
@@ -176,7 +176,7 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <a href="{{ route('banner.edit', $data->id) }}"
-                                                            class="btn btn-primary btn-sm">
+                                                            class="btn btn-tambah-utama btn-sm">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a>
                                                         <form id="formDelete-{{ $data->id }}"

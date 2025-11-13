@@ -44,7 +44,7 @@
 
     .stats-label {
         font-size: 14px;
-        color: #64748b;
+        color: #718355;
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -232,7 +232,7 @@
             <!-- Rencana Kerja Detail -->
             <div class="col-lg-6">
                 <div class="card detail-card shadow-sm h-100">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header card-dashboard text-white">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5 class="mb-1 fw-bold">
@@ -249,7 +249,7 @@
                     <div class="card-body">
                         <div class="row text-center mb-3">
                             <div class="col-6">
-                                <div class="p-3 rounded" style="background-color: #d1fae5;">
+                                <div class="p-3 rounded" style="background-color: #E9F5DB;">
                                     <div class="fs-4 fw-bold text-success">{{ $rencanaSelesai }}</div>
                                     <small class="text-muted">Valid</small>
                                 </div>
@@ -276,7 +276,7 @@
                             </div>
                         </div>
 
-                        <a href="{{route('rencanakerja')}}" class="btn btn-primary w-100">
+                        <a href="{{route('rencanakerja')}}" class="btn btn-tambah-utama w-100">
                             <i class="fas fa-list me-2"></i> Lihat Semua Rencana Kerja
                         </a>
                     </div>
@@ -286,7 +286,7 @@
             <!-- Monitoring Evaluasi Detail -->
             <div class="col-lg-6">
                 <div class="card detail-card shadow-sm h-100">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header card-dashboard text-white">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5 class="mb-1 fw-bold">
@@ -303,7 +303,7 @@
                     <div class="card-body">
                         <div class="row text-center mb-3">
                             <div class="col-6">
-                                <div class="p-3 rounded" style="background-color: #d1fae5;">
+                                <div class="p-3 rounded" style="background-color: #E9F5DB;">
                                     <div class="fs-4 fw-bold text-success">{{ $monevLengkap }}</div>
                                     <small class="text-muted">Data Lengkap</small>
                                 </div>
@@ -345,7 +345,7 @@
                             </div>
                         </div>
 
-                        <a href="{{route('monev')}}" class="btn btn-info w-100 text-white">
+                        <a href="{{route('monev')}}" class="btn btn-tambah-utama w-100 text-white">
                             <i class="fas fa-edit me-2"></i> Lengkapi Data Monitoring
                         </a>
                     </div>

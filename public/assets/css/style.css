@@ -1069,6 +1069,8 @@ h6 {
   color: #FFFFFF;
 }
 
+
+
 /* 1. KONTINER UTAMA TABEL */
 .table-responsive {
     max-height: 75vh;
@@ -1147,10 +1149,10 @@ h6 {
 
 /* 6. PENGATURAN BODY TABEL */
 .detail-table tbody tr:nth-child(even) {
-    background: #f3f4f6;
+    background: #e5e8e5;
 }
 .detail-table tbody tr:hover {
-    background: #e6fffa;
+    background: #b6bab6;
     transition: 0.3s;
 }
 
@@ -1185,7 +1187,15 @@ h6 {
     width: 8px;   /* Atur juga scrollbar vertikal jika perlu */
     height: 8px;  /* SAMAKAN TINGGINYA dengan .top-scrollbar-container */
 }
-
+/* form global */
+.form-control:focus {
+            border-color: #718355;
+            box-shadow: 0 0 0 0.2rem #6B9071;
+        }
+.form-select:focus {
+            border-color: #718355;
+            box-shadow: 0 0 0 0.2rem #6B9071;
+        }
 
 /* === STYLE FINAL REVISI (PETA DI BAWAH TABEL) === */
 
@@ -1444,6 +1454,13 @@ h6 {
   /*--------------------------------------------------------------
   # index Dashboard
   --------------------------------------------------------------*/
+  .card-dashboard{
+            background: linear-gradient(135deg, #B5C99A 0%,   #6B9071 100%);
+    
+
+  }
+
+
   .bg-gradient-primary {
           background: linear-gradient(135deg, var(--bs-primary), #718355);
       }

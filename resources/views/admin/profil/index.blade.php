@@ -25,7 +25,7 @@
 
                             <h2 class="mb-1">{{ $user->nama ?? 'Tidak diketahui' }}</h2>
                             <h6 class="text-muted mb-3">{{ $user->opd->nama ?? '-' }}</h6>
-                            <span class="badge bg-primary mb-3">{{ $user->level ?? 'User' }}</span>
+                            <span class="badge bg-success mb-3">{{ $user->level ?? 'User' }}</span>
 
                             {{-- Contact Info --}}
                             <div class="profile-info w-100 mt-3">
@@ -69,7 +69,7 @@
                                 <div class="tab-pane fade show active" id="profile-overview" role="tabpanel">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h5 class="card-title mb-0">About</h5>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                                        <button type="button" class="btn btn-outline btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">
                                             <i class="bi bi-pencil-square me-1"></i> Lengkapi Data
                                         </button>
                                     </div>
@@ -110,7 +110,7 @@
                                                 <span>Role</span>
                                             </div>
                                             <div class="detail-value">
-                                                <span class="badge bg-primary">{{ $user->level ?? '-' }}</span>
+                                                <span class="badge bg-success">{{ $user->level ?? '-' }}</span>
                                             </div>
                                         </div>
 
@@ -256,12 +256,13 @@
         .avatar-circle {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
+
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px #6B9071;
         }
 
         .avatar-initial {
@@ -288,13 +289,13 @@
 
         .info-item i {
             font-size: 18px;
-            color: #667eea;
+            color: #6B9071;
             margin-right: 12px;
             width: 24px;
         }
 
         .info-item span {
-            color: #495057;
+            color: #6B9071;
             font-size: 14px;
         }
 
@@ -326,7 +327,7 @@
 
         .detail-label i {
             font-size: 18px;
-            color: #667eea;
+            color: #718355;
             margin-right: 10px;
         }
 
@@ -338,10 +339,10 @@
 
         /* Card Title */
         .card-title {
-            color: #2c3e50;
+            color: #6B9071;
             font-weight: 600;
             padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #718355;
             display: inline-block;
         }
 
@@ -354,13 +355,13 @@
         }
 
         .nav-tabs-bordered .nav-link:hover {
-            color: #667eea;
+            color: #718355;
             background: #f8f9fa;
         }
 
         .nav-tabs-bordered .nav-link.active {
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
+            color: #718355;
+            border-bottom: 3px solid #E3EED4;
             background: transparent;
         }
 
@@ -370,13 +371,15 @@
 
         /* Form */
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            border-color: #718355;
+            box-shadow: 0 0 0 0.2rem #6B9071;
         }
 
         /* Button */
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
+
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
             border: none;
             padding: 10px 30px;
             transition: all 0.3s;
@@ -384,21 +387,23 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px #6B9071;
         }
 
-        .btn-outline-primary {
-            color: #667eea;
-            border-color: #667eea;
+        .btn-outline {
+            color: #6B9071;
+            border-color:#6B9071 ;
             transition: all 0.3s;
         }
 
-        .btn-outline-primary:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-color: #667eea;
+        .btn-outline:hover {
+            background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
+
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+            border-color: ;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 3px 10px #6B9071;
         }
 
         /* Card */
@@ -415,7 +420,9 @@
 
         /* Modal */
         .modal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
+
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
             color: white;
         }
 
@@ -601,5 +608,6 @@
             }
         });
     });
+    
 </script>
 @endpush

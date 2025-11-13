@@ -118,7 +118,7 @@
                                  {{-- Fieldset untuk Detail Pendanaan --}}
                                 <fieldset class="border p-3 rounded-3 mb-3">
                                     <legend class="float-none w-auto px-2 h6">Detail Pendanaan</legend>
-                                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-tambah-utama mb-3" data-bs-toggle="modal"
                                         data-bs-target="#anggaranModal">
                                         <i class="bi bi-plus-circle"></i> Tambah Anggaran & Sumber Dana
                                     </button>
