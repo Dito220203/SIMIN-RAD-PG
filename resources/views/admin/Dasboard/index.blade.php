@@ -183,7 +183,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Progres Kegiatan Card -->
             <div class="col-xl-3 col-md-6">
                 <div class="card stats-card shadow-sm">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Monev;
 use App\Models\ProgresKerja;
 use App\Models\RencanaAksi_6_tahun;
@@ -23,7 +24,8 @@ class ClientController extends Controller
 
         $Monev = Monev::where('status', 'valid')->count();
         $progres = ProgresKerja::where('status', 'valid')->count();
-        return view('client.dasbor', compact('rencanaAksi', 'rencanaKerja', 'Monev', 'progres'));
+        $banners = Banner::where('status', 'Aktif')->get();
+        return view('client.dasbor', compact('rencanaAksi', 'rencanaKerja', 'Monev', 'progres', 'banners'));
     }
     public function strategi()
     {

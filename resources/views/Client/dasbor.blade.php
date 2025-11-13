@@ -145,57 +145,55 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="card card-carousel overflow-hidden h-100 p-0">
-                    <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-                        <div class="carousel-inner border-radius-lg h-100">
-                            {{-- INI BENAR --}}
-                            <div class="carousel-item h-100 active"
-                                style="background-image: url('{{ asset('client/img/carousel-2.jpg') }}'); background-size: cover;">
-                                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item h-100"
-                                style="background-image: url('{{ asset('client/img/carousel-2.jpg') }}');background-size: cover;">
-                                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                                    <p>That’s my skill. I’m not really specifically talented at anything except for the
-                                        ability to learn.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item h-100"
-                                style="background-image: url('{{ asset('client/img/carousel-2.jpg') }}');background-size: cover;">
+           <div class="col-lg-5">
+    <div class="card card-carousel overflow-hidden h-100 p-0">
+        <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="5000"> {{-- Tambahkan data-bs-interval untuk mengatur waktu ganti --}}
 
-                                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-trophy text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev w-5 me-3" type="button"
-                            data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next w-5 me-3" type="button"
-                            data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
+            {{-- INDIKATOR CAROUSEL DINAMIS --}}
+            <div class="carousel-indicators">
+                @foreach ($banners as $index => $banner)
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}"
+                        class="{{ $index == 0 ? 'active' : '' }}" {{ $index == 0 ? 'aria-current="true"' : '' }}
+                        aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
             </div>
+            {{-- AKHIR INDIKATOR CAROUSEL DINAMIS --}}
+
+            <div class="carousel-inner border-radius-lg h-100">
+
+                {{-- MENGAMBIL DATA DAN GAMBAR DARI TABEL BANNER --}}
+                @foreach ($banners as $index => $banner)
+                    <div class="carousel-item h-100 {{ $index == 0 ? 'active' : '' }}" {{-- Pastikan item pertama tetap 'active' --}}
+                        style="background-image: url('{{ asset('storage/' . $banner->file) }}'); background-size: cover;">
+
+                        <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                            <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                                <i class="ni ni-camera-compact text-dark opacity-10"></i>
+                            </div>
+
+                            <h5 class="text-white mb-1">{{ $banner->judul }}</h5>
+
+
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+
+            {{-- Carousel Controls (Prev/Next) --}}
+            <button class="carousel-control-prev w-5 me-3" type="button"
+                data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next w-5 me-3" type="button"
+                data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
 
         </div>
         <div class="row mt-4">
