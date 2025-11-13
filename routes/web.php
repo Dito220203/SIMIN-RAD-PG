@@ -128,6 +128,7 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
     Route::delete('/pengguna-delete/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
 
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+    Route::put('/profil-update', [ProfilController::class, 'updateProfile'])->name('profil.update');
 
     Route::post('/ganti-password', [LoginController::class, 'update_password'])->name('update.password');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

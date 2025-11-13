@@ -21,7 +21,7 @@
                             <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
                                 <div class="gap-2">
                                     <div class="d-flex flex-column flex-sm-row gap-2">
-                                        <a href="{{ route('rencana.create') }}" class="btn btn-primary">
+                                        <a href="{{ route('rencana.create') }}" class="btn btn-tambah-utama">
                                             + Tambah Rencana
                                         </a>
 
@@ -54,7 +54,7 @@
                                     <div class="input-group w-auto">
                                         <input type="text" name="search" class="form-control" placeholder="Cari Data..."
                                             value="{{ request('search') }}">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
+                                        <button class="btn-tambah-utama" type="submit">Cari</button>
                                     </div>
 
                                     {{-- Tombol Reset untuk membersihkan semua filter --}}

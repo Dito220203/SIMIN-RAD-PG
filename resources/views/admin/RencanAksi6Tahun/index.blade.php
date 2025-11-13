@@ -21,7 +21,7 @@
                                 <div class="gap-2">
                                     @if (Auth::guard('pengguna')->user()->level === 'Super Admin')
                                         <div class="d-flex flex-column flex-sm-row gap-2">
-                                            <a href="{{ route('rencanaAksi.create') }}" class="btn btn-primary">
+                                            <a href="{{ route('rencanaAksi.create') }}" class="btn btn-tambah-utama">
                                                 <i class="fa-solid fa-plus me-1"></i>
                                                 Tambah Rencana Aksi
                                             </a>
@@ -56,7 +56,7 @@
                                     <div class="input-group w-auto">
                                         <input type="text" name="search" class="form-control"
                                             placeholder="Cari program, kegiatan, OPD..." value="{{ request('search') }}">
-                                        <button class="btn btn-primary" type="submit">
+                                        <button class="btn btn-tambah-utama" type="submit">
                                             <i class="fa-solid fa-search"></i>
                                         </button>
                                     </div>

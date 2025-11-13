@@ -17,10 +17,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <h5 class="card-title">Tabel Strategi</h5>
-                                    <!-- Header control: Tambah, Search, Tampilkan Data -->
                                     <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
-                                        <button type="button" class="btn btn-primary " data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-tambah-utama " data-bs-toggle="modal"
                                             data-bs-target="#modalSubProgram">
                                             Tambah Strategi
                                         </button>
@@ -73,7 +71,7 @@
                                         <form method="GET" class="input-group w-auto mb-2">
                                             <input type="text" name="search_sub" class="form-control"
                                                 placeholder="Cari Strategi" value="{{ request('search_sub') }}">
-                                            <button class="btn btn-primary" type="submit">Cari</button>
+                                            <button class="btn btn-tambah-utama" type="submit">Cari</button>
                                             @if (request('search_sub'))
                                                 <a href="{{ route('subprogram') }}" class="btn btn-secondary">Reset</a>
                                             @endif

@@ -50,22 +50,11 @@
         letter-spacing: 0.5px;
     }
 
-    .bg-gradient-purple {
-        background: linear-gradient(135deg, #718355 0%, #764ba2 100%);
+    .bg-gradient-icon {
+        background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
     }
 
-    .bg-gradient-red {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-
-    .bg-gradient-teal {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .bg-gradient-orange {
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    }
-
+    
     .welcome-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border: none;
@@ -129,7 +118,7 @@
     <!-- Page Title -->
     <div class="pagetitle mb-4">
         <h1 class="mb-2">
-            <i class="fas fa-tachometer-alt text-primary me-2"></i>
+            <i class="fas fa-tachometer-alt  me-2"></i>
             Dashboard
         </h1>
         <nav>
@@ -149,10 +138,10 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card stats-card shadow-sm">
                     <div class="card-body">
-                        <div class="stats-icon bg-gradient-purple text-white">
+                        <div class="stats-icon bg-gradient-icon text-white">
                             <i class="fas fa-clipboard-list"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $totalRencanaKerja }}</div>
+                        <div class="stats-number text-dark">{{$totalRencanaAksi}}</div>
                         <div class="stats-label">Rencana Aksi</div>
                     </div>
                 </div>
@@ -162,10 +151,10 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card stats-card shadow-sm">
                     <div class="card-body">
-                        <div class="stats-icon bg-gradient-red text-white">
+                        <div class="stats-icon bg-gradient-icon text-white">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $rencanaSelesai }}</div>
+                        <div class="stats-number text-dark">{{ $totalRencanaKerja }}</div>
                         <div class="stats-label">Rencana Kerja</div>
                     </div>
                 </div>
@@ -175,7 +164,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card stats-card shadow-sm">
                     <div class="card-body">
-                        <div class="stats-icon bg-gradient-teal text-white">
+                        <div class="stats-icon bg-gradient-icon text-white">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="stats-number text-dark">{{ $totalMonev }}</div>
@@ -188,10 +177,10 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card stats-card shadow-sm">
                     <div class="card-body">
-                        <div class="stats-icon bg-gradient-orange text-white">
+                        <div class="stats-icon bg-gradient-icon text-white">
                             <i class="fas fa-chart-pie"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $monevLengkap }}</div>
+                        <div class="stats-number text-dark">{{ $totalProgresKerja }}</div>
                         <div class="stats-label">Progres Kegiatan</div>
                     </div>
                 </div>

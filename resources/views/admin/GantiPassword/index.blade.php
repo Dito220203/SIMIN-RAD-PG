@@ -29,7 +29,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <!-- ubah dari submit ke button -->
+                        <button type="button" class="btn btn-primary" id="btnSimpanPassword">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -40,6 +41,12 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
+
+        // tombol Simpan manual trigger submit
+        $("#btnSimpanPassword").on("click", function() {
+            $("#formGantiPassword").trigger("submit");
+        });
+
         $("#formGantiPassword").on("submit", function(e) {
             e.preventDefault();
             let valid = true;
@@ -76,7 +83,7 @@
                 valid = false;
             }
 
-            if(valid){
+            if (valid) {
                 $.ajax({
                     url: $(this).attr("action"),
                     method: $(this).attr("method"),

@@ -21,7 +21,7 @@
                                 <form method="GET" class="input-group w-auto mb-1">
                                     <input type="text" name="search" class="form-control" placeholder="Cari Data"
                                         value="{{ request('search') }}">
-                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                    <button class="btn btn-tambah-utama" type="submit">Cari</button>
                                     @if (request('search'))
                                         <a href="{{ route('progres') }}" class="btn btn-secondary">Reset</a>
                                     @endif
