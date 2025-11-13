@@ -51,7 +51,7 @@
     }
 
     .bg-gradient-purple {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #718355 0%, #764ba2 100%);
     }
 
     .bg-gradient-red {
@@ -197,7 +197,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Welcome Card -->
         {{-- <div class="row mb-4">
             <div class="col-12">

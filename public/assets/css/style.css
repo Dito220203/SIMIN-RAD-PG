@@ -610,7 +610,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 @media (max-width: 1199px) {
@@ -674,7 +674,7 @@ h6 {
 .sidebar-nav .nav-heading {
   font-size: 11px;
   text-transform: uppercase;
-  color: #899bbd;
+  color: #0e0e0e;
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -684,9 +684,9 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #ffffff;
   transition: 0.3;
-  background: #f6f9ff;
+  background: #B5C99A;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -694,26 +694,26 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #718355;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #fff;
+  color: #718355;
+  background: #ffffff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #718355;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #718355;
+  background: #CFE1B9;
 }
 
-/* .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
-} */
+.sidebar-nav .nav-link:hover i {
+  color: #718355;
+}
 
 .sidebar-nav .nav-link .bi-chevron-down {
   margin-right: 0;
@@ -750,11 +750,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #718355;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: #718355;
 }
 
 /*--------------------------------------------------------------
@@ -1426,25 +1426,25 @@ h6 {
         .multi-item-rensi>div:not(:last-child) {
             /* GANTI WARNA DI SINI */
             border-bottom: 1px solid #cccccc;
-        }
-/*--------------------------------------------------------------
-# index Dashboard
---------------------------------------------------------------*/
-.bg-gradient-primary {
-        background: linear-gradient(135deg, var(--bs-primary), #0056b3);
-    }
-    .bg-gradient-info {
-        background: linear-gradient(135deg, var(--bs-info), #0056b3);
-    }
-    .welcome-card {
-        background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
-    }
-    .card-hover { transition: all 0.3s ease; border-radius: 15px !important; }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,.1) !important; }
-    .hover-lift { transition: transform 0.2s ease; }
-    .hover-lift:hover { transform: translateY(-3px); }
-    .animate-float { animation: float 3s ease-in-out infinite; }
-    .pulse-animation { animation: pulse 2s infinite; }
+          }
+  /*--------------------------------------------------------------
+  # index Dashboard
+  --------------------------------------------------------------*/
+  .bg-gradient-primary {
+          background: linear-gradient(135deg, var(--bs-primary), #718355);
+      }
+      .bg-gradient-info {
+          background: linear-gradient(135deg, var(--bs-info), #87986A );
+      }
+      .welcome-card {
+          background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+      }
+      .card-hover { transition: all 0.3s ease; border-radius: 15px !important; }
+      .card-hover:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,.1) !important; }
+      .hover-lift { transition: transform 0.2s ease; }
+      .hover-lift:hover { transform: translateY(-3px); }
+      .animate-float { animation: float 3s ease-in-out infinite; }
+      .pulse-animation { animation: pulse 2s infinite; }
     @keyframes float { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
     @keyframes pulse { 0% {transform: scale(1);opacity:1;} 50% {transform: scale(1.1);opacity:.7;} 100% {transform: scale(1);opacity:1;} }
     .bg-primary-subtle { background-color: rgba(var(--bs-primary-rgb),0.1) !important; }

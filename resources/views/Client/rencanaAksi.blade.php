@@ -104,9 +104,10 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="15" class="text-center text-muted">Belum ada data Rencana Aksi.
+                                            <td colspan="14" class="text-center text-muted">Belum ada data Rencana Aksi.
                                             </td>
                                         </tr>
+                                        
                                     @endforelse
                                 </tbody>
                             </table>
