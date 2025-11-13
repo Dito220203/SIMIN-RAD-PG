@@ -53,7 +53,7 @@
                                     </tr>
                                 </thead>
 
-                                <tbody id="strategi-table-body">
+                                <tbody id="dataTabelBody">
 
                                     @foreach ($strategi as $data)
                                         <tr>

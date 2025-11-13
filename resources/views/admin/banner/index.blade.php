@@ -112,16 +112,24 @@
                             <h5 class="card-title">Daftar Banner</h5>
 
                             <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <label for="showEntries">Tampilkan</label>
+                                    <select id="showEntries" class="form-select form-select-sm" style="width: auto;">
+                                        <option value="5">5</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                    <span>entri</span>
+                                </div>
                                 <div class="col-12 col-md-4">
-                                    <span class="input-group-text text-body"><i class="fas fa-search"
-                                            aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" placeholder="Cari di halaman ini..."
                                         id="liveSearchInput">
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table id="tabelSaya" class="detail-table">
+                                <table id="dataTable" class="detail-table">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -131,10 +139,10 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="strategi-table-body">
+                                    <tbody id="dataTabelBody">
                                         @foreach ($banner as $data)
                                             <tr>
-                                                <td>{{ $loop->index }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $data->judul }}</td>
                                                 <td>
                                                     @if ($data->status === 'Aktif')
@@ -196,10 +204,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- area pagination di luar scroll --}}
-                            <div class="d-flex justify-content-between align-items-center px-3 mt-3 flex-wrap">
-                                <div id="infoContainer" class="text-secondary small"></div>
-                                <div id="paginationContainer" class="ms-auto"></div>
+                            {{-- Tambahkan di bawah div class="table-responsive" --}}
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3">
+                                <div id="paginationInfo"></div>
+                                <div id="paginationControls"></div>
                             </div>
                         </div>
                     </div>
@@ -211,8 +219,9 @@
 
 
 @endsection
+
+
 @push('scripts')
-<script src="{{ asset('js/progres-tabel.js') }}"></script>
     <script>
         function previewFile(event) {
             const file = event.target.files[0];

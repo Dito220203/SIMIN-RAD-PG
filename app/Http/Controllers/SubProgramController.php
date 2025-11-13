@@ -13,47 +13,12 @@ class SubProgramController extends Controller
 {
     public function index(Request $request)
     {
-        $searchSub = $request->input('search_sub');
-        $searchProduk = $request->input('search_produk');
+      $subprogram = Subprogram::where('delete_at', '0')->get();
 
-        // Query Subprogram
-        $subprogramQuery = Subprogram::where('delete_at', '0');
+    // Hapus seluruh Query Produk (FotoSubprogram)
 
-        if ($searchSub) {
-            $subprogramQuery->where(function ($q) use ($searchSub) {
-                $q->where('program', 'like', "%{$searchSub}%")
-                    ->orWhere('subprogram', 'like', "%{$searchSub}%")
-                    ->orWhere('uraian', 'like', "%{$searchSub}%");
-            })
-                ->orWhereHas('penggunas', function ($q) use ($searchSub) {
-                    $q->where('nama', 'like', "%{$searchSub}%");
-                });
-        }
-
-        $subprogram = $subprogramQuery->paginate(10, ['*'], 'subprogram_page');
-        $subprogram->appends($request->only('search_sub'));
-
-        // Query Produk (FotoSubprogram)
-        $produkQuery = FotoSubprogram::with(['subprogram', 'penggunas']);
-
-        if ($searchProduk) {
-            $produkQuery->where(function ($q) use ($searchProduk) {
-                $q->where('judul', 'like', "%{$searchProduk}%")
-                    ->orWhere('keterangan', 'like', "%{$searchProduk}%");
-            })
-                ->orWhereHas('subprogram', function ($q) use ($searchProduk) {
-                    $q->where('subprogram', 'like', "%{$searchProduk}%")
-                        ->orWhere('uraian', 'like', "%{$searchProduk}%");
-                })
-                ->orWhereHas('penggunas', function ($q) use ($searchProduk) {
-                    $q->where('nama', 'like', "%{$searchProduk}%");
-                });
-        }
-
-        $produk = $produkQuery->paginate(10, ['*'], 'produk_page');
-        $produk->appends($request->only('search_produk'));
-
-        return view('admin.Subprogram.index', compact('subprogram', 'produk', 'searchSub', 'searchProduk'));
+    // Kirim hanya data subprogram ke view.
+    return view('admin.Subprogram.index', compact('subprogram'));
     }
 
 

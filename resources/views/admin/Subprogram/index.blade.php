@@ -67,21 +67,26 @@
 
 
 
-                                        <!-- Pencarian -->
-                                        <form method="GET" class="input-group w-auto mb-2">
-                                            <input type="text" name="search_sub" class="form-control"
-                                                placeholder="Cari Strategi" value="{{ request('search_sub') }}">
-                                            <button class="btn btn-tambah-utama" type="submit">Cari</button>
-                                            @if (request('search_sub'))
-                                                <a href="{{ route('subprogram') }}" class="btn btn-secondary">Reset</a>
-                                            @endif
-                                        </form>
+                                        <div class="d-flex align-items-center gap-2">
+                                    <label for="showEntries">Tampilkan</label>
+                                    <select id="showEntries" class="form-select form-select-sm" style="width: auto;">
+                                        <option value="1">1</option>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                    <span>entri</span>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <input type="text" class="form-control" placeholder="Cari di halaman ini..."
+                                        id="liveSearchInput">
+                                </div>
 
                                     </div>
                                 </div>
                                 <!-- Table Sub Program -->
                                 <div class="table-responsive">
-                                    <table class="detail-table" id="TableSubprogram">
+                                    <table class="detail-table" id="dataTable">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No</th>
@@ -90,11 +95,10 @@
                                                 <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="dataTabelBody">
                                             @foreach ($subprogram as $data)
                                                 <tr>
-                                                    <td class="text-center">{{ $subprogram->firstItem() + $loop->index }}
-                                                    </td>
+                                                    <td>{{ $loop->iteration }}</td>
                                                     <td class="text-center">{{ $data->program }}</td>
                                                     <td class="text-center">{{ $data->subprogram }}</td>
                                                     <td class="text-center align-middle">
@@ -180,9 +184,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="mt-3">
-                                    {{ $subprogram->links('vendor.pagination.bootstrap-5') }}
-                                </div>
+                               <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3">
+                                <div id="paginationInfo"></div>
+                                <div id="paginationControls"></div>
+                            </div>
                                 <!-- End Table Sub Program -->
                             </div>
                         </div>
