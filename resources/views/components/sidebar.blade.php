@@ -103,7 +103,8 @@
              <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('pengguna*') ? '' : 'collapsed' }}"
                     href="{{ route('pengguna') }}">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-people"></i>
+
                     <span>Pengguna</span>
                 </a>
             </li>

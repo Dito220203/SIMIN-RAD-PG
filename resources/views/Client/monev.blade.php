@@ -12,7 +12,7 @@
                     <h6 class="font-weight-bolder text-white mb-0">Monitoring Evaluasi</h6>
                 </nav>
                 <div class="ms-md-auto pe-md-1 d-flex align-items-center">
-                      <div class="input-group">
+                    <div class="input-group">
                         <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                         <input type="text" class="form-control" placeholder="Cari di halaman ini..."
                             id="liveSearchInput">
@@ -239,6 +239,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        {{-- area pagination di luar scroll --}}
+                        <div class="d-flex justify-content-between align-items-center px-3 mt-3 flex-wrap">
+                            <div id="infoContainer" class="text-secondary small"></div>
+                            <div id="paginationContainer" class="ms-auto"></div>
                         </div>
                         {{-- modal detail --}}
                         @foreach ($Monev as $data)

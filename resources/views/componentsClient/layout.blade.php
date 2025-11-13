@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -82,7 +83,6 @@
     <script src="{{ asset('client/js/preload.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="{{ asset('js/live-search.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     {{-- File JS Bootstrap Anda (sudah ada) --}}
     <script src="https." ...></script>

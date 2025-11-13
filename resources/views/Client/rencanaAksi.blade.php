@@ -41,7 +41,7 @@
 
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                           <table id="tabelSaya" class="table align-items-center mb-0">
+                            <table id="tabelSaya" class="table align-items-center mb-0">
                                 <thead class="bg-light">
                                     <tr>
                                         <th class="text-center">NO</th>
@@ -103,13 +103,15 @@
 
                                         </tr>
                                     @empty
-                                        <tr>
-                                            <td colspan="15" class="text-center text-muted">Belum ada data Rencana Aksi.
-                                            </td>
-                                        </tr>
+
                                     @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        {{-- area pagination di luar scroll --}}
+                        <div class="d-flex justify-content-between align-items-center px-3 mt-3 flex-wrap">
+                            <div id="infoContainer" class="text-secondary small"></div>
+                            <div id="paginationContainer" class="ms-auto"></div>
                         </div>
                     </div>
                 </div>

@@ -66,6 +66,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{-- area pagination di luar scroll --}}
+                        <div class="d-flex justify-content-between align-items-center px-3 mt-3 flex-wrap">
+                            <div id="infoContainer" class="text-secondary small"></div>
+                            <div id="paginationContainer" class="ms-auto"></div>
+                        </div>
                     </div>
                 </div>
             </div>

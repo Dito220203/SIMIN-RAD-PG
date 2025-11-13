@@ -6,6 +6,7 @@ use App\Models\Informasi;
 use App\Models\Monev;
 use App\Models\Pengguna;
 use App\Models\ProgresKerja;
+use App\Models\RencanaAksi_6_tahun;
 use App\Models\RencanaKerja;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,10 @@ class DasboardAdminController extends Controller
     {
         $user = auth()->guard('pengguna')->user();
 
+        $totalRencanaAksi = RencanaAksi_6_tahun::count();
         // ===== Bagian untuk Rencana Kerja =====
         if ($user->level == 'Super Admin') {
+
             $totalRencanaKerja = RencanaKerja::active()->count();
             $rencanaSelesai    = RencanaKerja::active()->where('status', 'Valid')->count();
             $rencanaProgress   = RencanaKerja::active()->where('status', 'tidak valid')->count();
@@ -35,6 +38,19 @@ class DasboardAdminController extends Controller
         } else {
             $allMonev = Monev::where('id_pengguna', $user->id)->get();
         }
+
+
+
+        // ===== [BARU] Bagian untuk Progres Kerja =====
+        // Asumsi: ProgresKerja memiliki relasi 'id_pengguna'
+        // Jika ProgresKerja tidak memiliki scope 'active()', Anda bisa gunakan ::count() saja
+        if ($user->level == 'Super Admin') {
+            $totalProgresKerja = ProgresKerja::count();
+        } else {
+            $totalProgresKerja = ProgresKerja::where('id_pengguna', $user->id)->count();
+        }
+
+
 
         // filter data lengkap
         $monevLengkap = $allMonev->filter(function ($item) {
@@ -70,10 +86,14 @@ class DasboardAdminController extends Controller
             return true; // lengkap
         })->count();
 
+
+
         $totalMonev = $allMonev->count();
         $monevBelumLengkap = $totalMonev - $monevLengkap;
 
         return view('admin.Dasboard.index', compact(
+            'totalRencanaAksi',
+            'totalProgresKerja',
             'totalRencanaKerja',
             'rencanaSelesai',
             'rencanaProgress',

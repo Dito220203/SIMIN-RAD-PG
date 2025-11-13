@@ -152,7 +152,7 @@
                         <div class="stats-icon bg-gradient-purple text-white">
                             <i class="fas fa-clipboard-list"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $totalRencanaKerja }}</div>
+                        <div class="stats-number text-dark">{{$totalRencanaAksi}}</div>
                         <div class="stats-label">Rencana Aksi</div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                         <div class="stats-icon bg-gradient-red text-white">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $rencanaSelesai }}</div>
+                        <div class="stats-number text-dark">{{ $totalRencanaKerja }}</div>
                         <div class="stats-label">Rencana Kerja</div>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                         <div class="stats-icon bg-gradient-orange text-white">
                             <i class="fas fa-chart-pie"></i>
                         </div>
-                        <div class="stats-number text-dark">{{ $monevLengkap }}</div>
+                        <div class="stats-number text-dark">{{ $totalProgresKerja }}</div>
                         <div class="stats-label">Progres Kegiatan</div>
                     </div>
                 </div>

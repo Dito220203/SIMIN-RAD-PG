@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -11,54 +14,44 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        return view('admin.profil.index');
+        $user = Auth::guard('pengguna')->user();
+          $profil = Profil::where('id_pengguna', $user->id)->first();
+
+        // Kirim data user ke view
+        return view('admin.profil.index', compact('user', 'profil'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+ public function updateProfile(Request $request)
+{
+    // Ambil user login dari guard 'pengguna'
+    $user = Auth::guard('pengguna')->user();
+
+    // Validasi input
+    $request->validate([
+        'email' => 'nullable|email',
+        'telepon' => 'nullable|string|max:20',
+        'alamat' => 'nullable|string',
+        'about' => 'nullable|string|max:500',
+    ]);
+
+
+    $profil = Profil::where('id_pengguna', $user->id)->first();
+
+    // Jika belum ada profil, buat dulu
+    if (!$profil) {
+        $profil = new Profil();
+        $profil->id_pengguna = $user->id;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // Update kolom di tabel profils
+    $profil->email   = $request->email;
+    $profil->telepon = $request->telepon;
+    $profil->alamat  = $request->alamat;
+    $profil->about   = $request->about;
+    $profil->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    return back()->with('success', 'Profil berhasil diperbarui');
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

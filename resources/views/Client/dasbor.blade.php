@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                   <i class="ni ni-archive-2 text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="ni ni-archive-2 text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -132,10 +132,10 @@
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Sales overview</h6>
+                        <h6 class="text-capitalize">Progres Kerja Per Tahun</h6>
                         <p class="text-sm mb-0">
-                            <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
+                            <i class="fa fa-check text-info"></i>
+                            <span class="font-weight-bold">Rata-Rata Progres</span> Bulanan
                         </p>
                     </div>
                     <div class="card-body p-3">
@@ -145,7 +145,7 @@
                     </div>
                 </div>
             </div>
-              <div class="col-lg-5">
+            <div class="col-lg-5">
                 <div class="card card-carousel overflow-hidden h-100 p-0">
                     <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
                         <div class="carousel-inner border-radius-lg h-100">
@@ -422,23 +422,22 @@
             </div>
         </div>
         <footer class="footer pt-3  ">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-                <div class="">
-                    <div class="copyright text-center text-sm text-muted text-lg-start">
-                        ©
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>,
-                        made with <i class="fa fa-heart"></i> by
-                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                            Tim</a>
-                        for a better web.
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
+                                Tim</a>
+                            for a better web.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </div>
 @endsection
-

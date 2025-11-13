@@ -115,46 +115,6 @@ class SubProgramController extends Controller
         return redirect()->back()->with('success', 'Produk Subprogram berhasil ditambahkan!');
     }
 
-    public function updateProduk(Request $request, string $id)
-    {
-        $produk = FotoSubprogram::findOrFail($id);
-
-        // Validasi
-        $request->validate([
-            'e_id_subprogram' => 'required|exists:subprograms,id',
-            'e_judul' => 'required',
-            'e_keterangan' => 'nullable',
-            'e_foto' => 'nullable|image|max:2048', // foto opsional, max 2MB
-        ]);
-
-        // Siapkan data update
-        $data = [
-            'id_subprogram' => $request->input('e_id_subprogram'),
-            'judul' => $request->input('e_judul'),
-            'keterangan' => $request->input('e_keterangan'),
-        ];
-
-        // Jika ada foto baru
-        if ($request->hasFile('e_foto')) {
-            $fileName = time() . '_' . $request->file('e_foto')->getClientOriginalName();
-            $request->file('e_foto')->storeAs('produk', $fileName, 'public');
-
-            // Hapus file lama
-            if ($produk->foto && Storage::disk('public')->exists($produk->foto)) {
-                Storage::disk('public')->delete($produk->foto);
-            }
-
-            $data['foto'] = 'produk/' . $fileName;
-        }
-
-        $produk->update($data);
-
-        return redirect()->back()->with('success', 'Produk Subprogram berhasil diperbarui!');
-    }
-
-
-
-
 
     public function update(Request $request, string $id)
     {
