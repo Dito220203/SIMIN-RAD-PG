@@ -50,6 +50,12 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
 
     Route::get('/admin', [DasboardAdminController::class, 'index'])->name('dashboard');
 
+     Route::get('/banner', [BannerController::class, 'index'])->name('banner');
+    Route::post('/banner-save', [BannerController::class, 'store'])->name('banner.store');
+    Route::get('/banner-edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::put('/banner-update/{id}', [BannerController::class, 'update'])->name('banner.update');
+    Route::delete('/banner-delete/{id}', [BannerController::class, 'destroy'])->name('banner.delete');
+
     Route::get('/subProgram', [SubProgramController::class, 'index'])->name('subprogram');
     Route::post('/subprogram-create', [SubProgramController::class, 'store'])->name('subrogram.store');
     Route::post('/store-produk', [SubProgramController::class, 'storeProduk'])->name('produk.store');
@@ -110,10 +116,6 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
     Route::put('/monev/bulk-toggle-lock', [MonevController::class, 'bulkToggleLock'])->name('monev.bulk-lock');
 
 
-
-    Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
-    ;
-    Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
     Route::get('/opd', [OpdController::class, 'index'])->name('opd');
     Route::post('/opd-store', [OpdController::class, 'store'])->name('opd.store');

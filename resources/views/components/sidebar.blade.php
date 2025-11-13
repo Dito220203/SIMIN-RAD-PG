@@ -47,29 +47,36 @@
 
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('banner*') ? '' : 'collapsed' }}"
+                    href="{{ route('banner') }}">
+                    <i class="bi bi-image"></i>
+                    <span>Banner</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('subprogram*') ? '' : 'collapsed' }}"
                     href="{{ route('subprogram') }}">
-                    <i class="fa-solid fa-folder-tree"></i>
+                    <i class="bi bi-diagram-3"></i>
                     <span>Strategi</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('rencana6tahun*') ? '' : 'collapsed' }}"
                     href="{{ route('rencana6tahun') }}">
-                    <i class="bi bi-journal-check"></i>
+                   <i class="bi bi-check2-square"></i>
                     <span>Rencana Aksi</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('rencanakerja*') ? '' : 'collapsed' }}"
                     href="{{ route('rencanakerja') }}">
-                    <i class="bi bi-journal-check"></i>
+                    <i class="bi bi-journal-text"></i>
                     <span>Rencana Kerja</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('monev*') ? '' : 'collapsed' }}" href="{{ route('monev') }}">
-                    <i class="bi bi-clipboard-check"></i>
+                    <i class="bi bi-bar-chart-line"></i>
                     <span>Monitoring Evaluasi</span>
                 </a>
             </li>
@@ -115,13 +122,7 @@
                     <span>OPD</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('kontak*') ? '' : 'collapsed' }}"
-                    href="{{ route('kontak') }}">
-                    <i class="bi bi-envelope"></i>
-                    <span>Kontak</span>
-                </a>
-            </li>
+
             @endif
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-bs-toggle="modal"
