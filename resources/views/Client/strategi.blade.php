@@ -59,7 +59,7 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $data->program }}</td>
-                                            <td class="text-center">{{ $data->subprogram }}</td>
+                                            <td >{{ $data->subprogram }}</td>
                                             <td class="text-center">{{ $data->uraian }}</td>
                                         </tr>
                                     @endforeach

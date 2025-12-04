@@ -48,7 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">NO</th>
-                                        <th class="text-center">STRATEGI</th>
+                                        <th class="kolom-panjang">STRATEGI</th>
                                         <th class="kolom-panjang" >RENCANA AKSI / AKTIVITAS</th>
                                         <th class="kolom-panjang">SUB KEGIATAN</th>
                                         <th class="kolom-panjang">KEGIATAN</th>
