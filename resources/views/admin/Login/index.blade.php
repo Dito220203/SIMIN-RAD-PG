@@ -75,7 +75,7 @@
                 <img src="{{ asset('client/img/logo-kabupaten.png') }}" alt="Logo RAD-PG">
             </div>
             <div class="right-content">
-                <h2>SIMIN RENCANA AKSI DAERAH PANGAN DAN GIZI (RAD-PG)</h2>
+                <h2>RENCANA AKSI DAERAH PANGAN DAN GIZI (RAD-PG)</h2>
                 {{-- <p >Sistem manajemen monitoring evaluasi yang efisien dan terintegrasi untuk RAD-PG</p> --}}
             </div>
         </div>

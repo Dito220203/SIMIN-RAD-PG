@@ -29,13 +29,13 @@
             text-align: center;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #1f4e79;
+            border-bottom: 2px solid #375534;
         }
 
         .header-section h1 {
             font-size: 16px;
             font-weight: bold;
-            color: #1f4e79;
+            color: #0F2A1D;
             margin: 0 0 5px 0;
             text-transform: uppercase;
         }
@@ -56,12 +56,12 @@
         }
 
         .info-label {
-            color: #495057;
+            color: #0F2A1D;
         }
 
         .info-value {
-            color: #1f4e79;
-            background-color: #e3f2fd;
+            color: #6B9071;
+            background-color: #E3EED4;
             padding: 2px 6px;
             border-radius: 3px;
             margin-left: 3px;
@@ -80,7 +80,7 @@
         }
 
         thead {
-            background-color: #0084ff;
+            background-color: #375534;
             color: white;
         }
 
@@ -155,7 +155,7 @@
 
         .currency {
             font-weight: bold;
-            color: #1f4e79;
+            color: #6B9071;
             font-size: 6px;
         }
 
@@ -178,7 +178,7 @@
 
 <body>
     <div class="header-section">
-        <h1>Monitoring dan Evaluasi IAD Perhutanan Sosial</h1>
+        <h1>Monitoring dan Evaluasi RAD-PG</h1>
     </div>
 
     <div class="info-section">

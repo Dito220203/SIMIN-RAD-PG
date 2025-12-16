@@ -2669,7 +2669,7 @@ progress {
   --bs-table-bg-type: initial;
   --bs-table-color-state: initial;
   --bs-table-bg-state: initial;
-  --bs-table-color: #67748e;
+  --bs-table-color: rgb(0, 0, 0);
   --bs-table-bg: transparent;
   --bs-table-border-color: #e9ecef;
   --bs-table-accent-bg: transparent;
@@ -2835,11 +2835,11 @@ progress {
 
 .table-light {
   --bs-table-color: #000;
-  --bs-table-bg: #e9ecef;
+  --bs-table-bg: #000000;
   --bs-table-border-color: rgb(209.7, 212.4, 215.1);
   --bs-table-striped-bg: rgb(221.35, 224.2, 227.05);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: rgb(209.7, 212.4, 215.1);
+  --bs-table-active-bg: rgb(0, 0, 0);
   --bs-table-active-color: #000;
   --bs-table-hover-bg: rgb(215.525, 218.3, 221.075);
   --bs-table-hover-color: #000;
@@ -2861,45 +2861,7 @@ progress {
   border-color: var(--bs-table-border-color);
 }
 
-.table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
 
-@media (max-width: 575.98px) {
-  .table-responsive-sm {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .table-responsive-md {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .table-responsive-lg {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  .table-responsive-xl {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-@media (max-width: 1399.98px) {
-  .table-responsive-xxl {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
 
 .form-label {
   margin-bottom: 0.5rem;
@@ -4002,20 +3964,20 @@ fieldset:disabled .btn {
 }
 
 .btn-info {
-  --bs-btn-color: #000;
-  --bs-btn-bg: #11cdef;
-  --bs-btn-border-color: #11cdef;
-  --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: rgb(52.7, 212.5, 241.4);
-  --bs-btn-hover-border-color: rgb(40.8, 210, 240.6);
-  --bs-btn-focus-shadow-rgb: 14, 174, 203;
-  --bs-btn-active-color: #000;
-  --bs-btn-active-bg: rgb(64.6, 215, 242.2);
-  --bs-btn-active-border-color: rgb(40.8, 210, 240.6);
-  --bs-btn-active-shadow: none;
-  --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #11cdef;
-  --bs-btn-disabled-border-color: #11cdef;
+ --bs-btn-color: #ffffff; 
+ --bs-btn-bg: #6B9071;
+  --bs-btn-border-color: #6B9071;
+ --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #375534;
+  --bs-btn-hover-border-color: #2f492c; /* Sedikit lebih gelap dari bg hover */
+  --bs-btn-focus-shadow-rgb: 107, 144, 113;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0F2A1D;
+  --bs-btn-active-border-color: #0F2A1D;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #6B9071;
+  --bs-btn-disabled-border-color: #6B9071;
 }
 
 .btn-warning {
@@ -21939,8 +21901,8 @@ fieldset:disabled .btn {
 
 .btn-info:hover,
 .btn.bg-gradient-info:hover {
-  background-color: #11cdef;
-  border-color: #11cdef;
+  /* background-color: #11cdef;
+  border-color: #11cdef; */
 }
 
 .btn-info .btn.bg-outline-info,
@@ -21954,8 +21916,8 @@ fieldset:disabled .btn {
 .btn.bg-gradient-info:not(:disabled):not(.disabled).active,
 .btn.bg-gradient-info:not(:disabled):not(.disabled):active,
 .show>.btn.bg-gradient-info.dropdown-toggle {
-  color: color-yiq(#11cdef);
-  background-color: #11cdef;
+  /* color: color-yiq(#11cdef);
+  background-color: #11cdef; */
 }
 
 .btn-info.focus,
@@ -28516,16 +28478,28 @@ pre[class*=language-] {
 
 /* 1.1 PENGATUR SCROLL VERTIKAL TABEL */
 .table-responsive {
-    max-height: 75vh; /* Atur tinggi maksimal tabel */
-    overflow-y: auto; /* Aktifkan scroll vertikal HANYA di sini */
-}
+padding-top: 0 !important; 
+    margin-top: 0 !important;
+    border-top: none !important;
+    
+    max-height: 75vh;
+    overflow: auto;
+    
+    /* Styling scrollbar bawah */
+    scrollbar-width: thin;
+    scrollbar-color: #718355 #f1f1f1;
+    box-shadow: 0 8px 14px rgba(0,0,0,0.1);
+  }
 
 /* 1. WADAH SCROLLBAR ATAS */
+/* 1. WADAH SCROLLBAR ATAS */
 .top-scrollbar-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin-top: 10px;
-  height: 10px; /* <- TINGGI WADAH (samakan dgn scrollbar) */
+    overflow-x: auto;
+    overflow-y: hidden; 
+    height: 10px; 
+    margin-bottom: 0px !important; /* Ubah jadi 0 agar nempel */
+    scrollbar-width: thin;
+    scrollbar-color: #718355 #f1f1f1;
 }
 .top-scrollbar-content {
   height: 1px;
@@ -28554,15 +28528,41 @@ pre[class*=language-] {
 .top-scrollbar-wrapper::-webkit-scrollbar-thumb:hover {
   background: #B5C99A !important; /* Paksa hijau medium */
 }
+/* .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+} */
 
-/* 3. STYLE HEADER TABEL */
-/* 3. STYLE HEADER TABEL (STICKY) */
+
+
+#tabelSaya {
+  margin-top: 0 !important;
+    margin-bottom: 0 !important; /* Tambahkan ini */
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100%; /* Pastikan tabel full width */
+  }
+
 #tabelSaya thead th {
-  position: sticky; /* <- KUNCI UTAMANYA */
-  top: 0;           /* <- Menempel di paling atas */
-  z-index: 10;      /* <- Pastikan di atas konten body tabel */
-  background-color: #CFE1B9; /* Pindahkan background ke TH */
-  color: #718355;
+   position: sticky;
+    top: 0; /* Ini kunci utamanya */
+    z-index: 1020;
+    
+    background-color: #CFE1B9 !important;
+    color: #718355;
+    
+    /* Hapus border fisik */
+    border: none !important;
+
+    /* Gunakan Box Shadow untuk manipulasi visual border */
+    /* Shadow bawah (-1px) untuk garis pemisah, Shadow atas (1px) untuk menutup celah mikro */
+    box-shadow: 
+        0 1px 0 0 #CFE1B9,  /* Shadow ke atas (menutup celah jika ada) */
+        0 -1px 0 0 #CFE1B9, /* Shadow ke samping/bawah 'dummy' */
+        inset 0 -1px 0 0 #CFE1B9; /* Garis bawah header */
+
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 
@@ -28573,7 +28573,10 @@ white-space: normal !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
-
+/* Memaksa semua sel di dalam tabelSaya agar isinya di tengah vertikal */
+#tabelSaya tbody td {
+    vertical-align: middle !important;
+}
 /* 2. KELAS UNTUK KOLOM YANG BOLEH PANJANG & WRAP */
 /* (Misal: Rencana Aksi, Kegiatan, Sub Kegiatan) */
 #tabelSaya .kolom-panjang {
@@ -28607,6 +28610,43 @@ white-space: normal !important;
   border-color: #CFE1B9;     /* Samakan tema */
   opacity: 0.6;              /* Buat nonaktif */
 }
+
+@media (max-width: 575.98px) {
+  .table-responsive-sm {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .table-responsive-md {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive-lg {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .table-responsive-xl {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 1399.98px) {
+  .table-responsive-xxl {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
 
 /* 5. STYLE KONTROL TABEL LAINNYA */
 #lengthContainer .form-select {

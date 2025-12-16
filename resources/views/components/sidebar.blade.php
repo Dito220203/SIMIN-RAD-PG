@@ -87,6 +87,13 @@
                     <span>Progres Kerja</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('regulasi*') ? '' : 'collapsed' }}"
+                    href="{{ route('regulasi') }}">
+                     <i class="bi bi-file-earmark-text"></i>
+                    <span>Regulasi</span>
+                </a>
+            </li>
 
 
 

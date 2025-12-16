@@ -38,6 +38,7 @@ Route::get('/rencana-aksi', [ClientController::class, 'rencanaAksi'])->name('ren
 Route::get('/rencana-kerja', [ClientController::class, 'rencanaKerja'])->name('rencanaKerja');
 Route::get('/monitoring-evaluasi', [ClientController::class, 'Monev'])->name('Monev');
 Route::get('/progres-kerja', [ClientController::class, 'progres'])->name('progreskerja');
+Route::get('/regu', [ClientController::class, 'regulasi'])->name('regu');
 Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
 // routes/web.php
 
@@ -50,19 +51,17 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
 
     Route::get('/admin', [DasboardAdminController::class, 'index'])->name('dashboard');
 
-     Route::get('/banner', [BannerController::class, 'index'])->name('banner');
+    Route::get('/banner', [BannerController::class, 'index'])->name('banner');
     Route::post('/banner-save', [BannerController::class, 'store'])->name('banner.store');
     Route::get('/banner-edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::put('/banner-update/{id}', [BannerController::class, 'update'])->name('banner.update');
     Route::delete('/banner-delete/{id}', [BannerController::class, 'destroy'])->name('banner.delete');
 
-    Route::get('/subProgram', [SubProgramController::class, 'index'])->name('subprogram');
-    Route::post('/subprogram-create', [SubProgramController::class, 'store'])->name('subrogram.store');
-    Route::post('/store-produk', [SubProgramController::class, 'storeProduk'])->name('produk.store');
-    Route::put('/subprogram-update/{id}', [SubProgramController::class, 'update'])->name('subprogram.update');
-    Route::delete('/supprogram-delete/{id}', [SubProgramController::class, 'destroy'])->name('subrogram.delete');
-    Route::put('/sub-produk-update/{id}', [SubProgramController::class, 'updateProduk'])->name('update.produk');
-    Route::delete('/sub-produk/{id}/delete', [SubProgramController::class, 'destroyProduk'])->name('delete.produk');
+    Route::get('/strategi-admin', [SubProgramController::class, 'index'])->name('subprogram');
+    Route::post('/strategi-create', [SubProgramController::class, 'store'])->name('subrogram.store');
+    Route::put('/strategi-update/{id}', [SubProgramController::class, 'update'])->name('subprogram.update');
+    Route::delete('/strategi-delete/{id}', [SubProgramController::class, 'destroy'])->name('subrogram.delete');
+
 
 
     Route::get('/rencan-aksi', [RencanaAksi_6TahunController::class, 'index'])->name('rencana6tahun');
@@ -115,6 +114,12 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
     Route::delete('/monev-delete/{id}', [MonevController::class, 'destroy'])->name('monev.delete');
     Route::put('/monev/bulk-toggle-lock', [MonevController::class, 'bulkToggleLock'])->name('monev.bulk-lock');
 
+    Route::get('/regulasi', [RegulasiController::class, 'index'])->name('regulasi');
+    Route::get('/regulasi-create', [RegulasiController::class, 'create'])->name('regulasi.create');
+    Route::post('/regulasi-store', [RegulasiController::class, 'store'])->name('regulasi.store');
+    Route::get('/regulasi-edit/{id}', [RegulasiController::class, 'edit'])->name('regulasi.edit');
+    Route::put('/regulasi-update/{id}', [RegulasiController::class, 'update'])->name('regulasi.update');
+    Route::delete('regulasi-delete/{id}', [RegulasiController::class, 'destroy'])->name('regulasi.delete');
 
 
     Route::get('/opd', [OpdController::class, 'index'])->name('opd');

@@ -7,37 +7,53 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Dashboard</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Progres Kegiatan </li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Progres Kegiatan</li>
                     </ol>
-                    {{-- <h6 class="font-weight-bolder text-white mb-0">Progres Kegiatan</h6> --}}
+                    {{-- <h6 class="font-weight-bolder text-white mb-0">Rencana Aksi</h6> --}}
                 </nav>
-                <div class="ms-md-auto pe-md-1 d-flex align-items-center">
-                    <div class="input-group">
-                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Cari di halaman ini..."
-                            id="liveSearchInput">
+
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari di halaman ini..."
+                                id="liveSearchInput">
+                        </div>
                     </div>
+                    <ul class="navbar-nav  justify-content-end">
+
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="{{ route('login') }}" class="nav-link text-white font-weight-bold px-0">
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Sign In</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
-                        <a href="{{ route('login') }}" class="nav-link text-white font-weight-bold px-0">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </nav>
-        <div class="row">
+
+        <div class="row mt-4">
             <div class="col-12">
                 <div class="card mb-4">
-                    <div class="card-header pb-0">
-                        <h6>Daftar progres kerja</h6>
+                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                        <h6>Daftar Progres Kegiatan</h6>
                         <div id="lengthContainer"></div>
                     </div>
+
                     <div class="card-body px-0 pt-0 pb-2">
+                        <div class="top-scrollbar-wrapper">
+                            <div class="top-scrollbar-content"></div>
+                        </div>
                         <div class="table-responsive p-0">
-                            <table id="tabelSaya" class="table align-items-center mb-0">
+                           <table id="tabelSaya" class="table align-items-center mb-0">
                                 <thead class="bg-light">
                                     <tr>
                                         <th class="text-center">NO</th>
@@ -64,16 +80,15 @@
                                                 @endif
                                             </td>
                                             <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center gap-1">
-                                                    <!-- Tombol Detail -->
-                                                    <button type="button" class="btn btn-info btn-sm" title="Lihat"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#detailModal{{ $data->id }}">
-                                                        lihat
-                                                    </button>
+
+                                                <!-- Tombol Detail -->
+                                                <button type="button" class="btn btn-info btn-sm m-0" title="Lihat"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal{{ $data->id }}">
+                                                    lihat
+                                                </button>
 
 
-                                                </div>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -218,58 +233,6 @@
         </div>
     </div>
 @endsection
-{{-- ... (kode @endsection Anda) ... --}}
-
 @push('scripts')
-    {{--
-        CATATAN:
-        jQuery, DataTables.js, dan DataTables.bootstrap5.js
-        diasumsikan sudah dimuat di layout utama (seperti Langkah 1)
-    --}}
-
-    {{-- TAMBAHKAN INI: Memuat file JS kustom Anda --}}
     <script src="{{ asset('js/progres-tabel.js') }}"></script>
-
-    {{-- Ini adalah skrip Leaflet (Peta) Anda yang sudah ada --}}
-    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> --}}
-    {{-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> --}}
-
-    <script>
-        // Skrip untuk Leaflet map di dalam modal (TETAP ADA)
-        document.addEventListener('shown.bs.modal', function(event) {
-            // Cari kontainer peta di dalam modal yang BARU SAJA DIBUKA
-            const modal = event.target;
-            const mapContainer = modal.querySelector('.peta-container');
-
-            // Jika tidak ada kontainer peta di modal ini, atau peta sudah dibuat, hentikan
-            if (!mapContainer || mapContainer._leaflet_id) {
-                return;
-            }
-
-            const lat = mapContainer.dataset.latitude;
-            const lng = mapContainer.dataset.longitude;
-            const mapId = mapContainer.id;
-
-            // Inisialisasi peta dalam mode 'view-only'
-            const detailMap = L.map(mapId, {
-                center: [lat, lng],
-                zoom: 15,
-                scrollWheelZoom: false, // Matikan zoom scroll
-                dragging: false, // Matikan drag
-                zoomControl: true // Tampilkan kontrol zoom +/-
-            });
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(detailMap);
-
-            // Tambahkan penanda yang tidak bisa digeser
-            L.marker([lat, lng]).addTo(detailMap);
-
-            // Penting: Sesuaikan ukuran peta setelah modal tampil
-            setTimeout(function() {
-                detailMap.invalidateSize();
-            }, 200);
-        });
-    </script>
 @endpush

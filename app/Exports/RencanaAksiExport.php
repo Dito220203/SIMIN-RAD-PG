@@ -118,7 +118,7 @@ class RencanaAksiExport implements FromCollection, WithHeadings, WithStyles, Wit
     {
         // Judul Utama
         $sheet->mergeCells('A1:N1'); // Sesuaikan dengan jumlah kolom
-        $sheet->setCellValue('A1', 'Rencana Aksi IAD Perhutanan Sosial');
+        $sheet->setCellValue('A1', 'Rencana Aksi RAD-PG');
         $sheet->getRowDimension(1)->setRowHeight(30);
 
         $lastColumn = $sheet->getHighestColumn();
@@ -142,7 +142,7 @@ class RencanaAksiExport implements FromCollection, WithHeadings, WithStyles, Wit
         $sheet->getStyle($headerRange)->applyFromArray([
             'font' => ['bold' => true, 'size' => 11, 'color' => ['argb' => 'FFFFFFFF']],
             'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
-            'fill' => ['fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID, 'startColor' => ['argb' => 'FF4F81BD']],
+            'fill' => ['fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID, 'startColor' => ['argb' => '375534']],
         ]);
         $sheet->getRowDimension(3)->setRowHeight(28);
 

@@ -57,24 +57,7 @@
         <!-- End Navbar -->
         @yield('content')
 
-        <footer class="footer pt-3  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-12">
-                        <div class="copyright text-center text-sm text-muted text-lg-end">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
-                            for a better web.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
     </main>
 
 
@@ -118,6 +101,7 @@
     <script async defer src="{{ asset('client/js/buttons.js') }}"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('client/js/argon-dashboard.min.js?v=2.1.0') }}"></script>
+    <script src="{{ asset('js/sidenav-toggle.js') }}"></script>
     @stack('scripts')
 </body>
 

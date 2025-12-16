@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Monev;
 use App\Models\ProgresKerja;
+use App\Models\Regulasi;
 use App\Models\RencanaAksi_6_tahun;
 use App\Models\RencanaKerja;
 use App\Models\Subprogram;
@@ -104,5 +105,10 @@ class ClientController extends Controller
     {
         $progres = ProgresKerja::where('status', 'valid')->get();
         return view('client.progres', compact('progres'));
+    }
+    public function regulasi()
+    {
+        $regulasi = Regulasi::where('status', 'aktif')->get();
+        return view('client.regulasi', compact('regulasi'));
     }
 }

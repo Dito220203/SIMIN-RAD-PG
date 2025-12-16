@@ -46,6 +46,7 @@
         /* Menggunakan warna yang konsisten dari style Anda */
     }
 
+    
     /* 4. PENGATURAN UNTUK SEMUA SEL (th & td) */
     .detail-table th,
     .detail-table td {
@@ -359,6 +360,6 @@
     color: #fff !important;
     border-radius: 50%;
     padding: 6px 12px;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
