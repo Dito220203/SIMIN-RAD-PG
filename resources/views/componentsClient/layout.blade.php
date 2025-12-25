@@ -14,21 +14,24 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
+    <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" />
+    {{-- <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" /> --}}
 
-    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+    {{-- <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" /> --}}
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> --}}
+    <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet">
 
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> --}}
+    <link rel="stylesheet" href=" {{ asset('client/css/leaflet.css') }}" />
     {{-- File CSS Bootstrap Anda (sudah ada) --}}
-    <link href="https." rel="stylesheet" ...>
+    {{-- <link href="https." rel="stylesheet" ...> --}}
 
     {{-- TAMBAHKAN INI: DataTables CSS untuk Bootstrap 5 --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"> --}}
     <link href="{{ asset('client/css/style-tambahan.css') }}" rel="stylesheet" />
 </head>
 
@@ -64,15 +67,19 @@
 
     <!--   preload JS Files   -->
     <script src="{{ asset('client/js/preload.js') }}"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    {{-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> --}}
+    <script src="{{ asset('client/js/leaflet.js') }}"></script>
     <script src="{{ asset('js/live-search.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
+    <script src="{{ asset('client/js/jquery-3.7.0.js') }}"></script>
     {{-- File JS Bootstrap Anda (sudah ada) --}}
     <script src="https." ...></script>
 
     {{-- TAMBAHKAN INI: DataTables Core JS dan JS untuk Bootstrap 5 --}}
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script> --}}
+    <script src="{{ asset('client/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('client/js/dataTables.bootstrap5.min.js') }}"></script>
 
     <!--   Core JS Files   -->
     <script src="{{ asset('client/js/core/popper.min.js') }}"></script>
@@ -80,7 +87,8 @@
     <script src="{{ asset('client/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('client/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('client/js/plugins/chartjs.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('client/js/sweetalert2@11.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <script src="{{ asset('js/alerthapus.js') }}"></script>
     @if (session('success'))
         <script>

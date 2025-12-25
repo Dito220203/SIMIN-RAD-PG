@@ -4031,7 +4031,7 @@ fieldset:disabled .btn {
   --bs-btn-disabled-border-color: #e9ecef;
 }
 
-.btn-dark {
+/* .btn-dark {
   --bs-btn-color: #fff;
   --bs-btn-bg: #344767;
   --bs-btn-border-color: #344767;
@@ -4046,7 +4046,7 @@ fieldset:disabled .btn {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #344767;
   --bs-btn-disabled-border-color: #344767;
-}
+} */
 
 .btn-white {
   --bs-btn-color: #000;
@@ -5622,7 +5622,7 @@ fieldset:disabled .btn {
 }
 
 .accordion {
-  --bs-accordion-color: #67748e;
+  /* --bs-accordion-color: #67748e; */
   --bs-accordion-bg: transparent;
   --bs-accordion-transition: all 0.15s ease-in, border-radius 0.15s ease;
   --bs-accordion-border-color: rgba(0, 0, 0, 0.125);
@@ -5631,7 +5631,7 @@ fieldset:disabled .btn {
   --bs-accordion-inner-border-radius: 0.25rem;
   --bs-accordion-btn-padding-x: 1rem;
   --bs-accordion-btn-padding-y: 1rem;
-  --bs-accordion-btn-color: #67748e;
+  /* --bs-accordion-btn-color: #67748e; */
   --bs-accordion-btn-bg: transparent;
   --bs-accordion-btn-icon: none;
   --bs-accordion-btn-icon-width: 1rem;
@@ -5641,7 +5641,7 @@ fieldset:disabled .btn {
   --bs-accordion-btn-focus-box-shadow: none;
   --bs-accordion-body-padding-x: 1rem;
   --bs-accordion-body-padding-y: 1rem;
-  --bs-accordion-active-color: #344767;
+  /* --bs-accordion-active-color: #344767; */
   --bs-accordion-active-bg: transparent;
 }
 
@@ -28436,10 +28436,10 @@ pre[class*=language-] {
 /* 6. STATE HOVER: Tampilan saat mouse di atas (dari .nav-link:hover) */
 /* Ini tampilan saat mouse menyentuh menu (yang tidak aktif) */
 .sidenav .navbar-nav .nav-link:hover:not(.active) {
-  background: #CFE1B9; /* Background hijau sangat muda */
+  background: #CFE1B9 !important; /* Background hijau sangat muda */
 }
 .sidenav .navbar-nav .nav-link:hover:not(.active) .nav-link-text {
-  color: #718355; /* Teks hijau tua */
+  color: #718355 !important; /* Teks hijau tua */
 }
 .sidenav .navbar-nav .nav-link:hover:not(.active) .icon i {
   color: #718355 !important; /* Ikon hijau tua */
@@ -28448,18 +28448,18 @@ pre[class*=language-] {
 /* 7. Tombol Footer (Disesuaikan temanya) */
 /* Ini menyesuaikan tombol Sign In & Example di bawah */
 .sidenav-footer .btn-dark {
-  background-color: #718355; /* Hijau tua */
-  color: #FFFFFF;
+  background-color: #718355 !important; /* Hijau tua */
+  color: #FFFFFF !important;
   border: none;
 }
 .sidenav-footer .btn-primary {
   background-color: #B5C99A; /* Hijau medium */
-  color: #ffffff;
+  color: #ffffff  !important;
   border: none;
 }
 /* 8. Teks Judul di Footer */
 .sidenav-footer .docs-info h6 {
-  color: #718355; /* <-- Ganti warnanya di sini */
+  color: #718355 !important; /* <-- Ganti warnanya di sini */
 }
 
 

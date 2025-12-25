@@ -132,7 +132,7 @@
             &copy; Copyright <strong><span>Rad-PG</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="">BootstrapMade</a>
         </div>
     </footer><!-- End Footer -->
 
