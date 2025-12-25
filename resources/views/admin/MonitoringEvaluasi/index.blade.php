@@ -333,11 +333,6 @@
                                                         </button>
                                                     </td>
 
-
-
-
-
-
                                                     <td class="text-center align-middle">
                                                         <div class="d-flex justify-content-center gap-1">
                                                             <button type="button" class="btn btn-success btn-sm"
@@ -411,9 +406,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
-
-
                                     <!-- Modal Pesan (satu saja, di luar foreach) -->
                                     <div class="modal fade" id="modalPesan" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -446,9 +438,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     {{-- modal detail --}}
                                     @foreach ($monev as $data)
                                         <div class="modal fade" id="ModalDetailProduk{{ $data->id }}" tabindex="-1"

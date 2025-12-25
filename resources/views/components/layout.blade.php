@@ -52,6 +52,7 @@
   ======================================================== -->
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
 </head>
@@ -87,25 +88,24 @@
     .btn.is-loading .spinner-border {
         margin-right: 0.5rem;
     }
+
     /* Mengubah background header menjadi HIJAU TUA */
-#header {
-  background-color: #2e473a; /* <-- Warna hijau tua yang baru */
-}
+    #header {
+        background-color: #2e473a;
+        /* <-- Warna hijau tua yang baru */
+    }
 
-/* Mengubah warna teks & ikon di header menjadi putih agar terbaca */
-#header .toggle-sidebar-btn,
-#header .logo span,
-#header .nav-link {
-  color: #FFFFFF;
-}
+    /* Mengubah warna teks & ikon di header menjadi putih agar terbaca */
+    #header .toggle-sidebar-btn,
+    #header .logo span,
+    #header .nav-link {
+        color: #FFFFFF;
+    }
 
-/* Memastikan ikon di dalam nav-link juga berubah */
-#header .nav-link i {
-  color: #FFFFFF;
-}
-
-
-
+    /* Memastikan ikon di dalam nav-link juga berubah */
+    #header .nav-link i {
+        color: #FFFFFF;
+    }
 </style>
 
 
@@ -167,16 +167,15 @@
     <script src="{{ asset('js/loadingSubmit.js') }}"></script>
 
 
-@stack('scripts') <!-- pastikan ini tetap ada -->
+    @stack('scripts') <!-- pastikan ini tetap ada -->
 
     {{-- <script src="{{ asset('js/live-search.js') }}"></script> --}}
     <script src="{{ asset('js/modalApludMonevDokumentasi.js') }}"></script>
     <script src="{{ asset('assets/vendor/leaflet/geosearch.umd.js') }}"></script>
-@push('scripts')
-    {{-- PERUBAHAN: Ganti progres-tabel.js dengan entries-pagnation-admin.js --}}
-    <script src="{{ asset('js/entries-pagnation-admin.js') }}"></script>
-
-@endpush
+    @push('scripts')
+        {{-- PERUBAHAN: Ganti progres-tabel.js dengan entries-pagnation-admin.js --}}
+        <script src="{{ asset('js/entries-pagnation-admin.js') }}"></script>
+    @endpush
 
     <!-- SweetAlert Success -->
     @if (session('success'))

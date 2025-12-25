@@ -30,6 +30,7 @@
     {{-- TAMBAHKAN INI: DataTables CSS untuk Bootstrap 5 --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link href="{{ asset('client/css/style-tambahan.css') }}" rel="stylesheet" />
+
 </head>
 
 
@@ -67,14 +68,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="{{ asset('js/live-search.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    {{-- File JS Bootstrap Anda (sudah ada) --}}
     <script src="https." ...></script>
-
-    {{-- TAMBAHKAN INI: DataTables Core JS dan JS untuk Bootstrap 5 --}}
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-
-    <!--   Core JS Files   -->
     <script src="{{ asset('client/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('client/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('client/js/plugins/perfect-scrollbar.min.js') }}"></script>
@@ -95,11 +91,7 @@
             session()->forget('success');
         @endphp
     @endif
-
-
-    <!-- Github buttons -->
     <script async defer src="{{ asset('client/js/buttons.js') }}"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('client/js/argon-dashboard.min.js?v=2.1.0') }}"></script>
     <script src="{{ asset('js/sidenav-toggle.js') }}"></script>
     @stack('scripts')

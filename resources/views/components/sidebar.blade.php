@@ -140,7 +140,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('logout') }}">
+                <a class="nav-link collapsed" href="{{ route('logout') }}" data-turbo="false">
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>
