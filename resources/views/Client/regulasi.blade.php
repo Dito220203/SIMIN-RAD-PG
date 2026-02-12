@@ -61,7 +61,6 @@
                                         <th class="text-center">TANGGAL</th>
                                         <th class="text-center">STATUS</th>
                                         <th class="text-center">FILE</th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="rencana-aksi-table-body">
@@ -78,22 +77,22 @@
                                                 @endif
                                             </td>
 
-                                            <td class="text-center ">
-                                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#fileModal{{ $item->id }}">
+                                            <td class="text-center align-middle">
+
+                                                <button type="button" class="btn btn-info btn-sm m-0"
+                                                    data-bs-toggle="modal" data-bs-target="#fileModal{{ $item->id }}">
                                                     Lihat
                                                 </button>
 
-
-                                                <!-- Modal -->
                                                 <div class="modal fade" id="fileModal{{ $item->id }}" tabindex="-1"
                                                     aria-labelledby="fileModalLabel{{ $item->id }}" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
-                                                                    id="fileModalLabel{{ $item->id }}">Lihat File
-                                                                    Regulasi</h5>
+                                                                    id="fileModalLabel{{ $item->id }}">
+                                                                    Lihat File Regulasi
+                                                                </h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>

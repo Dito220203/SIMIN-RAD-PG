@@ -10,7 +10,7 @@ class Opd extends Model
 {
     use HasFactory;
     protected $table = 'opds';
-    protected $fillable = ['nama', 'status','delete_at'];
+    protected $fillable = ['nama', 'status','no_tlp','delete_at'];
 
      public function penggunas()
     {

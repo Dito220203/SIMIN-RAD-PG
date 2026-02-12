@@ -82,7 +82,7 @@
                                             <td class="text-center align-middle">
 
                                                 <!-- Tombol Detail -->
-                                                <button type="button" class="btn btn-info btn-sm" title="Lihat"
+                                                <button type="button" class="btn btn-info btn-sm m-0" title="Lihat"
                                                     data-bs-toggle="modal" data-bs-target="#detailModal{{ $data->id }}">
                                                     lihat
                                                 </button>

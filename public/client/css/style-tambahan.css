@@ -46,6 +46,7 @@
         /* Menggunakan warna yang konsisten dari style Anda */
     }
 
+    
     /* 4. PENGATURAN UNTUK SEMUA SEL (th & td) */
     .detail-table th,
     .detail-table td {
@@ -241,6 +242,7 @@
         /* efek hover hijau lebih terang */
         border-color: #3c6b4c;
     }
+    
 
     /* Mencentangkan elemen "Show entries" di atas tabel */
     /* Atur header card jadi flex container */

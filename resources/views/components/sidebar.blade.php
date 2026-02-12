@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('monev*') ? '' : 'collapsed' }}" href="{{ route('monev') }}">
+                <a class="nav-link {{ request()->routeIs('monev*') ? '' : 'collapsed' }}" href="{{ route('monev') }}" >
                     <i class="bi bi-clipboard-check"></i>
                     <span>Monitoring Evaluasi</span>
                 </a>
@@ -75,7 +75,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('monev*') ? '' : 'collapsed' }}" href="{{ route('monev') }}">
+                <a class="nav-link {{ request()->routeIs('monev*') ? '' : 'collapsed' }}" href="{{ route('monev') }}" data-turbo="false">
                     <i class="bi bi-bar-chart-line"></i>
                     <span>Monitoring Evaluasi</span>
                 </a>
@@ -140,7 +140,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('logout') }}" data-turbo="false">
+                <a class="nav-link collapsed" href="{{ route('logout') }}" >
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>

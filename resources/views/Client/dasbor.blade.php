@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-icon shadow-primary text-center rounded-circle">
-                                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-list-check text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-icon shadow-danger text-center rounded-circle">
-                                    <i class="ni ni-calendar-grid-58 text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-briefcase text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-icon shadow-success text-center rounded-circle">
-                                    <i class="ni ni-archive-2 text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-chart-line text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-icon shadow-warning text-center rounded-circle">
-                                    <i class="ni ni-image text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-bars-progress text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -131,10 +131,10 @@
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
                         <h6 class="text-capitalize">Progres Kerja Per Tahun</h6>
-                        <p class="text-sm mb-0">
+                        {{-- <p class="text-sm mb-0">
                             <i class="fa fa-check text-info"></i>
                             <span class="font-weight-bold">Rata-Rata Progres</span> Tahun Ini
-                        </p>
+                        </p> --}}
                         <select id="filterTahun" class="form-select" style="width:150px;">
                             @foreach ($tahunList as $tahun)
                                 <option value="{{ $tahun }}" {{ $tahun == date('Y') ? 'selected' : '' }}>
@@ -176,9 +176,9 @@
                                     style="background-image: url('{{ asset('storage/' . $banner->file) }}'); background-size: cover;">
 
                                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                                        {{-- <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                             <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                                        </div>
+                                        </div> --}}
 
                                         <h5 class="text-white mb-1">{{ $banner->judul }}</h5>
 
@@ -204,7 +204,7 @@
             </div>
 
         </div>
-        <div class="row mt-4">
+        {{-- <div class="row mt-4">
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card ">
                     <div class="card-header pb-0 p-3">
@@ -426,7 +426,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 

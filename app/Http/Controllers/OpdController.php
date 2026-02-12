@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\LogHelper;
 use App\Models\Opd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +37,7 @@ class OpdController extends Controller
         $rules = [
             'nama' => 'required|unique:opds,nama',
             'status' => 'required',
+            'no_tlp' => 'string|nullable',
         ];
 
         // 2. Definisikan pesan custom untuk aturan tertentu
@@ -50,7 +50,7 @@ class OpdController extends Controller
 
         Opd::create($validate);
 
-        LogHelper::add('Menambah data OPD');
+
         return redirect()->route('opd')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -82,6 +82,7 @@ class OpdController extends Controller
         // KECUALI untuk baris yang memiliki id = $id.
         'e_nama' => 'required|unique:opds,nama,' . $id,
         'e_status' => 'required',
+        'no_tlp' => 'string|nullable',
     ];
 
     // 2. Definisikan pesan custom
@@ -97,9 +98,10 @@ class OpdController extends Controller
     $opd->update([
         'nama' => $request->input('e_nama'),
         'status' => $request->input('e_status'),
+        'no_tlp' => $request->input('no_tlp'),
     ]);
 
-    LogHelper::add('Mengubah data OPD');
+
     return redirect()->route('opd')->with('success', 'Data Berhasil Diperbarui');
 }
 
@@ -111,7 +113,7 @@ class OpdController extends Controller
         Opd::where('id', $id)->update([
             'delete_at' => '1'
         ]);
-        LogHelper::add('Menghapus data OPD');
+
         return redirect()->route('opd')->with('success', 'Data Berhasil Dihapus');
     }
 }

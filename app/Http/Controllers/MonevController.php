@@ -15,13 +15,14 @@ use App\Models\RencanaKerja;
 use App\Models\Subprogram;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MonevController extends Controller
 {
-   public function index(Request $request)
+    public function index(Request $request)
     {
         $user = Auth::guard('pengguna')->user();
         $query = Monev::query();
@@ -450,4 +451,20 @@ class MonevController extends Controller
 
         return redirect()->route('monev')->with('success', 'Data Berhasil Dihapus');
     }
+
+    public function reminderManual()
+    {
+        try {
+            // Jalankan command yang sama seperti cron
+            Artisan::call('monev:reminder');
+
+            return redirect()->route('monev')
+                ->with('success', 'Reminder WhatsApp berhasil dikirim ke semua OPD.');
+        } catch (\Exception $e) {
+
+            return redirect()->route('monev')
+                ->with('error', 'Terjadi kesalahan saat mengirim reminder.');
+        }
+    }
+    
 }

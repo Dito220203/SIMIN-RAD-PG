@@ -15,15 +15,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- Fungsi Helper untuk Format Rupiah ---
     const formatRupiah = (input) => {
+        // Hanya ambil angka saja untuk diformat
         let value = input.value.replace(/\D/g, '');
         return value ? 'Rp. ' + parseInt(value).toLocaleString('id-ID') : '';
     };
 
-    // --- Event Listener untuk Modal ---
-    anggaranInput.addEventListener('input', () => {
-        anggaranInput.value = formatRupiah({
-            value: anggaranInput.value
-        });
+    // --- Event Listener untuk Modal (PERBAIKAN DISINI) ---
+    anggaranInput.addEventListener('input', function() {
+        // 1. Ambil nilai asli
+        let val = this.value;
+
+        // 2. Bersihkan 'Rp', titik, dan spasi untuk pengecekan huruf
+        // Tujuannya agar 'Rp' tidak dianggap sebagai nama barang
+        let cleanVal = val.replace(/Rp|\.| /gi, '');
+
+        // 3. Cek apakah sisa karakter mengandung huruf a-z
+        const hasText = /[a-zA-Z]/.test(cleanVal);
+
+        // 4. Jika TIDAK ada huruf (berarti angka murni), jalankan format Rupiah
+        if (!hasText) {
+            this.value = formatRupiah({ value: val });
+        }
+        // Jika ada huruf (misal: "Laptop"), biarkan apa adanya tanpa format
     });
 
     sumberDanaSelect.addEventListener('change', () => {
@@ -43,10 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // --- Blok Kode yang Diubah ---
-        const anggaranFormatted = anggaranInput.value; // <-- PERUBAHAN: Ambil nilai asli yang sudah diformat
-        const anggaranValueOnly = anggaranInput.value.replace(/\D/g, ''); // <-- PERUBAHAN: Buat versi angka murni hanya untuk validasi
-        // --- Akhir Blok Kode yang Diubah ---
+        const anggaranFormatted = anggaranInput.value;
 
         let sumberDanaValue = sumberDanaSelect.value;
         const sumberDanaText = sumberDanaValue === 'Lainnya' ? lainnyaInput.value : sumberDanaSelect.options[sumberDanaSelect.selectedIndex].text;
@@ -55,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
             sumberDanaValue = lainnyaInput.value;
         }
 
-        // Validasi menggunakan versi angka murni
-        if (!anggaranValueOnly || !sumberDanaValue) { // <-- PERUBAHAN: Menggunakan anggaranValueOnly
+        // Validasi: Pastikan tidak kosong (bisa angka Rp atau teks barang)
+        if (!anggaranFormatted.trim() || !sumberDanaValue) {
             alert('Anggaran dan Sumber Dana harus diisi.');
             return;
         }
@@ -81,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <input type="hidden" name="anggaran[]" value="${anggaranFormatted}">
                 <input type="hidden" name="sumberdana[]" value="${sumberDanaValue}">
             </div>
-        `; // <-- PERUBAHAN: 'value' dari input anggaran menggunakan anggaranFormatted
+        `;
         hiddenContainer.insertAdjacentHTML('beforeend', newHiddenInputs);
 
         modalForm.reset();
@@ -90,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.hide();
     });
 
-    // --- Logika Hapus Baris (Event Delegation) ---
+    // --- Logika Hapus Baris ---
     tableBody.addEventListener('click', (e) => {
         const deleteButton = e.target.closest('.hapus-anggaran-row');
         if (deleteButton) {

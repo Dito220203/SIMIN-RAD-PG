@@ -53,10 +53,10 @@
                         </div>
                         <div class="table-responsive p-0">
                             <table id="tabelSaya" class="table align-items-center mb-0">
-                                <thead class="bg-light">
+                                <thead >
                                     <tr>
                                         <th class="text-center">NO</th>
-                                        <th class="text-center">STRATEGI</th>
+                                        <th class="kolom-panjang">STRATEGI</th>
                                         <th class="kolom-panjang">RENCANA AKSI / AKTIVITAS</th>
                                         <th class="kolom-panjang">SUB KEGIATAN</th>
                                         <th class="kolom-panjang">KEGIATAN</th>
@@ -242,7 +242,7 @@
 
                                             {{-- Tombol Lihat Dokumentasi --}}
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-info btn-sm m-0" data-bs-toggle="modal"
                                                     data-bs-target="#ModalDetailProduk{{ $data->id }}">
                                                     Lihat Dokumentasi
                                                 </button>

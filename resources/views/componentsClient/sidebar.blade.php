@@ -15,7 +15,7 @@
             <a class="nav-link {{ Request::routeIs('dasbor') ? 'active' : '' }}" href="{{ route('dasbor') }}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-house text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
             </a>
@@ -24,7 +24,7 @@
              <a class="nav-link {{ Request::routeIs('strategi') ? 'active' : '' }}" href="{{ route('strategi') }}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                   <i class="ni ni-world-2 text-dark text-sm opacity-10"></i>
+                   <i class="fa-solid fa-bullseye text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Strategi</span>
             </a>
@@ -33,7 +33,7 @@
              <a class="nav-link {{ Request::routeIs('rencanaAksi') ? 'active' : '' }}" href="{{ route('rencanaAksi') }}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-list-check text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Rencana Aksi</span>
             </a>
@@ -41,7 +41,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('rencanaKerja') ? 'active' : '' }}" href="{{ route('rencanaKerja') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-briefcase text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Rencana Kerja</span>
             </a>
@@ -49,7 +49,7 @@
         <li class="nav-item">
              <a class="nav-link {{ Request::routeIs('Monev') ? 'active' : '' }}" href="{{ route('Monev') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-archive-2 text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-chart-line text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Monev</span>
             </a>
@@ -57,7 +57,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('progreskerja') ? 'active' : '' }}" href="{{ route('progreskerja') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-image text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-bars-progress text-dark text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Progres Kegiatan</span>
             </a>
@@ -65,7 +65,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('regu') ? 'active' : '' }}" href="{{ route('regu') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-book-bookmark text-dark text-sm opacity-10"></i>
+                    <i class="fa-solid fa-book-open text-dark text-sm opacity-10"></i>
 
                 </div>
                 <span class="nav-link-text ms-1">Regulasi</span>
@@ -82,7 +82,7 @@
 
      <div class="sidenav-footer mx-3 ">
       <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src="../client/img/illustrations/icon-documentation.svg" alt="sidebar_illustration">
+        <img class="w-50 mx-auto" src="../client/img/illustrations/icon.png" alt="sidebar_illustration">
         <div class="card-body text-center p-3 w-100 pt-0">
           <div class="docs-info">
             <h6 class="mb-0">Login to Your Account</h6>

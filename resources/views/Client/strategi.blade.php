@@ -50,8 +50,8 @@
                         <div id="lengthContainer"></div>
                     </div>
 
-                    <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
+                    <div class="card-body">
+                        <div class="table-responsive">
                             <table id="tabelSaya" class="table align-items-center mb-0">
                                 <thead class="bg-light">
                                     <tr>
@@ -68,7 +68,7 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $data->program }}</td>
-                                            <td class="text-center">{{ $data->subprogram }}</td>
+                                            <td >{{ $data->subprogram }}</td>
                                             <td class="text-center">{{ $data->uraian }}</td>
                                         </tr>
                                     @endforeach

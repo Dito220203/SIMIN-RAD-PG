@@ -177,7 +177,7 @@
                                 @endpush
                                 <fieldset class="border rounded-3 p-3 mb-3">
                                     <legend class="float-none w-auto px-3 h6">Data Per Triwulan</legend>
-                                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-tambah-utama mb-3" data-bs-toggle="modal"
                                         data-bs-target="#triwulanModal">
                                         <i class="bi bi-plus-circle"></i> Tambah Data Triwulan
                                     </button>
@@ -334,7 +334,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="tambah-ke-tabel">Tambah ke Tabel</button>
+                    <button type="button" class="btn btn-success" id="tambah-ke-tabel">Tambah ke Tabel</button>
                 </div>
             </div>
         </div>
@@ -399,7 +399,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="tambah-triwulan-ke-tabel">Tambah ke Tabel</button>
+                    <button type="button" class="btn btn-success" id="tambah-triwulan-ke-tabel">Tambah ke Tabel</button>
                 </div>
             </div>
         </div>

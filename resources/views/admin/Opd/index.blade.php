@@ -25,7 +25,7 @@
                                     + Tambah Opd
                                 </button>
                                 <!-- modal -->
-                                <div class="modal fade" id="modalOpd" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="modalOpd" tabindex="-1" aria-hidden="true" data-turbo="false">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -47,6 +47,10 @@
                                                             <option value="Internal">Internal</option>
                                                             <option value="Eksternal">Eksternal</option>
                                                         </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label>No Telp</label>
+                                                        <input type="number" class="form-control" name="no_tlp" required>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -81,6 +85,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>No_Telp</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -90,6 +95,7 @@
                                             <tr>
                                                 <td>{{ $loop->index }}</td>
                                                 <td>{{ $data->nama }}</td>
+                                                <td>{{ $data->no_tlp }}</td>
                                                 <td> {{ $data->status }}</td>
                                                 <td>
                                                     <div>
@@ -146,6 +152,12 @@
                                                                                 Eksternal</option>
                                                                         </select>
 
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label>No_Telp</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="no_tlp" value="{{ $data->no_tlp }}"
+                                                                            required>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"

@@ -212,8 +212,8 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        {{-- Memanggil file JavaScript eksternal --}}
+        <script src="{{ asset('js/anggaranDansumberDana.js') }}"></script>
+    @endpush
 @endsection
-@push('scripts')
-    {{-- Memanggil file JavaScript eksternal --}}
-    <script src="{{ asset('js/anggaranDansumberDana.js') }}"></script>
-@endpush

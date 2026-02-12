@@ -21,13 +21,13 @@
                             <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-3 mt-3">
                                 <div class="gap-2">
                                     <div class="d-flex flex-column flex-sm-row gap-2">
-                                        <a href="{{ route('rencana.create') }}" class="btn btn-tambah-utama">
+                                        <a href="{{ route('rencana.create') }}" class="btn btn-tambah-utama" data-turbo="false">
                                             + Tambah Rencana
                                         </a>
 
                                         {{-- BARU --}}
                                         <a href="{{ route('rencana.export.excel', request()->query()) }}"
-                                            class="btn btn-success">
+                                            class="btn btn-success" data-turbo="false">
                                             <i class="fa-solid fa-file-excel"></i> Export Excel
                                         </a>
                                     </div>
@@ -227,7 +227,7 @@
                                                             @else
                                                                 {{-- Jika tidak terkunci, tombol berfungsi normal --}}
                                                                 <form action="{{ route('rencana.edit', $data->id) }}"
-                                                                    method="GET" style="display:inline;">
+                                                                    method="GET" style="display:inline;" data-turbo="false">
                                                                     <button class="btn btn-primary btn-sm">
                                                                         <i class="fas fa-edit"></i> Edit
                                                                     </button>

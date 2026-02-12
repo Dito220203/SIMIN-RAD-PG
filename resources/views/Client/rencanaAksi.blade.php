@@ -49,16 +49,16 @@
                         <div id="lengthContainer"></div>
                     </div>
 
-                    <div class="card-body px-0 pt-0 pb-2">
+                    <div class="card-body">
                         <div class="top-scrollbar-wrapper">
                             <div class="top-scrollbar-content"></div>
                         </div>
-                        <div class="table-responsive p-0">
-                            <table id="tabelSaya" class="table align-items-center mb-0">
+                        <div class="table-responsive">
+                            <table id="tabelSaya" class="table align-items-center ">
                                 <thead>
                                     <tr>
                                         <th class="text-center">NO</th>
-                                        <th class="text-center">STRATEGI</th>
+                                        <th class="kolom-panjang">STRATEGI</th>
                                         <th class="kolom-panjang" >RENCANA AKSI / AKTIVITAS</th>
                                         <th class="kolom-panjang">SUB KEGIATAN</th>
                                         <th class="kolom-panjang">KEGIATAN</th>
@@ -133,9 +133,6 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/progres-tabel.js') }}"></script>
-
-    {{-- <script src="{{ asset('js/progres-tabel.js') }}"></script> --}}
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 1. Temukan semua elemen

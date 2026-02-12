@@ -1,6 +1,6 @@
 @extends('components.layout')
 @section('content')
-    <main id="main" class="main">
+    <main id="main" class="main" >
         <div class="pagetitle">
             <h1>Tabel Banner</h1>
             <nav>
@@ -122,9 +122,9 @@
                                     </select>
                                     <span>entri</span>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-4" >
                                     <input type="text" class="form-control" placeholder="Cari di halaman ini..."
-                                        id="liveSearchInput">
+                                        id="liveSearchInput" data-turbo="false">
                                 </div>
                             </div>
 
@@ -216,8 +216,6 @@
             </div>
         </section>
     </main>
-
-
 @endsection
 
 
