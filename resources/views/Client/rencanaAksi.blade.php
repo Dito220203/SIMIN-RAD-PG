@@ -44,7 +44,7 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card mb-4">
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <div class="card-header  d-flex justify-content-between align-items-center">
                         <h6>Daftar Rencana Aksi</h6>
                         <div id="lengthContainer"></div>
                     </div>

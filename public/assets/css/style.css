@@ -182,7 +182,7 @@ h6 {
 }
 
 /* Light Backgrounds */
-.bg-primary-light {
+/* .bg-primary-light {
   background-color: #cfe2ff;
   border-color: #cfe2ff;
 }
@@ -215,6 +215,11 @@ h6 {
 .bg-dark-light {
   background-color: #d3d3d4;
   border-color: #d3d3d4;
+} */
+
+.bg-detail{
+  background-color: #718355;
+  
 }
 
 /* Card */

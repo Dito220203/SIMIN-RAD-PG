@@ -9,6 +9,8 @@ function updateStatus(id, currentStatus) {
         text: confirmText,
         icon: 'warning',
         showCancelButton: true,
+        confirmButtonColor: "#718355",
+        cancelButtonColor: "#d33",
         confirmButtonText: 'Ya, lanjutkan',
         cancelButtonText: 'Batal'
     }).then((result) => {

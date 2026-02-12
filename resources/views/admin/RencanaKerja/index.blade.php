@@ -228,7 +228,7 @@
                                                                 {{-- Jika tidak terkunci, tombol berfungsi normal --}}
                                                                 <form action="{{ route('rencana.edit', $data->id) }}"
                                                                     method="GET" style="display:inline;">
-                                                                    <button class="btn btn-primary btn-sm">
+                                                                    <button class="btn btn-tambah-utama btn-sm">
                                                                         <i class="fas fa-edit"></i> Edit
                                                                     </button>
                                                                 </form>

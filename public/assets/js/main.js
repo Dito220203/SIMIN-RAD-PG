@@ -322,48 +322,65 @@
    * Penjelasan: Script ini untuk menyinkronkan scrollbar atas dan bawah pada tabel.
    */
   // Langsung jalankan kodenya tanpa dibungkus DOMContentLoaded
-  const allTableContainers = document.querySelectorAll('.table-container');
+ const allTableContainers = document.querySelectorAll('.table-container');
 
-  allTableContainers.forEach(container => {
-      const topScrollbar = container.querySelector('.top-scrollbar-container');
-      const topScrollbarContent = container.querySelector('.top-scrollbar-content');
-      const tableWrapper = container.querySelector('.table-responsive');
-      const table = container.querySelector('.detail-table');
+    if (allTableContainers.length === 0) return;
 
-      if (!topScrollbar || !tableWrapper || !table) {
-          return;
-      }
+    allTableContainers.forEach(container => {
+        const topScrollbar = container.querySelector('.top-scrollbar-wrapper');
+        const topScrollbarContent = container.querySelector('.top-scrollbar-content');
+        const tableWrapper = container.querySelector('.table-responsive');
+        const table = container.querySelector('table'); // Pastikan ini menargetkan tabel yang benar
 
-      let isSyncing = false;
+        if (!topScrollbar || !tableWrapper || !table) return;
 
-      function updateTopScrollbarWidth() {
-          if (table.scrollWidth > tableWrapper.clientWidth) {
-              topScrollbarContent.style.width = table.scrollWidth + 'px';
-              topScrollbar.style.display = 'block';
-          } else {
-              topScrollbar.style.display = 'none';
-          }
-      }
+        let isSyncing = false;
 
-      topScrollbar.addEventListener('scroll', function() {
-          if (isSyncing) return;
-          isSyncing = true;
-          tableWrapper.scrollLeft = topScrollbar.scrollLeft;
-          isSyncing = false;
-      });
+        function updateScrollbar() {
+            // Gunakan scrollWidth untuk akurasi konten yang meluber
+            topScrollbarContent.style.width = table.scrollWidth + 'px';
 
-      tableWrapper.addEventListener('scroll', function() {
-          if (isSyncing) return;
-          isSyncing = true;
-          topScrollbar.scrollLeft = tableWrapper.scrollLeft;
-          isSyncing = false;
-      });
+            if (tableWrapper.scrollWidth > tableWrapper.clientWidth) {
+                topScrollbar.style.display = 'block';
+                topScrollbar.scrollLeft = tableWrapper.scrollLeft;
+            } else {
+                topScrollbar.style.display = 'none';
+            }
+        }
 
-      // Panggil pertama kali saat halaman dimuat
-      updateTopScrollbarWidth();
+        // 1. Scroll Atas -> Bawah
+        topScrollbar.addEventListener('scroll', function() {
+            if (isSyncing) return;
+            isSyncing = true;
+            
+            tableWrapper.scrollLeft = topScrollbar.scrollLeft;
+            
+            window.requestAnimationFrame(() => { isSyncing = false; });
+        });
 
-      // Panggil lagi jika ukuran window berubah
-      window.addEventListener('resize', updateTopScrollbarWidth);
-  });
+        // 2. Scroll Bawah -> Atas (DENGAN FILTER VERTIKAL)
+        tableWrapper.addEventListener('scroll', function() {
+            if (isSyncing) return;
+
+            // CEK DULU: Apakah posisi horizontal berubah?
+            // Jika scrollLeft-nya SAMA, berarti user sedang scroll VERTIKAL (atas-bawah).
+            // Jangan jalankan logika sinkronisasi agar Sticky Header tidak berat/macet.
+            if (Math.abs(topScrollbar.scrollLeft - tableWrapper.scrollLeft) < 1) {
+                return; 
+            }
+
+            isSyncing = true;
+            topScrollbar.scrollLeft = tableWrapper.scrollLeft;
+            
+            window.requestAnimationFrame(() => { isSyncing = false; });
+        });
+
+        updateScrollbar();
+        window.addEventListener('resize', updateScrollbar);
+        
+        // Observer untuk mendeteksi perubahan ukuran tabel (misal data nambah/hide kolom)
+        const resizeObserver = new ResizeObserver(() => updateScrollbar());
+        resizeObserver.observe(table);
+    });
 })();
 

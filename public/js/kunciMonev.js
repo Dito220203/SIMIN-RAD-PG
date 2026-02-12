@@ -102,7 +102,7 @@ function updateStatus(id, currentStatus) {
         text: text,
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#28a745',
+        confirmButtonColor: '#718355',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Ubah!',
         cancelButtonText: 'Batal'
@@ -125,8 +125,8 @@ function confirmDelete(id) {
         text: "Data yang dihapus tidak dapat dikembalikan!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
+        confirmButtonColor: '#718355',
+        cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Hapus!',
         cancelButtonText: 'Batal'
     }).then((result) => {

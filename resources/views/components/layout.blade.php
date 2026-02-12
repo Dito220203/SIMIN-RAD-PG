@@ -158,11 +158,15 @@
     <script src="{{ asset('assets/vendor/jquery371/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/1.13.6/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/1.13.6/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/sweetalert/sweetalert2@11.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert/sweetalert2@11.js') }}?v=1.0.4
+"></script>
     <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/sweetalert-custom.js') }}"></script>
-    <script src="{{ asset('js/alerthapus2.js') }}"></script>
-    <script src="{{ asset('js/updateStatus.js') }}"></script>
+    <script src="{{ asset('js/sweetalert-custom.js') }}?v=1.0.4
+"></script>
+    <script src="{{ asset('js/alerthapus2.js') }}?v=1.0.4
+"></script>
+    <script src="{{ asset('js/updateStatus.js') }}?v=1.0.4
+"></script>
     <script src="{{ asset('js/entries.js') }}"></script>
     <script src="{{ asset('js/loadingSubmit.js') }}"></script>
 
@@ -185,7 +189,7 @@
                 icon: 'success',
                 title: 'Berhasil',
                 text: '{{ session('success') }}',
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#718355',
             });
         </script>
         @php
