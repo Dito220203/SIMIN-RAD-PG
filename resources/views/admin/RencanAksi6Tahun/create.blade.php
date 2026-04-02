@@ -80,7 +80,8 @@
                                 <div class="row mb-5">
                                     <div class="col-md-6">
                                         <label class="form-label">Tahun</label>
-                                        <input type="text" name="tahun" class="form-control" placeholder="YYYY" required min="2000" max="2100">
+                                        <input type="text" name="tahun" class="form-control" placeholder="YYYY"
+                                            required min="2000" max="2100">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Perangkat Daerah</label>
@@ -97,7 +98,8 @@
                                     <legend class="float-none w-auto px-2 h6">Detail Pendanaan</legend>
 
                                     {{-- Tombol untuk memicu Modal --}}
-                                    <button type="button" class="btn btn-tambah-utama  mb-3" data-bs-toggle="modal" data-bs-target="#anggaranModal">
+                                    <button type="button" class="btn btn-tambah-utama  mb-3" data-bs-toggle="modal"
+                                        data-bs-target="#anggaranModal">
                                         <i class="bi bi-plus-circle"></i> Tambah Anggaran & Sumber Dana
                                     </button>
 
@@ -122,13 +124,13 @@
 
                                     <div class="mt-2">
                                         <label class="form-label">Keterangan ( Opsional )</label>
-                                        <textarea name="keterangan" class="form-control" rows="3" >{{ old('keterangan') }}</textarea>
+                                        <textarea name="keterangan" class="form-control" rows="3">{{ old('keterangan') }}</textarea>
                                     </div>
 
                                 </fieldset>
                                 <div class="d-flex justify-content-end gap-2 mt-4">
                                     <a href="{{ route('rencana6tahun') }}" class="btn btn-warning">Batal</a>
-                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                    <button type="submit" class="btn btn-success"  data-bs-dismiss="modal">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -141,9 +143,9 @@
     {{-- =============================================================================== --}}
     {{-- MODAL UNTUK INPUT ANGGARAN --}}
     {{-- =============================================================================== --}}
-   <div class="modal fade" id="anggaranModal" tabindex="-1" aria-labelledby="anggaranModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">  {{-- <<<<<<<<<<<<<< TAMBAHKAN KELAS DI SINI --}}
-        <div class="modal-content">
+    <div class="modal fade" id="anggaranModal" tabindex="-1" aria-labelledby="anggaranModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered"> {{-- <<<<<<<<<<<<<< TAMBAHKAN KELAS DI SINI --}}
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="anggaranModalLabel">Tambah Anggaran Dan Sumber Dana</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -152,7 +154,7 @@
                     <form id="modal-anggaran-form">
                         <div class="mb-3">
                             <label for="modal-anggaran" class="form-label">Anggaran</label>
-                            <input type="text" id="modal-anggaran" class="form-control"  required>
+                            <input type="text" id="modal-anggaran" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="modal-sumberdana" class="form-label">Sumber Dana</label>
@@ -169,7 +171,8 @@
                         </div>
                         <div class="mb-3" id="modal-sumberdana-lainnya-container" style="display: none;">
                             <label for="modal-sumberdana-lainnya" class="form-label">Sumber Dana Lainnya</label>
-                            <input type="text" id="modal-sumberdana-lainnya" class="form-control" placeholder="Masukkan sumber dana lainnya">
+                            <input type="text" id="modal-sumberdana-lainnya" class="form-control"
+                                placeholder="Masukkan sumber dana lainnya">
                         </div>
                     </form>
                 </div>

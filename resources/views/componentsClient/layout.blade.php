@@ -14,25 +14,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
     <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" />
-    {{-- <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" /> --}}
-
-    {{-- <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" /> --}}
-    <!-- Font Awesome Icons -->
-    {{-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> --}}
     <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet">
-
-    <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
-    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> --}}
     <link rel="stylesheet" href=" {{ asset('client/css/leaflet.css') }}" />
-    {{-- File CSS Bootstrap Anda (sudah ada) --}}
-    {{-- <link href="https." rel="stylesheet" ...> --}}
-
-    {{-- TAMBAHKAN INI: DataTables CSS untuk Bootstrap 5 --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"> --}}
     <link href="{{ asset('client/css/style-tambahan.css') }}" rel="stylesheet" />
+
 </head>
 
 
@@ -53,11 +40,7 @@
     @include('componentsClient.sidebar')
     {{-- @include('componentsClient.navbar') --}}
 
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg" style="overflow-y: auto;">
-
-        <!-- Navbar -->
-
-        <!-- End Navbar -->
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg" style="overflow-y: auto;" >
         @yield('content')
 
 
@@ -103,11 +86,7 @@
             session()->forget('success');
         @endphp
     @endif
-
-
-    <!-- Github buttons -->
     <script async defer src="{{ asset('client/js/buttons.js') }}"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('client/js/argon-dashboard.min.js?v=2.1.0') }}"></script>
     <script src="{{ asset('js/sidenav-toggle.js') }}"></script>
     @stack('scripts')

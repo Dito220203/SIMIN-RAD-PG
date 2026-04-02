@@ -1,7 +1,7 @@
 @extends('components.layout')
 @section('content')
 
-    <main id="main" class="main">
+    <main id="main" class="main" data-turbo="false">
         <div class="pagetitle">
             <h1>Tabel Monitoring Evaluasi</h1>
             <nav>
@@ -23,7 +23,7 @@
                                     @if (Auth::guard('pengguna')->user()->level === 'Super Admin')
                                         <div>
                                             <a href="{{ route('monev.export.excel', request()->query()) }}"
-                                                class="btn btn-success w-100">
+                                                class="btn btn-success w-100" data-turbo="false">
                                                 <i class="fa-solid fa-file-excel me-1"></i> Export Excel
                                             </a>
                                         </div>
@@ -31,7 +31,7 @@
 
                                     <div>
                                         <a href="{{ route('monev.export', ['tahun' => request('tahun'), 'search' => request('search')]) }}"
-                                            class="btn btn-danger w-100">
+                                            class="btn btn-danger w-100" data-turbo="false">
                                             <i class="fas fa-file-pdf me-2"></i>Export PDF
                                         </a>
                                     </div>
@@ -112,6 +112,39 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="card-body border-top pt-3">
+                                        <h5 class="card-title" style="padding: 0 !important; margin-bottom: 5px;">
+                                            Kirim Reminder WhatsApp
+                                        </h5>
+
+                                        <form action="{{ route('monev.reminder.manual') }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin mengirim reminder?')">
+                                            @csrf
+
+                                            <div class="row align-items-end">
+                                                <div class="col-md-4">
+                                                    <label>Pilih OPD</label>
+                                                    <select name="opd_id" class="form-select form-select-sm" required>
+                                                        <option value="">-- Pilih OPD --</option>
+                                                        <option value="all">Semua OPD</option>
+                                                        @foreach ($allOpds as $opd)
+                                                            <option value="{{ $opd->id }}">
+                                                                {{ $opd->nama }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="fa-brands fa-whatsapp me-1"></i>
+                                                        Kirim Reminder
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             @endif
                             <div class="table-container">
@@ -132,7 +165,8 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th class="text-center">Strategi</th>
-                                                <th class="text-center" style="width: 300px;">Rencana Aksi / Aktivitas</th>
+                                                <th class="text-center" style="width: 300px;">Rencana Aksi / Aktivitas
+                                                </th>
                                                 <th class="text-center" style="width: 200px;">Sub Kegiatan</th>
                                                 <th class="text-center" style="width: 200px;">Kegiatan</th>
                                                 <th class="text-center" style="width: 200px;">Program</th>
@@ -333,12 +367,7 @@
                                                         </button>
                                                     </td>
 
-
-
-
-
-
-                                                    <td class="text-center align-middle">
+                                                    <td class="text-center align-middle td-force-reload">
                                                         <div class="d-flex justify-content-center gap-1">
                                                             <button type="button" class="btn btn-success btn-sm"
                                                                 data-bs-toggle="modal" data-bs-target="#uploadFotoModal"
@@ -355,7 +384,8 @@
                                                             @else
                                                                 {{-- Jika tidak terkunci, tombol berfungsi normal --}}
                                                                 <form action="{{ route('monev.edit', $data->id) }}"
-                                                                    method="GET" style="display:inline;">
+                                                                    method="GET" style="display:inline;"
+                                                                    data-turbo="false">
                                                                     <button class="btn btn-tambah-utama btn-sm">
                                                                         <i class="fas fa-edit"></i> Edit/Lengkapi
                                                                     </button>
@@ -386,7 +416,8 @@
                                                                 <button type="button" class="btn btn-tambah-utama btn-sm"
                                                                     data-bs-toggle="modal" data-bs-target="#modalPesan"
                                                                     data-id="{{ $data->id }}"
-                                                                    data-pesan="{{ $data->pesan ?? '' }}">
+                                                                    data-pesan="{{ $data->pesan ?? '' }}"
+                                                                    data-turbo="false">
                                                                     <i class="fa-solid fa-envelope"></i>
                                                                 </button>
                                                             @endif
@@ -411,11 +442,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
-
-
                                     <!-- Modal Pesan (satu saja, di luar foreach) -->
-                                    <div class="modal fade" id="modalPesan" tabindex="-1" aria-hidden="true">
+                                    <div class="modal fade" id="modalPesan" tabindex="-1" aria-hidden="true"
+                                        data-turbo="false">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <form id="formPesan" method="POST">
@@ -446,9 +475,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     {{-- modal detail --}}
                                     @foreach ($monev as $data)
                                         <div class="modal fade" id="ModalDetailProduk{{ $data->id }}" tabindex="-1"
@@ -503,8 +529,10 @@
                                                                     @else
                                                                         <div
                                                                             class="alert alert-light text-hijau-kustom placeholder-container">
-                                                                            <i class="bi bi-map text-hijau-kustom placeholder-icon"></i>
-                                                                            <p class="mb-0 mt-3 text-hijau-kustom">Lokasi belum
+                                                                            <i
+                                                                                class="bi bi-map text-hijau-kustom placeholder-icon"></i>
+                                                                            <p class="mb-0 mt-3 text-hijau-kustom">Lokasi
+                                                                                belum
                                                                                 ditandai</p>
                                                                         </div>
                                                                     @endif
@@ -533,8 +561,10 @@
                                                                     @else
                                                                         <div
                                                                             class="alert alert-light text-center m-0 placeholder-container">
-                                                                            <i class="bi bi-image text-hijau-kustom placeholder-icon"></i>
-                                                                            <p class="mb-0 mt-2 text-hijau-kustom">Belum ada foto
+                                                                            <i
+                                                                                class="bi bi-image text-hijau-kustom placeholder-icon"></i>
+                                                                            <p class="mb-0 mt-2 text-hijau-kustom">Belum
+                                                                                ada foto
                                                                             </p>
                                                                         </div>
                                                                     @endif
@@ -815,5 +845,4 @@
             });
         </script>
     @endpush
-
 @endsection

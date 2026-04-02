@@ -25,12 +25,12 @@
                                 <div class="gap-2">
                                     @if (Auth::guard('pengguna')->user()->level === 'Super Admin')
                                         <div class="d-flex flex-column flex-sm-row gap-2">
-                                            <a href="{{ route('rencanaAksi.create') }}" class="btn btn-tambah-utama">
+                                            <a href="{{ route('rencanaAksi.create') }}" class="btn btn-tambah-utama" data-turbo="false">
                                                 <i class="fa-solid fa-plus me-1"></i>
                                                 Tambah Rencana Aksi
                                             </a>
                                             <a href="{{ route('rencanaAksi.export.excel', request()->query()) }}"
-                                                class="btn btn-success">
+                                                class="btn btn-success" data-turbo="false">
                                                 <i class="fa-solid fa-file-excel me-1"></i>
                                                 Export Excel
                                             </a>
@@ -168,7 +168,7 @@
                                                     <td>{{ $data->keterangan ?? '-' }}</td>
                                                     @if (Auth::guard('pengguna')->user()->level === 'Super Admin')
                                                         <td>
-                                                            <div class="d-flex justify-content-center gap-1">
+                                                            <div class="d-flex justify-content-center gap-1" data-turbo="false">
                                                                 <a href="{{ route('rencanaAksi.edit', $data->id) }}"
                                                                     class="btn btn-tambah-utama btn-sm" title="Edit">
                                                                     <i class="fa-solid fa-pen-to-square"></i>

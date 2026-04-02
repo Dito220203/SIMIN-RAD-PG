@@ -1,0 +1,46 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: "nunito", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main.main {
+    flex: 1;
+}
+
+footer.footer {
+    margin-top: auto;
+}
+
+/* Styling untuk tombol saat loading */
+.btn.is-loading .spinner-border {
+    margin-right: 0.5rem;
+}
+
+/* Header hijau tua */
+#header {
+    background-color: #2e473a;
+}
+
+/* Warna teks & ikon header */
+#header .toggle-sidebar-btn,
+#header .logo span,
+#header .nav-link {
+    color: #FFFFFF;
+}
+
+#header .nav-link i {
+    color: #FFFFFF;
+}

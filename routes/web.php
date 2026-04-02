@@ -113,6 +113,13 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
     Route::put('/monev-update/{id}', [MonevController::class, 'update'])->name('monev.update');
     Route::delete('/monev-delete/{id}', [MonevController::class, 'destroy'])->name('monev.delete');
     Route::put('/monev/bulk-toggle-lock', [MonevController::class, 'bulkToggleLock'])->name('monev.bulk-lock');
+    Route::post('/monev/reminder-manual', [MonevController::class, 'reminderManual'])
+    ->name('monev.reminder.manual');
+    Route::post('/monev/{id}/send-wa', 
+    [MonevController::class, 'sendWaPerData'])
+    ->name('monev.sendWa');
+
+
 
     Route::get('/regulasi', [RegulasiController::class, 'index'])->name('regulasi');
     Route::get('/regulasi-create', [RegulasiController::class, 'create'])->name('regulasi.create');
