@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class MonevController extends Controller
 {
@@ -452,19 +453,111 @@ class MonevController extends Controller
         return redirect()->route('monev')->with('success', 'Data Berhasil Dihapus');
     }
 
-    public function reminderManual()
+
+    public function reminderManual(Request $request)
     {
         try {
-            // Jalankan command yang sama seperti cron
+            $opdId = $request->opd_id;
+
             Artisan::call('monev:reminder');
+            if ($opdId == 'all') {
+                $pesan = 'Reminder WhatsApp berhasil dikirim ke semua OPD.';
+            } else {
+                $opd = Opd::find($opdId);
+                $namaOpd = $opd->nama ?? 'OPD';
 
-            return redirect()->route('monev')
-                ->with('success', 'Reminder WhatsApp berhasil dikirim ke semua OPD.');
+                $pesan = "Reminder WhatsApp berhasil dikirim ke {$namaOpd}.";
+            }
+
+            return redirect()->route('monev')->with('success', $pesan);
         } catch (\Exception $e) {
-
             return redirect()->route('monev')
                 ->with('error', 'Terjadi kesalahan saat mengirim reminder.');
         }
     }
-    
+
+    public function reminderPerData($id)
+    {
+        $monev = Monev::with('rencanakerja', 'opd')->findOrFail($id);
+
+        $now = Carbon::now();
+        $bulan = $now->month;
+        $tahun = $now->year;
+
+        // Tentukan Triwulan
+        if ($bulan <= 3) {
+            $triwulanKey = "1";
+            $namaTriwulan = 'I';
+        } elseif ($bulan <= 6) {
+            $triwulanKey = "2";
+            $namaTriwulan = 'II';
+        } elseif ($bulan <= 9) {
+            $triwulanKey = "3";
+            $namaTriwulan = 'III';
+        } else {
+            $triwulanKey = "4";
+            $namaTriwulan = 'IV';
+        }
+
+        $dokumen = $monev->dokumen_anggaran ?? [];
+        $namaProgram = $monev->rencanakerja->nama_program ?? 'Program Tanpa Nama';
+        $opd = $monev->opd;
+
+        // Cek Status
+        if (!isset($dokumen[$triwulanKey]) || empty($dokumen[$triwulanKey])) {
+            $icon = "❌";
+            $ket = "BELUM";
+            $jumlahBelum = 1;
+        } else {
+            $icon = "✅";
+            $ket = "SUDAH";
+            $jumlahBelum = 0;
+        }
+        $listProgramString = "\n1. {$namaProgram} ({$icon} {$ket})";
+
+        // ================= PESAN =================
+        $pesan = "📢 *Laporan Status RAD PG*\n\n"
+            . "Yth. *{$opd->nama}*,\n\n"
+            . "Berikut adalah status kelengkapan *Dokumen Anggaran Triwulan {$namaTriwulan} Tahun {$tahun}* pada sistem:\n"
+            . "----------------------------------"
+            . "{$listProgramString}\n"
+            . "----------------------------------\n\n";
+        if ($jumlahBelum > 0) {
+            $pesan .= "⚠️ Program di atas *BELUM* diunggah (tanda ❌).\n"
+                . "Mohon segera melengkapi data tersebut.\n\n";
+        } else {
+            $pesan .= "👏 Program di atas *SUDAH LENGKAP* (tanda ✅).\n"
+                . "Terima kasih atas kerjasamanya.\n\n";
+        }
+
+        $pesan .= "Terima kasih.\nAdmin Monev.";
+
+        // Kirim WA
+        $this->kirimWA($opd->no_tlp, $pesan);
+
+        return back()->with('success', 'Reminder berhasil dikirim!');
+    }
+
+    private function kirimWA($no, $pesan)
+    {
+        $no = preg_replace('/^0/', '62', $no);
+
+        $data = http_build_query([
+            'target' => $no,
+            'message' => $pesan,
+            'countryCode' => '62',
+        ]);
+
+        $options = [
+            'http' => [
+                'header'  =>
+                "Content-type: application/x-www-form-urlencoded\r\n" .
+                    "Authorization: " . env('FONNTE_TOKEN') . "\r\n",
+                'method'  => 'POST',
+                'content' => $data,
+            ],
+        ];
+
+        file_get_contents('https://api.fonnte.com/send', false, stream_context_create($options));
+    }
 }
