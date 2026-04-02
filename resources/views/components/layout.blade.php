@@ -30,7 +30,7 @@
     <link href="{{ asset('assets/vendor/leaflet/geosearch.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/quil1.3.6/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/quil1.3.6/quill.snow.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script> --}}
 </head>
 <body data-turbo-cache="false" class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -80,8 +80,9 @@
     <script src="{{ asset('js/sweetalert-custom.js') }}"></script>
     <script src="{{ asset('js/alerthapus2.js') }}"></script>
     <script src="{{ asset('js/updateStatus.js') }}"></script>
-    <script src="{{ asset('js/entries.js') }}"></script>
-    <script src="{{ asset('js/loadingSubmit.js') }}"></script>
+    {{-- <script src="{{ asset('js/entries.js') }}"></script>
+    <script src="{{ asset('js/loadingSubmit.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts') <!-- pastikan ini tetap ada -->
     <script src="{{ asset('js/modalApludMonevDokumentasi.js') }}"></script>
     <script src="{{ asset('assets/vendor/leaflet/geosearch.umd.js') }}"></script>

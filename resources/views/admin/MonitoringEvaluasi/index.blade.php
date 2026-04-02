@@ -1,6 +1,5 @@
 @extends('components.layout')
 @section('content')
-
     <main id="main" class="main" data-turbo="false">
         <div class="pagetitle">
             <h1>Tabel Monitoring Evaluasi</h1>
@@ -369,6 +368,15 @@
 
                                                     <td class="text-center align-middle td-force-reload">
                                                         <div class="d-flex justify-content-center gap-1">
+                                                            <form
+                                                                action="{{ route('monev.reminder.perdata', $data->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-success  btn-fixed"
+                                                                    onclick="return confirm('Kirim reminder untuk data ini?')">
+                                                                    <i class="fa-brands fa-whatsapp"></i>
+                                                                </button>
+                                                            </form>
                                                             <button type="button" class="btn btn-success btn-sm"
                                                                 data-bs-toggle="modal" data-bs-target="#uploadFotoModal"
                                                                 data-id="{{ $data->id }}">
@@ -413,7 +421,7 @@
                                                                     @method('PUT')
                                                                     <input type="hidden" name="status" value="">
                                                                 </form>
-                                                                <button type="button" class="btn btn-tambah-utama btn-sm"
+                                                                <button type="button" class="btn btn-tambah-utama "
                                                                     data-bs-toggle="modal" data-bs-target="#modalPesan"
                                                                     data-id="{{ $data->id }}"
                                                                     data-pesan="{{ $data->pesan ?? '' }}"
@@ -430,7 +438,7 @@
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="button" class="btn btn-danger btn-sm"
+                                                                <button type="button" class="btn btn-danger"
                                                                     onclick="confirmDelete('{{ $data->id }}')">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </button>

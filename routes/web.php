@@ -115,9 +115,8 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
     Route::put('/monev/bulk-toggle-lock', [MonevController::class, 'bulkToggleLock'])->name('monev.bulk-lock');
     Route::post('/monev/reminder-manual', [MonevController::class, 'reminderManual'])
     ->name('monev.reminder.manual');
-    Route::post('/monev/{id}/send-wa', 
-    [MonevController::class, 'sendWaPerData'])
-    ->name('monev.sendWa');
+    Route::post('/monev/reminder/{id}', [MonevController::class, 'reminderPerData'])
+    ->name('monev.reminder.perdata');
 
 
 
