@@ -25,7 +25,7 @@
                                     + Tambah Opd
                                 </button>
                                 <!-- modal -->
-                                <div class="modal fade" id="modalOpd" tabindex="-1" aria-hidden="true" data-turbo="false">
+                                <div class="modal fade" id="modalOpd" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">

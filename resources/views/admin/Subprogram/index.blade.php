@@ -201,7 +201,7 @@
                             aria-labelledby="DetailSubLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-info text-white">
+                                    <div class="modal-header bg-detail text-white">
                                         <h5 class="modal-title" id="DetailSubLabel{{ $data->id }}">Detail Sub Program
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"

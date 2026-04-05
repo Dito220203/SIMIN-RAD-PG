@@ -44,14 +44,14 @@
 
     .stats-label {
         font-size: 14px;
-        color: #718355;
+        color: #000000;
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
 
     .bg-gradient-icon {
-        background: linear-gradient(135deg, #718355 0%, #6B9071 100%);
+        background: #718355;
     }
 
 
@@ -132,6 +132,38 @@
     </div>
 
     <section class="section dashboard">
+
+
+
+             <div class="col-12 mb-5">
+            <div class="card shadow-sm border-radius-lg bg-gradient-green-profile">
+                <div class="card-body p-6 position-relative">
+
+                    <!-- TEXT -->
+                    <div style="position: relative; z-index: 2;">
+                        <h3 class="font-weight-bolder mt-1 mb-1">
+                            Welcome back,
+                            <span class="text-gradient-green">
+                                {{ Auth::user()->username ?? 'Admin' }}
+                            </span>
+                        </h3>
+                        <p class="text-sm mb-0 text-secondary">
+                            Selamat datang kembali di sistem percepatan ekonomi.
+                            Pantau progres rencana aksimu hari ini.
+                        </p>
+                    </div>
+
+                    <!-- ICON (PINDAH KE SINI) -->
+                    <div class="icon-right">
+                        <div class="animation-floating">
+                            <i class="fa-solid fa-user-tie text-gradient-orange"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- Statistics Cards -->
         <div class="row g-3 mb-4">
             <!-- Rencana Aksi Card -->
@@ -146,6 +178,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             <!-- Rencana Kerja Card -->
             <div class="col-xl-3 col-md-6">

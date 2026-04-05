@@ -30,7 +30,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <!-- ubah dari submit ke button -->
-                        <button type="button" class="btn btn-primary" id="btnSimpanPassword">Simpan</button>
+                        <button type="button" class="btn btn-tambah-utama" id="btnSimpanPassword">Simpan</button>
                     </div>
                 </form>
             </div>

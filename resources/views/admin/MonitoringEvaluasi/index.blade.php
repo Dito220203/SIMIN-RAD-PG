@@ -70,18 +70,22 @@
                                     </div>
                                 </form>
                             </div>
-                            {{-- --- aksi buka kunci --- --}}
+                            {{-- --- aksi kunci & reminder --- --}}
                             @if (Auth::guard('pengguna')->user()->level === 'Super Admin' && isset($allOpds) && $allOpds->isNotEmpty())
+                                {{-- Container Utama --}}
                                 <div class="card-body border-top pt-3">
+
+                                    {{-- SEKSI 1: AKSI KUNCI --}}
                                     <h5 class="card-title" style="padding: 0 !important; margin-bottom: 5px;">Aksi Kunci
                                         Data per OPD</h5>
-                                    <form action="{{ route('monev.bulk-lock') }}" method="POST" id="bulk-lock-form">
+                                    <form action="{{ route('monev.bulk-lock') }}" method="POST" id="bulk-lock-form"
+                                        class="mb-4">
                                         @csrf
                                         @method('PUT')
                                         <div class="row g-2 align-items-end">
-                                            {{-- Dropdown Pilih OPD --}}
                                             <div class="col-md-5">
-                                                <label for="opd_id_filter" class="form-label">Perangkat Daerah</label>
+                                                <label for="opd_id_filter" class="form-label text-sm">Perangkat
+                                                    Daerah</label>
                                                 <select name="opd_id" id="opd_id_filter" class="form-select form-select-sm"
                                                     required>
                                                     <option value="" selected disabled>-- Pilih Perangkat Daerah --
@@ -91,10 +95,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-
-                                            {{-- Dropdown Pilih Aksi --}}
                                             <div class="col-md-4">
-                                                <label for="action_filter" class="form-label">Aksi</label>
+                                                <label for="action_filter" class="form-label text-sm">Aksi</label>
                                                 <select name="action" id="action_filter" class="form-select form-select-sm"
                                                     required>
                                                     <option value="" selected disabled>-- Pilih Aksi --</option>
@@ -102,8 +104,6 @@
                                                     <option value="unlock">Buka Semua Kunci</option>
                                                 </select>
                                             </div>
-
-                                            {{-- Tombol Terapkan --}}
                                             <div class="col-md-3">
                                                 <button type="submit" class="btn btn-danger btn-sm w-100">
                                                     <i class="fas fa-play me-1"></i> Terapkan Aksi
@@ -111,38 +111,36 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="card-body border-top pt-3">
-                                        <h5 class="card-title" style="padding: 0 !important; margin-bottom: 5px;">
-                                            Kirim Reminder WhatsApp
-                                        </h5>
 
-                                        <form action="{{ route('monev.reminder.manual') }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin mengirim reminder?')">
-                                            @csrf
+                                    <hr class="my-4"> {{-- Garis pemisah agar lebih rapi --}}
 
-                                            <div class="row align-items-end">
-                                                <div class="col-md-4">
-                                                    <label>Pilih OPD</label>
-                                                    <select name="opd_id" class="form-select form-select-sm" required>
-                                                        <option value="">-- Pilih OPD --</option>
-                                                        <option value="all">Semua OPD</option>
-                                                        @foreach ($allOpds as $opd)
-                                                            <option value="{{ $opd->id }}">
-                                                                {{ $opd->nama }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <button type="submit" class="btn btn-success btn-sm">
-                                                        <i class="fa-brands fa-whatsapp me-1"></i>
-                                                        Kirim Reminder
-                                                    </button>
-                                                </div>
+                                    {{-- SEKSI 2: REMINDER WHATSAPP --}}
+                                    <h5 class="card-title" style="padding: 0 !important; margin-bottom: 5px;">Kirim Reminder
+                                        WhatsApp</h5>
+                                    <form action="{{ route('monev.reminder.manual') }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin mengirim reminder?')">
+                                        @csrf
+                                        <div class="row g-2 align-items-end">
+                                            {{-- Kita samakan col-md-5 agar sejajar dengan atas --}}
+                                            <div class="col-md-9">
+                                                <label class="form-label text-sm">Pilih OPD</label>
+                                                <select name="opd_id" class="form-select form-select-sm" required>
+                                                    <option value="">-- Pilih OPD --</option>
+                                                    <option value="all">Semua OPD</option>
+                                                    @foreach ($allOpds as $opd)
+                                                        <option value="{{ $opd->id }}">{{ $opd->nama }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                        </form>
-                                    </div>
+
+                                            {{-- Tombol dibuat col-md-3 agar sejajar posisinya dengan tombol di atas --}}
+                                            <div class="col-md-3 offset-md-0">
+                                                <button type="submit" class="btn btn-success btn-sm w-100">
+                                                    <i class="fa-brands fa-whatsapp me-1"></i> Kirim Reminder
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
 
                                 </div>
                             @endif
@@ -359,86 +357,77 @@
 
                                                     {{-- Tombol Lihat Dokumentasi --}}
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-tambah-utama btn-sm"
+                                                        <button type="button" class="btn btn-tambah-utama"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#ModalDetailProduk{{ $data->id }}">
                                                             Lihat Dokumentasi
                                                         </button>
                                                     </td>
 
-                                                    <td class="text-center align-middle td-force-reload">
-                                                        <div class="d-flex justify-content-center gap-1">
+                                                    <td class="text-center align-middle td-aksi-container">
+                                                        <div
+                                                            class="d-flex justify-content-center align-items-center gap-1">
+
+                                                            {{-- Tombol WA --}}
                                                             <form
                                                                 action="{{ route('monev.reminder.perdata', $data->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
-                                                                <button type="submit" class="btn btn-success  btn-fixed"
-                                                                    onclick="return confirm('Kirim reminder untuk data ini?')">
+                                                                <button type="submit"
+                                                                    class="btn btn-success btn-icon-only"
+                                                                    onclick="return confirm('Kirim reminder?')">
                                                                     <i class="fa-brands fa-whatsapp"></i>
                                                                 </button>
                                                             </form>
-                                                            <button type="button" class="btn btn-success btn-sm"
+
+                                                            {{-- Tombol Upload --}}
+                                                            <button type="button" class="btn btn-success"
                                                                 data-bs-toggle="modal" data-bs-target="#uploadFotoModal"
                                                                 data-id="{{ $data->id }}">
-                                                                <i class="fas fa-camera"></i> Upload
+                                                                <i class="fas fa-camera me-1"></i> Upload
                                                             </button>
 
+                                                            {{-- Tombol Edit/Lengkapi --}}
                                                             @if ($data->is_locked)
-                                                                {{-- Jika terkunci, tombol dinonaktifkan --}}
-                                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                                <button type="button" class="btn btn-secondary"
                                                                     onclick="showLockedAlert()">
-                                                                    <i class="fas fa-lock"></i> Edit/Lengkapi
+                                                                    <i class="fas fa-lock me-1"></i> Edit/Lengkapi
                                                                 </button>
                                                             @else
-                                                                {{-- Jika tidak terkunci, tombol berfungsi normal --}}
                                                                 <form action="{{ route('monev.edit', $data->id) }}"
                                                                     method="GET" style="display:inline;"
                                                                     data-turbo="false">
-                                                                    <button class="btn btn-tambah-utama btn-sm">
-                                                                        <i class="fas fa-edit"></i> Edit/Lengkapi
+                                                                    <button type="submit" class="btn btn-tambah-utama">
+                                                                        <i class="fas fa-edit me-1"></i> Edit/Lengkapi
                                                                     </button>
                                                                 </form>
                                                             @endif
-                                                            @push('scripts')
-                                                                <script src="{{ asset('js/kunciMonev.js') }}"></script>
-                                                            @endpush
 
+                                                            {{-- Tombol Validasi (Hanya Super Admin) --}}
                                                             @if (auth()->guard('pengguna')->user()->level == 'Super Admin')
                                                                 <button
-                                                                    class="btn btn-sm {{ $data->status == 'Valid' ? 'btn-warning' : 'btn-success' }}"
+                                                                    class="btn {{ $data->status == 'Valid' ? 'btn-warning' : 'btn-success' }}"
                                                                     onclick="updateStatus('{{ $data->id }}', '{{ $data->status }}')">
-                                                                    @if ($data->status == 'Valid')
-                                                                        Batalkan
-                                                                    @else
-                                                                        Validasi
-                                                                    @endif
+                                                                    {{ $data->status == 'Valid' ? 'Batalkan' : 'Validasi' }}
                                                                 </button>
 
-                                                                <form id="form-status-{{ $data->id }}"
-                                                                    action="{{ route('monev.validasi', $data->id) }}"
-                                                                    method="POST" style="display:none;">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <input type="hidden" name="status" value="">
-                                                                </form>
-                                                                <button type="button" class="btn btn-tambah-utama "
+                                                                {{-- Tombol Pesan/Email --}}
+                                                                <button type="button"
+                                                                    class="btn btn-tambah-utama btn-icon-only"
                                                                     data-bs-toggle="modal" data-bs-target="#modalPesan"
                                                                     data-id="{{ $data->id }}"
-                                                                    data-pesan="{{ $data->pesan ?? '' }}"
-                                                                    data-turbo="false">
+                                                                    data-pesan="{{ $data->pesan ?? '' }}">
                                                                     <i class="fa-solid fa-envelope"></i>
                                                                 </button>
                                                             @endif
 
-
-
                                                             {{-- Tombol Delete --}}
-                                                            <form id="formDelete-{{ $data->id }}"
-                                                                action="{{ route('monev.delete', $data->id) }}"
+                                                            <form action="{{ route('monev.delete', $data->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="button" class="btn btn-danger"
+                                                                <button type="button"
+                                                                    class="btn btn-danger btn-icon-only"
                                                                     onclick="confirmDelete('{{ $data->id }}')">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </button>
@@ -477,7 +466,8 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        <button type="submit"
+                                                            class="btn btn-tambah-utama">Simpan</button>
                                                     </div>
                                                 </form>
                                             </div>
