@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="bi bi-telephone"></i>
-                                    <span>{{ $profil->telepon ?? '-' }}</span>
+                                    <span>{{ $opd->no_tlp ?? '-' }}</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="bi bi-geo-alt"></i>
@@ -127,7 +127,7 @@
                                                 <i class="bi bi-telephone"></i>
                                                 <span>Phone</span>
                                             </div>
-                                            <div class="detail-value">{{ $profil->telepon ?? '-' }}</div>
+                                            <div class="detail-value">{{ $opd->no_tlp ?? '-' }}</div>
                                         </div>
 
                                         <div class="detail-row">
@@ -608,6 +608,6 @@
             }
         });
     });
-    
+
 </script>
 @endpush
