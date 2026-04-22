@@ -25,6 +25,11 @@ class MonevController extends Controller
 {
     public function index(Request $request)
     {
+        Monev::whereNotNull('edit_open_until')
+            ->where('edit_open_until', '<', Carbon::now())
+            ->update([
+                'is_locked' => 1,
+            ]);
         $user = Auth::guard('pengguna')->user();
         $query = Monev::query();
 
@@ -457,34 +462,144 @@ class MonevController extends Controller
     public function reminderManual(Request $request)
     {
         try {
-            $opdId = $request->opd_id;
+            $request->validate([
+                'opd_id' => 'required',
+                'deadline_tanggal' => 'required|date',
+                'deadline_jam' => 'required',
+            ], [
+                'opd_id.required' => 'Pilih OPD terlebih dahulu.',
+                'deadline_tanggal.required' => 'Tanggal batas wajib diisi.',
+                'deadline_jam.required' => 'Jam batas wajib diisi.',
+            ]);
 
-            Artisan::call('monev:reminder');
-            if ($opdId == 'all') {
-                $pesan = 'Reminder WhatsApp berhasil dikirim ke semua OPD.';
+            Carbon::setLocale('id');
+
+            $now = Carbon::now();
+            $bulan = $now->month;
+            $tahun = $now->year;
+
+            if ($bulan <= 3) {
+                $triwulanKey = "1";
+                $namaTriwulan = 'I';
+            } elseif ($bulan <= 6) {
+                $triwulanKey = "2";
+                $namaTriwulan = 'II';
+            } elseif ($bulan <= 9) {
+                $triwulanKey = "3";
+                $namaTriwulan = 'III';
             } else {
-                $opd = Opd::find($opdId);
-                $namaOpd = $opd->nama ?? 'OPD';
-
-                $pesan = "Reminder WhatsApp berhasil dikirim ke {$namaOpd}.";
+                $triwulanKey = "4";
+                $namaTriwulan = 'IV';
             }
 
-            return redirect()->route('monev')->with('success', $pesan);
+            $batasWaktu = Carbon::parse($request->deadline_tanggal . ' ' . $request->deadline_jam);
+            $formatBatas = $batasWaktu->translatedFormat('d F Y \\p\\u\\k\\u\\l H:i');
+
+            if ($request->opd_id === 'all') {
+                $opds = Opd::whereNotNull('no_tlp')
+                    ->where('no_tlp', '!=', '')
+                    ->where('delete_at', '0')
+                    ->get();
+            } else {
+                $opds = Opd::where('id', $request->opd_id)
+                    ->whereNotNull('no_tlp')
+                    ->where('no_tlp', '!=', '')
+                    ->where('delete_at', '0')
+                    ->get();
+            }
+
+            foreach ($opds as $opd) {
+                $daftarMonev = Monev::with('rencanakerja')
+                    ->where('id_opd', $opd->id)
+                    ->whereHas('rencanakerja', function ($query) use ($tahun) {
+                        $query->where('tahun', $tahun);
+                    })
+                    ->get();
+
+                if ($daftarMonev->isEmpty()) {
+                    continue;
+                }
+
+                $listProgramString = "";
+                $jumlahBelum = 0;
+
+                foreach ($daftarMonev as $index => $mv) {
+                    $dokumen = $mv->dokumen_anggaran ?? [];
+                    $namaProgram = $mv->rencanakerja->nama_program ?? 'Program Tanpa Nama';
+
+                    if (!isset($dokumen[$triwulanKey]) || empty($dokumen[$triwulanKey])) {
+                        $icon = "❌";
+                        $ket = "BELUM";
+                        $jumlahBelum++;
+                    } else {
+                        $icon = "✅";
+                        $ket = "SUDAH";
+                    }
+
+                    $no = $index + 1;
+                    $listProgramString .= "\n" . $no . ". " . $namaProgram . " (" . $icon . " " . $ket . ")";
+                }
+
+                $pesan = "📢 *Laporan Status RAD PG*\n\n"
+                    . "Yth. *{$opd->nama}*,\n\n"
+                    . "Berikut adalah status kelengkapan *Dokumen Anggaran Triwulan {$namaTriwulan} Tahun {$tahun}* pada sistem:\n"
+                    . "----------------------------------"
+                    . "{$listProgramString}\n"
+                    . "----------------------------------\n\n";
+
+                if ($jumlahBelum > 0) {
+                    $pesan .= "⚠️ Masih terdapat *{$jumlahBelum} program* yang *BELUM* diunggah (tanda ❌).\n"
+                        . "Mohon segera melengkapi data tersebut.\n\n";
+                } else {
+                    $pesan .= "👏 Terpantau semua program *SUDAH LENGKAP* (tanda ✅).\n"
+                        . "Terima kasih atas kerjasamanya.\n\n";
+                }
+
+                $pesan .= "🕒 Akses edit data dibuka sampai *{$formatBatas}*.\n"
+                    . "Silakan segera lakukan perbaikan/lengkapi data sebelum batas waktu tersebut.\n\n"
+                    . "Terima kasih.\nAdmin Monev.";
+
+                $this->kirimWA($opd->no_tlp, $pesan);
+
+                Monev::where('id_opd', $opd->id)->update([
+                    'is_locked' => 0,
+                    'edit_open_until' => $batasWaktu
+                ]);
+            }
+
+            if ($request->opd_id === 'all') {
+                $flashMessage = 'Reminder WhatsApp berhasil dikirim ke semua OPD dan akses edit dibuka.';
+            } else {
+                $opd = Opd::find($request->opd_id);
+                $namaOpd = $opd->nama ?? 'OPD';
+                $flashMessage = "Reminder WhatsApp berhasil dikirim ke {$namaOpd} dan akses edit dibuka.";
+            }
+
+            return redirect()->route('monev')->with('success', $flashMessage);
         } catch (\Exception $e) {
             return redirect()->route('monev')
-                ->with('error', 'Terjadi kesalahan saat mengirim reminder.');
+                ->with('error', 'Terjadi kesalahan saat mengirim reminder: ' . $e->getMessage());
         }
     }
 
-    public function reminderPerData($id)
+    public function reminderPerData(Request $request, $id)
     {
+        $request->validate([
+            'deadline_tanggal' => 'required|date',
+            'deadline_jam' => 'required',
+        ], [
+            'deadline_tanggal.required' => 'Tanggal batas wajib diisi.',
+            'deadline_jam.required' => 'Jam batas wajib diisi.',
+        ]);
+
+        Carbon::setLocale('id');
+
         $monev = Monev::with('rencanakerja', 'opd')->findOrFail($id);
 
         $now = Carbon::now();
         $bulan = $now->month;
         $tahun = $now->year;
 
-        // Tentukan Triwulan
         if ($bulan <= 3) {
             $triwulanKey = "1";
             $namaTriwulan = 'I';
@@ -499,11 +614,13 @@ class MonevController extends Controller
             $namaTriwulan = 'IV';
         }
 
+        $batasWaktu = Carbon::parse($request->deadline_tanggal . ' ' . $request->deadline_jam);
+        $formatBatas = $batasWaktu->translatedFormat('d F Y \\p\\u\\k\\u\\l H:i');
+
         $dokumen = $monev->dokumen_anggaran ?? [];
         $namaProgram = $monev->rencanakerja->nama_program ?? 'Program Tanpa Nama';
         $opd = $monev->opd;
 
-        // Cek Status
         if (!isset($dokumen[$triwulanKey]) || empty($dokumen[$triwulanKey])) {
             $icon = "❌";
             $ket = "BELUM";
@@ -513,15 +630,16 @@ class MonevController extends Controller
             $ket = "SUDAH";
             $jumlahBelum = 0;
         }
+
         $listProgramString = "\n1. {$namaProgram} ({$icon} {$ket})";
 
-        // ================= PESAN =================
         $pesan = "📢 *Laporan Status RAD PG*\n\n"
             . "Yth. *{$opd->nama}*,\n\n"
             . "Berikut adalah status kelengkapan *Dokumen Anggaran Triwulan {$namaTriwulan} Tahun {$tahun}* pada sistem:\n"
             . "----------------------------------"
             . "{$listProgramString}\n"
             . "----------------------------------\n\n";
+
         if ($jumlahBelum > 0) {
             $pesan .= "⚠️ Program di atas *BELUM* diunggah (tanda ❌).\n"
                 . "Mohon segera melengkapi data tersebut.\n\n";
@@ -530,12 +648,18 @@ class MonevController extends Controller
                 . "Terima kasih atas kerjasamanya.\n\n";
         }
 
-        $pesan .= "Terima kasih.\nAdmin Monev.";
+        $pesan .= "🕒 Akses edit data dibuka sampai *{$formatBatas}*.\n"
+            . "Silakan segera lakukan perbaikan/lengkapi data sebelum batas waktu tersebut.\n\n"
+            . "Terima kasih.\nAdmin Monev.";
 
-        // Kirim WA
         $this->kirimWA($opd->no_tlp, $pesan);
 
-        return back()->with('success', 'Reminder berhasil dikirim!');
+        $monev->update([
+            'is_locked' => 0,
+            'edit_open_until' => $batasWaktu
+        ]);
+
+        return back()->with('success', 'Reminder berhasil dikirim dan akses edit dibuka!');
     }
 
     private function kirimWA($no, $pesan)

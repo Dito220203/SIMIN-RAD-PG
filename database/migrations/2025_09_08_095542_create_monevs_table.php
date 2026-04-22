@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('status')->default('Belum divalidasi');
             $table->json('uraian')->nullable();
             $table->boolean('is_locked')->default(false);
+            $table->dateTime('edit_open_until')->nullable();
             $table->timestamps();
         });
     }

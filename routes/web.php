@@ -26,6 +26,7 @@ use App\Http\Controllers\ProdukKupsController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RencanaAksi_6TahunController;
 use App\Http\Controllers\SubpotensiKehutananController;
+use App\Http\Controllers\SystemMaintenanceController;
 use App\Models\Pesan;
 use App\Models\RencanaKerja;
 use GuzzleHttp\Client;
@@ -142,6 +143,8 @@ Route::middleware(['authadmin', 'noCache'])->group(function () {
 
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
     Route::put('/profil-update', [ProfilController::class, 'updateProfile'])->name('profil.update');
+
+    Route::get('/system/programmer/run-migration/{key}', [SystemMaintenanceController::class, 'runMigration']);
 
     Route::post('/ganti-password', [LoginController::class, 'update_password'])->name('update.password');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
