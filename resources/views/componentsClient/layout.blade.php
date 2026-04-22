@@ -19,7 +19,7 @@
     {{-- <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet"> --}}
     <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
     <link rel="stylesheet" href=" {{ asset('client/css/leaflet.css') }}" />
-    <link href="{{ asset('client/css/style-tambahan.css') }}" rel="stylesheet" />
+    <link href="{{ asset('client/css/style-tambahan.css?v=2') }}" rel="stylesheet" />
 
 </head>
 

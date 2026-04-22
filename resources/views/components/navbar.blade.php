@@ -15,7 +15,7 @@
 <!-- ==== ALERT DEADLINE (STATIC TEST) ==== -->
             @php
                 // Coba ganti nilainya jadi 'lengkap' atau 'terlewat' untuk lihat perubahannya
-                $statusData = 'belum'; 
+                $statusData = 'belum';
                 $tanggalDeadline = '23 Apr 2026';
             @endphp
 
