@@ -1,9 +1,9 @@
 html,
-body {
+/* body {
     height: 100%;
     margin: 0;
     font-family: "nunito", sans-serif;
-}
+} */
 
 body {
     display: flex;
@@ -43,4 +43,54 @@ footer.footer {
 
 #header .nav-link i {
     color: #FFFFFF;
+}
+
+/* --- Custom Navbar Alert (Pinterest Style) --- */
+.navbar-alert {
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 50px; /* Bentuk oval/pill */
+    border: 1px solid transparent;
+    line-height: 1.2;
+}
+
+.navbar-alert-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.navbar-alert-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-alert-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.navbar-alert-subtitle {
+    font-size: 0.65rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Warna Soft UI */
+.alert-soft-danger {
+    background-color: rgba(253, 236, 234, 1);
+    border-color: rgba(244, 67, 54, 0.2);
+    color: #d32f2f;
+}
+
+.alert-soft-success {
+    background-color: rgba(237, 247, 237, 1);
+    border-color: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+}
+
+.alert-soft-warning {
+    background-color: rgba(255, 244, 229, 1);
+    border-color: rgba(255, 152, 0, 0.2);
+    color: #ed6c02;
 }

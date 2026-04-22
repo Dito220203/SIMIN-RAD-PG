@@ -47,12 +47,12 @@
 
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body px-3 pt-0 pb-2">
                         <div class="top-scrollbar-wrapper">
                             <div class="top-scrollbar-content"></div>
                         </div>
-                        <div class="table-responsive">
-                            <table id="tabelSaya" class="table align-items-center">
+                        <div class="table-responsive p-0">
+                            <table id="tabelSaya" class="table align-items-center mb-0">
                                 <thead >
                                     <tr>
                                         <th class="text-center">NO</th>

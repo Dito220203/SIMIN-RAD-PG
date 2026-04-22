@@ -69,19 +69,14 @@
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('js/preview-image.js') }}"></script>
-    {{-- <script src="{{ asset('assets/vendor/quil1.3.6/quill.js') }}"></script>
-    <script src="{{ asset('assets/vendor/jquery371/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('assets/vendor/1.13.6/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/1.13.6/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/sweetalert/sweetalert2@11.js') }}"></script>
-    {{-- <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script> --}}
     <script src="{{ asset('assets/vendor/jquery-3.6.0/jquery-3.6.0.min.js') }}"></script>
 
     <script src="{{ asset('js/sweetalert-custom.js') }}"></script>
     <script src="{{ asset('js/alerthapus2.js') }}"></script>
     <script src="{{ asset('js/updateStatus.js') }}"></script>
-    {{-- <script src="{{ asset('js/entries.js') }}"></script>
-    <script src="{{ asset('js/loadingSubmit.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts') <!-- pastikan ini tetap ada -->
     <script src="{{ asset('js/modalApludMonevDokumentasi.js') }}"></script>
