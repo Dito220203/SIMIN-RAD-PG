@@ -20,12 +20,12 @@ body {
 }
 
 a {
-  color: #4154f1;
+  color: #000000;
   text-decoration: none;
 }
 
 a:hover {
-  color: #717ff5;
+  color: #444444;
   text-decoration: none;
 }
 
@@ -91,10 +91,6 @@ h6 {
   line-height: 0;
 }
 
-.back-to-top:hover {
-  background: #6776f4;
-  color: #fff;
-}
 
 .back-to-top.active {
   visibility: visible;

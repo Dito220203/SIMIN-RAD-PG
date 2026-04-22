@@ -14,8 +14,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" />
-    <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {{-- <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet"> --}}
     <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
     <link rel="stylesheet" href=" {{ asset('client/css/leaflet.css') }}" />
     <link href="{{ asset('client/css/style-tambahan.css') }}" rel="stylesheet" />
@@ -56,7 +57,7 @@
     {{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
     <script src="{{ asset('client/js/jquery-3.7.0.js') }}"></script>
     {{-- File JS Bootstrap Anda (sudah ada) --}}
-    <script src="https." ...></script>
+    {{-- <script src="https." ...></script> --}}
 
     {{-- TAMBAHKAN INI: DataTables Core JS dan JS untuk Bootstrap 5 --}}
     {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}

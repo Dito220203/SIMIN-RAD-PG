@@ -108,10 +108,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center text-muted">Tidak ada regulasi ditemukan.
-                                            </td>
-                                        </tr>
+                                        
                                     @endforelse
                                 </tbody>
 

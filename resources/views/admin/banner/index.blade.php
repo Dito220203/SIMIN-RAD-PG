@@ -1,6 +1,6 @@
 @extends('components.layout')
 @section('content')
-    <main id="main" class="main" >
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Tabel Banner</h1>
             <nav>
@@ -12,6 +12,40 @@
         </div>
 
         <section class="section">
+           <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{-- Judul dipindah ke dalam card-body pakai h5 class="card-title" --}}
+                            <h5 class="card-title">
+                                Pengaturan Teks Utama (Halaman Publik)
+                                <span class="d-block fw-normal text-muted mt-1" style="font-size: 14px; line-height: 1.5; text-transform: none;">
+                                    Teks ini akan tampil menimpa gambar background carousel di halaman utama masyarakat.
+                                </span>
+                            </h5>
+
+                            {{-- Form dipisah ke backend nanti --}}
+                            <form action="#" method="POST" class="mt-2">
+                                <div class="row d-flex align-items-stretch">
+                                    <div class="col-md-4 mb-3 mb-md-0 d-flex flex-column">
+                                        <label class="form-label">Judul Utama</label>
+                                        <input type="text" class="form-control flex-grow-1"
+                                            placeholder="Contoh: Selamat Datang di RAD-PG">
+                                    </div>
+                                    <div class="col-md-6 mb-3 mb-md-0 d-flex flex-column">
+                                        <label class="form-label">Deskripsi / Sub-judul</label>
+                                        <textarea class="form-control flex-grow-1" rows="2" placeholder="Masukkan deskripsi singkat..."></textarea>
+                                    </div>
+                                    <div class="col-md-2 d-flex flex-column justify-content-end">
+                                        <button type="submit" class="btn btn-success w-100">Simpan Teks</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-lg-4">
@@ -122,7 +156,7 @@
                                     </select>
                                     <span>entri</span>
                                 </div>
-                                <div class="col-12 col-md-4" >
+                                <div class="col-12 col-md-4">
                                     <input type="text" class="form-control" placeholder="Cari di halaman ini..."
                                         id="liveSearchInput" data-turbo="false">
                                 </div>

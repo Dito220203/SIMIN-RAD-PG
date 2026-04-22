@@ -72,7 +72,7 @@
         <div class="login-right">
             <div class="illustration">
                 <!-- Ganti dengan path logo Anda -->
-                <img src="{{ asset('client/img/logo-kabupaten.png') }}" alt="Logo RAD-PG">
+                <img src="{{ asset('assets/img/logo kabupaten.png') }}" alt="Logo RAD-PG">
             </div>
             <div class="right-content">
                 <h2>RENCANA AKSI DAERAH PANGAN DAN GIZI (RAD-PG)</h2>
