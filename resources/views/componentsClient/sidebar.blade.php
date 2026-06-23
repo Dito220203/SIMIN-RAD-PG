@@ -82,7 +82,7 @@
 
      <div class="sidenav-footer mx-3 ">
       <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src="../client/img/icon.png" alt="sidebar_illustration">
+        <img class="w-50 mx-auto" src="{{ asset('client/img/icon.png') }}" alt="sidebar_illustration">
         <div class="card-body text-center p-3 w-100 pt-0">
           <div class="docs-info">
             <h6 class="mb-0">Login to Your Account</h6>

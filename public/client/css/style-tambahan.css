@@ -46,7 +46,7 @@
         /* Menggunakan warna yang konsisten dari style Anda */
     }
 
-
+    
     /* 4. PENGATURAN UNTUK SEMUA SEL (th & td) */
     .detail-table th,
     .detail-table td {
@@ -242,7 +242,7 @@
         /* efek hover hijau lebih terang */
         border-color: #3c6b4c;
     }
-
+    
 
     /* Mencentangkan elemen "Show entries" di atas tabel */
     /* Atur header card jadi flex container */
@@ -390,7 +390,7 @@
 /* Style untuk menahan gambar portrait/landscape agar selalu pas (Cover & Center) */
 .carousel-bg-image {
     background-size: cover;
-    background-position: center;
+    background-position: center; 
     background-repeat: no-repeat;
 }
 
@@ -413,7 +413,7 @@
 
 /* Pengaturan font khusus untuk deskripsi welcome */
 .welcome-text-desc {
-    font-size: 1.05rem;
+    font-size: 1.05rem; 
     line-height: 1.6;
 }
 
@@ -492,9 +492,9 @@
     border-radius: 2px;
 }
 
-/*
-   Animasi berjalannya progress bar!
-   Waktunya HARUS sama dengan data-bs-interval di HTML (5000ms = 5s)
+/* 
+   Animasi berjalannya progress bar! 
+   Waktunya HARUS sama dengan data-bs-interval di HTML (5000ms = 5s) 
 */
 .progress-fill.active {
     animation: fillProgress 5s linear forwards; /* 5s = durasi gambar tampil */

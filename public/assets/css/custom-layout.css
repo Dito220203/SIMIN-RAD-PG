@@ -185,5 +185,5 @@ footer.footer {
 
 /* Memastikan teks label selalu punya ruang untuk 2 baris */
 .stats-label {
-    min-height: 20px;
+    min-height: 20px; 
 }

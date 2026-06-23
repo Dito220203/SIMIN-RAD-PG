@@ -18,8 +18,7 @@
         <div class="login-left">
             <div class="logo-section">
                 <div class="logo">
-                    <img src="{{ asset('assets/favicon-96x96') }}" alt="Logo RAD-PG">
-
+                <div class="logo">R</div>
                 </div>
                 <div class="logo-text">Dashboard RAD-PG</div>
             </div>

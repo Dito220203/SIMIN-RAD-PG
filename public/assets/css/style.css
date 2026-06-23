@@ -1736,7 +1736,7 @@ h6 {
 
 /* 1. Base tinggi tombol seragam (Script Aslimu) */
 .td-aksi-container .btn {
-    height: 38px !important;
+    height: 38px !important; 
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -1755,7 +1755,7 @@ h6 {
 /* 3. BARU: Menyamaratakan LEBAR semua tombol yang ada TEKS-nya */
 /* Logika: Berlaku untuk semua .btn KECUALI yang punya class .btn-icon-only atau .btn-danger */
 .td-aksi-container .btn:not(.btn-icon-only):not(.btn-danger) {
-    min-width: 135px !important;
+    min-width: 135px !important; 
 }
 
 /* ===== WELCOME CARD - ENHANCED ===== */

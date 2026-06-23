@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <link rel="apple-touch-icon" sizes="76x76" href="../client/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../client/img/favicon.png">
     <title>DASHBOARD RENCANA AKSI DAERAH PANGAN DAN GIZI (RAD-PG)</title>
@@ -14,12 +15,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    {{-- <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" /> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    {{-- <link href="{{ asset('client/css/all.min.css') }}" rel="stylesheet"> --}}
-    <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('client/fonts/font.css') }}" rel="stylesheet" />
+    <link href="{{ asset('client/css/all.min.css?v=3') }}" rel="stylesheet">
+    <link id="pagestyle" href="{{ asset('client/css/argon-dashboard.css?v=3') }}" rel="stylesheet" />
     <link rel="stylesheet" href=" {{ asset('client/css/leaflet.css') }}" />
-    <link href="{{ asset('client/css/style-tambahan.css?v=2') }}" rel="stylesheet" />
+	<link href="{{ asset('assets/vendor/leaflet/leaflet.css') }}" rel="stylesheet">
+    <link href="{{ asset('client/css/style-tambahan.css?v=1') }}" rel="stylesheet" />
+
+
 
 </head>
 
@@ -57,7 +61,7 @@
     {{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
     <script src="{{ asset('client/js/jquery-3.7.0.js') }}"></script>
     {{-- File JS Bootstrap Anda (sudah ada) --}}
-    {{-- <script src="https." ...></script> --}}
+    <script src="https." ...></script>
 
     {{-- TAMBAHKAN INI: DataTables Core JS dan JS untuk Bootstrap 5 --}}
     {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}

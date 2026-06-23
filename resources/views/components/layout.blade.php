@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link href="{{ asset('assets/css/googlefonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/googlefonts.css?v=1') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
@@ -23,8 +23,8 @@
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom-layout.css?v=3') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css?v=10') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom-layout.css?v=13') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/leaflet/leaflet.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/leaflet/geosearch.css') }}" rel="stylesheet">
