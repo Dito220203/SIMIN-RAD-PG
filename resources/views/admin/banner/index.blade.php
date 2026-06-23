@@ -18,9 +18,9 @@
                         <div class="card-body">
                             {{-- Judul dipindah ke dalam card-body pakai h5 class="card-title" --}}
                             <h5 class="card-title">
-                                Pengaturan Teks Utama (Halaman Publik)
+                                 Judul Gambaran Umum
                                 <span class="d-block fw-normal text-muted mt-1" style="font-size: 14px; line-height: 1.5; text-transform: none;">
-                                    Teks ini akan tampil menimpa gambar background carousel di halaman utama masyarakat.
+                                    Teks ini akan tampil menimpa gambar di halaman utama.
                                 </span>
                             </h5>
 
@@ -36,7 +36,7 @@
                                         <label class="form-label">Deskripsi / Sub-judul</label>
                                         <textarea class="form-control flex-grow-1" rows="2" placeholder="Masukkan deskripsi singkat..."></textarea>
                                     </div>
-                                    <div class="col-md-2 d-flex flex-column justify-content-end">
+                                    <div class="col-md-2 d-flex flex-column justify-content-center">
                                         <button type="submit" class="btn btn-success w-100">Simpan Teks</button>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                     </div>
                                     {{-- AKHIR PERUBAHAN UNTUK UPDATE KE GAMBAR --}}
 
-                                    <button type="submit" class="btn btn-tambah-utama w-100">Update</button>
+                                    <button type="submit" class="btn btn-success w-100">Update</button>
                                     <a href="{{ route('banner') }}" class="btn btn-secondary w-100 mt-2">Batal</a>
                                 </form>
                             @else
