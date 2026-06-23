@@ -11,43 +11,42 @@
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
+ <!-- ==== ALERT DEADLINE  ==== -->
+		@if (Auth::guard('pengguna')->user()->level === 'Admin')
+    @if ($statusData)
+        <li class="nav-item d-none d-md-block pe-2">
 
-<!-- ==== ALERT DEADLINE (STATIC TEST) ==== -->
-            @php
-                // Coba ganti nilainya jadi 'lengkap' atau 'terlewat' untuk lihat perubahannya
-                $statusData = 'belum';
-                $tanggalDeadline = '23 Apr 2026';
-            @endphp
+            @if ($statusData == 'belum')
+                <div class="navbar-alert alert-soft-danger">
+                    <i class="bi bi-exclamation-circle-fill navbar-alert-icon"></i>
+                    <div class="navbar-alert-text">
+                        {{-- 👇 Bagian ini otomatis menampilkan tanggal & jam sekarang --}}
+                        <span class="navbar-alert-title">Deadline: {{ $tanggalDeadline }}</span>
+                        <span class="navbar-alert-subtitle">Segera lengkapi data</span>
+                    </div>
+                </div>
+            @elseif($statusData == 'lengkap')
+                <div class="navbar-alert alert-soft-success">
+                    <i class="bi bi-check-circle-fill navbar-alert-icon"></i>
+                    <div class="navbar-alert-text">
+                        <span class="navbar-alert-title">Data Lengkap</span>
+                        <span class="navbar-alert-subtitle">Terima kasih!</span>
+                    </div>
+                </div>
+            @elseif($statusData == 'terlewat')
+                <div class="navbar-alert alert-soft-warning">
+                    <i class="bi bi-exclamation-triangle-fill navbar-alert-icon"></i>
+                    <div class="navbar-alert-text">
+                        <span class="navbar-alert-title">Waktu Habis</span>
+                        <span class="navbar-alert-subtitle">Hubungi Admin Bapperida</span>
+                    </div>
+                </div>
+            @endif
 
-            <li class="nav-item d-none d-md-block pe-2">
-                @if($statusData == 'belum')
-                    <div class="navbar-alert alert-soft-danger">
-                        <i class="bi bi-exclamation-circle-fill navbar-alert-icon"></i>
-                        <div class="navbar-alert-text">
-                            <span class="navbar-alert-title">Deadline: {{ $tanggalDeadline }}</span>
-                            <span class="navbar-alert-subtitle">Segera lengkapi data</span>
-                        </div>
-                    </div>
-                @elseif($statusData == 'lengkap')
-                    <div class="navbar-alert alert-soft-success">
-                        <i class="bi bi-check-circle-fill navbar-alert-icon"></i>
-                        <div class="navbar-alert-text">
-                            <span class="navbar-alert-title">Data Lengkap</span>
-                            <span class="navbar-alert-subtitle">Terima kasih!</span>
-                        </div>
-                    </div>
-                @elseif($statusData == 'terlewat')
-                    <div class="navbar-alert alert-soft-warning">
-                        <i class="bi bi-exclamation-triangle-fill navbar-alert-icon"></i>
-                        <div class="navbar-alert-text">
-                            <span class="navbar-alert-title">Waktu Habis</span>
-                            <span class="navbar-alert-subtitle">Hubungi Admin Bapperida</span>
-                        </div>
-                    </div>
-                @endif
-            </li>
+        </li>
+    @endif
+@endif
             <!-- ==== END ALERT DEADLINE ==== -->
-
             @if (auth()->guard('pengguna')->user()->level == 'Super Admin')
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">

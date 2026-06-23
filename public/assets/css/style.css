@@ -1734,9 +1734,9 @@ h6 {
 
 
 
-/* Menyamakan tinggi semua elemen di dalam kolom aksi */
+/* 1. Base tinggi tombol seragam (Script Aslimu) */
 .td-aksi-container .btn {
-    height: 38px !important; /* Tinggi standar tombol Bootstrap */
+    height: 38px !important;
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -1744,10 +1744,18 @@ h6 {
     padding: 0.5rem 0.75rem !important;
 }
 
-/* Khusus tombol yang hanya berisi icon saja agar tetap kotak */
-.btn-icon-only {
+/* 2. Khusus tombol icon agar tetap kotak 38x38 presisi */
+/* Tambahan: .btn-danger dimasukkan karena tombol Trash di HTML-mu tidak pakai class btn-icon-only */
+.btn-icon-only,
+.td-aksi-container .btn-danger {
     width: 38px !important;
     padding: 0 !important;
+}
+
+/* 3. BARU: Menyamaratakan LEBAR semua tombol yang ada TEKS-nya */
+/* Logika: Berlaku untuk semua .btn KECUALI yang punya class .btn-icon-only atau .btn-danger */
+.td-aksi-container .btn:not(.btn-icon-only):not(.btn-danger) {
+    min-width: 135px !important;
 }
 
 /* ===== WELCOME CARD - ENHANCED ===== */

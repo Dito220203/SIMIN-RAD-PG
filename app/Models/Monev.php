@@ -28,6 +28,7 @@ class Monev extends Model
         'status',
         'uraian',
         'is_locked',
+		'edit_open_until',
     ];
 
     protected $casts = [
@@ -36,6 +37,8 @@ class Monev extends Model
         'volumeTarget'     => 'array',
         'satuan_realisasi'     => 'array',
         'uraian'     => 'array',
+		'is_locked' => 'boolean',
+        'edit_open_until' => 'datetime',
 
     ];
     protected function dokumenAnggaran(): Attribute

@@ -136,40 +136,41 @@ class MonevController extends Controller
      */
     // MonevController.php
 
-
-
-
-    public function storeFoto(Request $request)
+	  public function storeFoto(Request $request)
     {
         $validatedData = $request->validate([
             'monev_id'   => 'required|exists:monevs,id',
-            'foto'       => 'required',
             'foto.*'     => 'image|mimes:jpeg,jpg,png|max:2048',
             'deskripsi'  => 'nullable|string|max:255',
             'latitude'   => 'nullable|numeric',
             'longitude'  => 'nullable|numeric',
-        ], [
-            'foto.required'   => 'Minimal 1 foto harus diunggah.',
-            'foto.*.max'      => 'Setiap foto maksimal berukuran 2MB.',
         ]);
 
-        // Hapus foto lama
-        $existingFotos = FotoProgres::where('id_monev', $validatedData['monev_id'])->get();
-        foreach ($existingFotos as $foto) {
-            if (Storage::disk('public')->exists($foto->foto)) {
-                Storage::disk('public')->delete($foto->foto);
-            }
-            $foto->delete();
-        }
-
-        // Simpan foto baru
+        // =========================
+        // UPDATE / CREATE FOTO
+        // =========================
         if ($request->hasFile('foto')) {
+
+            // hapus foto lama hanya jika upload baru
+            $existingFotos = FotoProgres::where('id_monev', $validatedData['monev_id'])->get();
+
+            foreach ($existingFotos as $foto) {
+                if (Storage::disk('public')->exists($foto->foto)) {
+                    Storage::disk('public')->delete($foto->foto);
+                }
+                $foto->delete();
+            }
+
+            // simpan foto baru
             foreach ($request->file('foto') as $file) {
+
                 $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $extension    = $file->getClientOriginalExtension();
                 $safeName     = Str::slug($originalName);
+
                 $uniqueName   = $safeName . '-' . uniqid() . '.' . $extension;
-                $path         = $file->storeAs('foto_progres', $uniqueName, 'public');
+
+                $path = $file->storeAs('foto_progres', $uniqueName, 'public');
 
                 FotoProgres::create([
                     'id_monev'    => $validatedData['monev_id'],
@@ -180,22 +181,36 @@ class MonevController extends Controller
             }
         }
 
-        // Simpan / update titik koordinat
+        // =========================
+        // UPDATE DESKRIPSI
+        // =========================
+        if (!$request->hasFile('foto')) {
+
+            FotoProgres::where('id_monev', $validatedData['monev_id'])
+                ->update([
+                    'deskripsi' => $validatedData['deskripsi']
+                ]);
+        }
+
+        // =========================
+        // MAP UPDATE OR CREATE
+        // =========================
         if ($request->filled(['latitude', 'longitude'])) {
+
             Map::updateOrCreate(
                 [
-                    'id_monev'    => $validatedData['monev_id'],
-                    'id_pengguna' => Auth::guard('pengguna')->id(),
+                    'id_monev' => $validatedData['monev_id'],
                 ],
                 [
+                    'id_pengguna' => Auth::guard('pengguna')->id(),
                     'latitude'    => $request->latitude,
                     'longitude'   => $request->longitude,
                 ]
             );
         }
 
-
-        return redirect()->route('monev')->with('success', 'Foto dokumentasi berhasil diperbarui.');
+        return redirect()->route('monev')
+            ->with('success', 'Dokumentasi berhasil diperbarui.');
     }
 
     public function updatePesan(Request $request, $id)
@@ -339,12 +354,6 @@ class MonevController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         // 1. Temukan data yang akan diupdate
@@ -370,24 +379,30 @@ class MonevController extends Controller
 
         $anggaranString = implode('; ', $validatedData['anggaran']);
         $sumberdanaString = implode('; ', $validatedData['sumberdana']);
+// Ambil data lama untuk menyelamatkan 'target_tw'
+        $dokumenLama = $monev->dokumen_anggaran ?? [];
+        $dokumenBaru = $validatedData['dokumen_anggaran'] ?? [];
+
+        // Jika admin pernah menitipkan 'target_tw', pindahkan ke data yang baru disubmit
+        if (isset($dokumenLama['target_tw'])) {
+            $dokumenBaru['target_tw'] = $dokumenLama['target_tw'];
+        }
 
         // 3. Siapkan data untuk diupdate dengan memetakan nama field
         $updateData = [
             'id_subprogram'    => $validatedData['id_subprogram'],
-
             'id_opd'           => $validatedData['id_opd'],
-            'anggaran'      => $anggaranString,
-            'sumberdana'    => $sumberdanaString,
+            'anggaran'         => $anggaranString,
+            'sumberdana'       => $sumberdanaString,
 
+            // Gunakan $dokumenBaru yang sudah kita amankan flag-nya
+            'dokumen_anggaran' => $dokumenBaru,
 
-            // Peta nama input ke nama kolom database untuk data array
-            'dokumen_anggaran' => $validatedData['dokumen_anggaran'] ?? [],
             'realisasi'        => $validatedData['realisasi'] ?? [],
             'volumeTarget'     => $validatedData['volumeTarget'] ?? [],
-            'satuan_realisasi'     => $validatedData['satuan_realisasi'] ?? [],
-            'uraian'       => $validatedData['uraian'] ?? [],
+            'satuan_realisasi' => $validatedData['satuan_realisasi'] ?? [],
+            'uraian'           => $validatedData['uraian'] ?? [],
         ];
-
         // 4. Lakukan update pada data
         $monev->update($updateData);
 
@@ -395,11 +410,7 @@ class MonevController extends Controller
         return redirect()->route('monev')->with('success', 'Data Monitoring Evaluasi berhasil diperbarui.');
     }
 
-
-
-    // File: app/Http/Controllers/MonevController.php
-
-    public function bulkToggleLock(Request $request)
+   public function bulkToggleLock(Request $request)
     {
         // 1. Pastikan hanya Super Admin yang bisa mengakses
         if (auth()->guard('pengguna')->user()->level !== 'Super Admin') {
@@ -419,81 +430,55 @@ class MonevController extends Controller
         $action = $validated['action'];
         $opd = Opd::findOrFail($opdId);
 
-        // 3. Tentukan status kunci yang baru
-        $newState = ($action === 'lock');
+        if ($action === 'lock') {
+            Monev::where('id_opd', $opdId)->update([
+                'is_locked' => 1,
+                'edit_open_until' => null,
+            ]);
+        } else {
+            Monev::where('id_opd', $opdId)->update([
+                'is_locked' => 0,
+                'edit_open_until' => null,
+            ]);
+        }
 
-        // 4. 👇 BAGIAN YANG DIPERBAIKI ADA DI SINI 👇
-        // Update semua data monev yang dimiliki oleh OPD tersebut
-        Monev::where('id_opd', $opdId)->update(['is_locked' => $newState]);
-
-        // 5. Siapkan pesan feedback untuk pengguna
-        $actionText = $newState ? 'dikunci' : 'dibuka';
+        $actionText = $action === 'lock' ? 'dikunci' : 'dibuka';
         $message = "Semua data untuk OPD {$opd->nama} berhasil {$actionText}.";
-
-
-        // 6. Kembalikan ke halaman sebelumnya dengan pesan sukses
         return back()->with('success', $message);
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $monev = Monev::with('fotoProgres')->findOrFail($id);
-
-        // 3. Looping untuk menghapus setiap file foto dari storage
         if ($monev->fotoProgres->isNotEmpty()) {
             foreach ($monev->fotoProgres as $foto) {
-                // Hapus file dari folder 'public/foto_progres'
                 Storage::disk('public')->delete($foto->foto);
             }
         }
-
         $monev->delete();
-
-
         return redirect()->route('monev')->with('success', 'Data Berhasil Dihapus');
     }
 
-
-    public function reminderManual(Request $request)
+	public function reminderManual(Request $request)
     {
         try {
             $request->validate([
                 'opd_id' => 'required',
+                'triwulan' => 'required',
                 'deadline_tanggal' => 'required|date',
                 'deadline_jam' => 'required',
             ], [
                 'opd_id.required' => 'Pilih OPD terlebih dahulu.',
+                'triwulan.required' => 'Pilih triwulan terlebih dahulu.',
                 'deadline_tanggal.required' => 'Tanggal batas wajib diisi.',
                 'deadline_jam.required' => 'Jam batas wajib diisi.',
             ]);
 
             Carbon::setLocale('id');
 
-            $now = Carbon::now();
-            $bulan = $now->month;
-            $tahun = $now->year;
-
-            if ($bulan <= 3) {
-                $triwulanKey = "1";
-                $namaTriwulan = 'I';
-            } elseif ($bulan <= 6) {
-                $triwulanKey = "2";
-                $namaTriwulan = 'II';
-            } elseif ($bulan <= 9) {
-                $triwulanKey = "3";
-                $namaTriwulan = 'III';
-            } else {
-                $triwulanKey = "4";
-                $namaTriwulan = 'IV';
-            }
-
+            $triwulanKey = $request->triwulan;
             $batasWaktu = Carbon::parse($request->deadline_tanggal . ' ' . $request->deadline_jam);
-            $formatBatas = $batasWaktu->translatedFormat('d F Y \\p\\u\\k\\u\\l H:i');
+            $formatBatas = $batasWaktu->translatedFormat('d F Y \p\u\k\u\l H:i');
 
             if ($request->opd_id === 'all') {
                 $opds = Opd::whereNotNull('no_tlp')
@@ -511,38 +496,72 @@ class MonevController extends Controller
             foreach ($opds as $opd) {
                 $daftarMonev = Monev::with('rencanakerja')
                     ->where('id_opd', $opd->id)
-                    ->whereHas('rencanakerja', function ($query) use ($tahun) {
-                        $query->where('tahun', $tahun);
-                    })
                     ->get();
 
                 if ($daftarMonev->isEmpty()) {
                     continue;
                 }
 
+                $tahunData = $daftarMonev->first()->rencanakerja->tahun ?? Carbon::now()->year;
                 $listProgramString = "";
                 $jumlahBelum = 0;
 
+                // 🔥 PERBAIKAN: Kita lakukan update di dalam loop ini agar data tiap baris tidak saling timpa
                 foreach ($daftarMonev as $index => $mv) {
-                    $dokumen = $mv->dokumen_anggaran ?? [];
+                    // Amankan pembacaan JSON
+                    $dokumen = is_string($mv->dokumen_anggaran) ? json_decode($mv->dokumen_anggaran, true) : ($mv->dokumen_anggaran ?? []);
                     $namaProgram = $mv->rencanakerja->nama_program ?? 'Program Tanpa Nama';
+                    $no = $index + 1;
 
-                    if (!isset($dokumen[$triwulanKey]) || empty($dokumen[$triwulanKey])) {
-                        $icon = "❌";
-                        $ket = "BELUM";
-                        $jumlahBelum++;
+                    if ($triwulanKey === 'all') {
+                        $twStatuses = [];
+                        $isProgramBelum = false;
+
+                        foreach (['1' => 'I', '2' => 'II', '3' => 'III', '4' => 'IV'] as $key => $romawi) {
+                            $lengkap = !empty($dokumen[$key] ?? null);
+                            $statusText = $lengkap ? '✅ SUDAH LENGKAP' : '❌ BELUM LENGKAP';
+
+                            if (!$lengkap) {
+                                $isProgramBelum = true;
+                            }
+                            $twStatuses[$romawi] = $statusText;
+                        }
+
+                        if ($isProgramBelum) {
+                            $jumlahBelum++;
+                        }
+
+                        $listProgramString .= "\n{$no}. Program : {$namaProgram} : TW I ({$twStatuses['I']})"
+                            . "\n                      TW II ({$twStatuses['II']})"
+                            . "\n                      TW III ({$twStatuses['III']})"
+                            . "\n                      TW IV ({$twStatuses['IV']})";
                     } else {
-                        $icon = "✅";
-                        $ket = "SUDAH";
+                        $romawi = match ($triwulanKey) {
+                            '1' => 'I', '2' => 'II', '3' => 'III', '4' => 'IV', default => 'I'
+                        };
+
+                        $lengkap = !empty($dokumen[$triwulanKey] ?? null);
+                        $statusText = $lengkap ? '✅ SUDAH LENGKAP' : '❌ BELUM LENGKAP';
+
+                        if (!$lengkap) {
+                            $jumlahBelum++;
+                        }
+
+                        $listProgramString .= "\n{$no}. Program : {$namaProgram} : TW {$romawi} ({$statusText})";
                     }
 
-                    $no = $index + 1;
-                    $listProgramString .= "\n" . $no . ". " . $namaProgram . " (" . $icon . " " . $ket . ")";
+                    // 💾 SIMPAN TITIPAN & BUKA GEMBOK PER BARIS (Agar data lama aman)
+                    $dokumen['target_tw'] = $triwulanKey;
+                    $mv->update([
+                        'is_locked' => 0,
+                        'edit_open_until' => $batasWaktu,
+                        'dokumen_anggaran' => $dokumen
+                    ]);
                 }
 
                 $pesan = "📢 *Laporan Status RAD PG*\n\n"
                     . "Yth. *{$opd->nama}*,\n\n"
-                    . "Berikut adalah status kelengkapan *Dokumen Anggaran Triwulan {$namaTriwulan} Tahun {$tahun}* pada sistem:\n"
+                    . "Berikut adalah status kelengkapan *Dokumen Anggaran Tahun {$tahunData}* pada sistem:\n"
                     . "----------------------------------"
                     . "{$listProgramString}\n"
                     . "----------------------------------\n\n";
@@ -557,37 +576,32 @@ class MonevController extends Controller
 
                 $pesan .= "🕒 Akses edit data dibuka sampai *{$formatBatas}*.\n"
                     . "Silakan segera lakukan perbaikan/lengkapi data sebelum batas waktu tersebut.\n\n"
-                    . "Terima kasih.\nAdmin Monev.";
+                    . "Terima kasih.\nAdmin Bapprida.";
 
                 $this->kirimWA($opd->no_tlp, $pesan);
+                sleep(3);
 
-                Monev::where('id_opd', $opd->id)->update([
-                    'is_locked' => 0,
-                    'edit_open_until' => $batasWaktu
-                ]);
+                // HAPUS update massal Monev::where(...) di sini karena sudah dipindah ke dalam loop di atas
             }
 
-            if ($request->opd_id === 'all') {
-                $flashMessage = 'Reminder WhatsApp berhasil dikirim ke semua OPD dan akses edit dibuka.';
-            } else {
-                $opd = Opd::find($request->opd_id);
-                $namaOpd = $opd->nama ?? 'OPD';
-                $flashMessage = "Reminder WhatsApp berhasil dikirim ke {$namaOpd} dan akses edit dibuka.";
-            }
+            $flashMessage = ($request->opd_id === 'all')
+                ? 'Reminder WhatsApp berhasil dikirim ke semua OPD dan akses edit dibuka.'
+                : "Reminder WhatsApp berhasil dikirim ke OPD dan akses edit dibuka.";
 
             return redirect()->route('monev')->with('success', $flashMessage);
+
         } catch (\Exception $e) {
-            return redirect()->route('monev')
-                ->with('error', 'Terjadi kesalahan saat mengirim reminder: ' . $e->getMessage());
+            return redirect()->route('monev')->with('error', 'Terjadi kesalahan saat mengirim reminder: ' . $e->getMessage());
         }
     }
-
     public function reminderPerData(Request $request, $id)
     {
         $request->validate([
+            'triwulan' => 'required',
             'deadline_tanggal' => 'required|date',
             'deadline_jam' => 'required',
         ], [
+            'triwulan.required' => 'Pilih triwulan terlebih dahulu.',
             'deadline_tanggal.required' => 'Tanggal batas wajib diisi.',
             'deadline_jam.required' => 'Jam batas wajib diisi.',
         ]);
@@ -596,23 +610,8 @@ class MonevController extends Controller
 
         $monev = Monev::with('rencanakerja', 'opd')->findOrFail($id);
 
-        $now = Carbon::now();
-        $bulan = $now->month;
-        $tahun = $now->year;
-
-        if ($bulan <= 3) {
-            $triwulanKey = "1";
-            $namaTriwulan = 'I';
-        } elseif ($bulan <= 6) {
-            $triwulanKey = "2";
-            $namaTriwulan = 'II';
-        } elseif ($bulan <= 9) {
-            $triwulanKey = "3";
-            $namaTriwulan = 'III';
-        } else {
-            $triwulanKey = "4";
-            $namaTriwulan = 'IV';
-        }
+        $tahunData = $monev->rencanakerja->tahun ?? Carbon::now()->year;
+        $triwulanKey = $request->triwulan;
 
         $batasWaktu = Carbon::parse($request->deadline_tanggal . ' ' . $request->deadline_jam);
         $formatBatas = $batasWaktu->translatedFormat('d F Y \\p\\u\\k\\u\\l H:i');
@@ -621,45 +620,89 @@ class MonevController extends Controller
         $namaProgram = $monev->rencanakerja->nama_program ?? 'Program Tanpa Nama';
         $opd = $monev->opd;
 
-        if (!isset($dokumen[$triwulanKey]) || empty($dokumen[$triwulanKey])) {
-            $icon = "❌";
-            $ket = "BELUM";
-            $jumlahBelum = 1;
+        $listProgramString = "";
+        $jumlahBelum = 0;
+
+        // Jika memilih Semua Triwulan
+        if ($triwulanKey === 'all') {
+            $twStatuses = [];
+            $isProgramBelum = false;
+
+            foreach (['1' => 'I', '2' => 'II', '3' => 'III', '4' => 'IV'] as $key => $romawi) {
+                $lengkap = !empty($dokumen[$key] ?? null);
+                $statusText = $lengkap ? '✅ SUDAH LENGKAP' : '❌ BELUM LENGKAP';
+
+                if (!$lengkap) {
+                    $isProgramBelum = true;
+                }
+
+                $twStatuses[$romawi] = $statusText;
+            }
+
+            if ($isProgramBelum) {
+                $jumlahBelum = 1;
+            }
+
+            $listProgramString .= "\n1. Program : {$namaProgram} : TW I ({$twStatuses['I']})"
+                . "\n                     TW II ({$twStatuses['II']})"
+                . "\n                     TW III ({$twStatuses['III']})"
+                . "\n                     TW IV ({$twStatuses['IV']})";
         } else {
-            $icon = "✅";
-            $ket = "SUDAH";
-            $jumlahBelum = 0;
+            // Jika memilih salah satu Triwulan saja
+            $romawi = match ($triwulanKey) {
+                '1' => 'I',
+                '2' => 'II',
+                '3' => 'III',
+                '4' => 'IV',
+                default => 'I'
+            };
+
+            $lengkap = !empty($dokumen[$triwulanKey] ?? null);
+            $statusText = $lengkap ? '✅ SUDAH LENGKAP' : '❌ BELUM LENGKAP';
+
+            if (!$lengkap) {
+                $jumlahBelum = 1;
+            }
+
+            $listProgramString .= "\n1. Program : {$namaProgram} : TW {$romawi} ({$statusText})";
         }
 
-        $listProgramString = "\n1. {$namaProgram} ({$icon} {$ket})";
-
+        // Susun template pesan baru
         $pesan = "📢 *Laporan Status RAD PG*\n\n"
             . "Yth. *{$opd->nama}*,\n\n"
-            . "Berikut adalah status kelengkapan *Dokumen Anggaran Triwulan {$namaTriwulan} Tahun {$tahun}* pada sistem:\n"
+            . "Berikut adalah status kelengkapan *Dokumen Anggaran Tahun {$tahunData}* pada sistem:\n"
             . "----------------------------------"
             . "{$listProgramString}\n"
             . "----------------------------------\n\n";
 
         if ($jumlahBelum > 0) {
-            $pesan .= "⚠️ Program di atas *BELUM* diunggah (tanda ❌).\n"
+            $pesan .= "⚠️ Masih terdapat *{$jumlahBelum} program* yang *BELUM* diunggah (tanda ❌).\n"
                 . "Mohon segera melengkapi data tersebut.\n\n";
         } else {
-            $pesan .= "👏 Program di atas *SUDAH LENGKAP* (tanda ✅).\n"
+            $pesan .= "👏 Terpantau semua program *SUDAH LENGKAP* (tanda ✅).\n"
                 . "Terima kasih atas kerjasamanya.\n\n";
         }
 
         $pesan .= "🕒 Akses edit data dibuka sampai *{$formatBatas}*.\n"
             . "Silakan segera lakukan perbaikan/lengkapi data sebelum batas waktu tersebut.\n\n"
-            . "Terima kasih.\nAdmin Monev.";
+            . "Terima kasih.\nAdmin Bapprida.";
 
         $this->kirimWA($opd->no_tlp, $pesan);
 
+        sleep(3);
+		$dokumenSaatIni = $monev->dokumen_anggaran ?? [];
+        // Titipkan informasi triwulan yang ditagih ke dalam array tersebut
+        $dokumenSaatIni['target_tw'] = $triwulanKey;
         $monev->update([
             'is_locked' => 0,
-            'edit_open_until' => $batasWaktu
+            'edit_open_until' => $batasWaktu,
+					   'dokumen_anggaran' => $dokumenSaatIni
         ]);
 
-        return back()->with('success', 'Reminder berhasil dikirim dan akses edit dibuka!');
+        return back()->with(
+            'success',
+            'Reminder berhasil dikirim dan akses edit dibuka!'
+        );
     }
 
     private function kirimWA($no, $pesan)
