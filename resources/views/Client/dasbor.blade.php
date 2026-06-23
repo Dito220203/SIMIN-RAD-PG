@@ -13,12 +13,12 @@
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        {{-- <div class="input-group">
+                        <div class="input-group">
                             <input type="text" class="form-control" placeholder="Cari di halaman ini..."
                                 id="liveSearchInput">
-                        </div> --}}
+                        </div>
                     </div>
-                    {{-- <ul class="navbar-nav  justify-content-end">
+                    <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
@@ -34,18 +34,18 @@
                                 <span class="d-sm-inline d-none">Sign In</span>
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
                 </div>
         </nav>
 
         <!-- SECTION 1: WELCOME BANNER (IDENTITAS WEBSITE) -->
-        <div class="row mb-4">
+        <div class="row mt-4 mb-4">
             <div class="col-lg-12">
                 <div class="card card-welcome-banner border-radius-xl overflow-hidden position-relative">
 
                     <!-- 1. BACKGROUND CAROUSEL (DARI DATABASE) -->
-                    <!-- Kita tambahkan ID 'pertaminaCarousel' untuk di-target Javascript nanti -->
-                    <div id="pertaminaCarousel"
+                    <!-- Kita tambahkan ID 'Carousel' untuk di-target Javascript nanti -->
+                    <div id="Carousel"
                         class="carousel slide position-absolute w-100 h-100 welcome-carousel-wrapper"
                         data-bs-ride="carousel" data-bs-interval="5000">
                         <div class="carousel-inner h-100">
@@ -87,7 +87,7 @@
                     <!-- Posisinya absolute di bawah card -->
                     <div class="custom-indicators-container">
                         @foreach ($banners as $index => $banner)
-                            <div class="indicator-wrapper" data-bs-target="#pertaminaCarousel"
+                            <div class="indicator-wrapper" data-bs-target="#Carousel"
                                 data-bs-slide-to="{{ $index }}">
                                 <!-- Judul Banner (Opsional, hapus kalau tidak perlu) -->
                                 <span class="indicator-title {{ $index == 0 ? 'active' : '' }}">{{ $banner->judul }}</span>
@@ -259,11 +259,11 @@
         });
 
         // === 2. PERTAMINA CAROUSEL INDICATOR LOGIC ===
-        var pertaminaCarousel = document.getElementById('pertaminaCarousel');
+        var Carousel = document.getElementById('Carousel');
 
-        if (pertaminaCarousel) {
+        if (Carousel) {
             // Event listener bawaan Bootstrap: Setiap kali gambar mulai berganti
-            pertaminaCarousel.addEventListener('slide.bs.carousel', function(e) {
+            Carousel.addEventListener('slide.bs.carousel', function(e) {
 
                 // 1. Ambil index gambar yang akan aktif selanjutnya
                 var nextSlideIndex = e.to;

@@ -94,3 +94,102 @@ footer.footer {
     border-color: rgba(255, 152, 0, 0.2);
     color: #ed6c02;
 }
+
+/* =========================================
+   CUSTOM THEME SWEETALERT (TEMA WEBSITE)
+   ========================================= */
+.swal-custom-popup {
+    border-radius: 12px !important;
+    padding: 2em !important;
+}
+
+.swal-custom-title {
+    color: #333 !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 10px !important;
+}
+
+/* Tombol Konfirmasi (Warna Hijau Tema) */
+.swal-custom-confirm-btn {
+    background-color: #718355 !important; /* Hijau yang sama dengan tombol OK di SS 3 */
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 5px;
+}
+
+.swal-custom-confirm-btn:hover {
+    background-color: #4e6641 !important; /* Efek hover agak gelap */
+}
+
+/* Tombol Batal (Warna Abu-abu) */
+.swal-custom-cancel-btn {
+    background-color: #6c757d !important;
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 5px;
+}
+
+.swal-custom-cancel-btn:hover {
+    background-color: #5a6268 !important;
+}
+
+/* Input Form Khusus Sweetalert */
+.swal-custom-input-container {
+    text-align: left;
+    margin: 15px 10px 0 10px;
+}
+
+.swal-custom-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.swal-custom-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #495057;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.swal-custom-input:focus {
+    border-color: #617f51;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(97, 127, 81, 0.25);
+}
+
+
+
+
+/* Menyamaratakan Tinggi Card Statistik dashboard admin */
+.card-statistik-fixed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* KUNCINYA DI SINI: Ganti dari space-between ke flex-start */
+    height: 100%;
+    min-height: 130px;
+}
+
+.stats-number {
+    margin-top: 30px !important; /* INI KUNCINYA: Mendorong angka menjauh dari icon di atasnya */
+    margin-bottom: 4px; /* Jarak tipis antara angka dan teks label di bawahnya */
+}
+
+/* Memastikan teks label selalu punya ruang untuk 2 baris */
+.stats-label {
+    min-height: 20px; 
+}

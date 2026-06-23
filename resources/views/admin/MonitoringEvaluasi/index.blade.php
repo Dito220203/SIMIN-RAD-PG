@@ -127,7 +127,7 @@
                                                     <label class="form-label text-sm">Pilih OPD</label>
                                                     <select name="opd_id" id="opdReminder"
                                                         class="form-select form-select-sm" required>
-                                                        <option value="">-- Pilih OPD --</option>
+                                                        <option value="" selected disabled>-- Pilih OPD --</option>
                                                         <option value="all">Semua OPD</option>
                                                         @foreach ($allOpds as $opd)
                                                             <option value="{{ $opd->id }}">{{ $opd->nama }}
@@ -181,7 +181,7 @@
                                                     <th class="text-center" style="width: 200px;">Sumber Dana</th>
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center">Dokumen Anggaran</th>
-                                                    <th class="text-center">Realisasi Anggaran</th>
+                                                    <th class="text-center" style="width: 500px;">Realisasi Anggaran</th>
                                                     <th class="text-center">Volume Realisasi</th>
                                                     <th class="text-center">Satuan Volume</th>
                                                     <th class="text-center" style="width: 400px;">Keterangan</th>
@@ -880,7 +880,7 @@
                 });
             </script>
 
-            <script>
+            {{-- <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const formReminder = document.getElementById('formReminderManual');
 
@@ -991,6 +991,186 @@
                                 <input id="swal-jam-perdata" type="time" class="swal2-input" style="margin:0 auto;">
                             </div>
                         `,
+                                showCancelButton: true,
+                                confirmButtonText: 'Kirim',
+                                cancelButtonText: 'Batal',
+                                focusConfirm: false,
+                                preConfirm: () => {
+                                    const tanggal = document.getElementById(
+                                        'swal-tanggal-perdata').value;
+                                    const jam = document.getElementById('swal-jam-perdata')
+                                        .value;
+
+                                    if (!tanggal || !jam) {
+                                        Swal.showValidationMessage(
+                                            'Tanggal dan jam wajib diisi');
+                                        return false;
+                                    }
+
+                                    return {
+                                        tanggal,
+                                        jam
+                                    };
+                                }
+                            });
+
+                            if (!formValues) return;
+
+                            form.querySelector('.deadlineTanggalPerData').value = formValues.tanggal;
+                            form.querySelector('.deadlineJamPerData').value = formValues.jam;
+
+                            form.submit();
+                        });
+                    });
+                });
+            </script> --}}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // ==========================================
+                    // 1. SCRIPT UNTUK FORM REMINDER MANUAL
+                    // ==========================================
+                    const formReminder = document.getElementById('formReminderManual');
+
+                    if (formReminder) {
+                        formReminder.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+
+                            const opd = document.getElementById('opdReminder').value;
+
+                            if (!opd) {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Peringatan',
+                                    text: 'Silakan pilih OPD terlebih dahulu.',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        popup: 'swal-custom-popup',
+                                        confirmButton: 'swal-custom-confirm-btn'
+                                    }
+                                });
+                                return;
+                            }
+
+                            const konfirmasi = await Swal.fire({
+                                title: 'Yakin ingin mengirim reminder?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Ya, lanjut',
+                                cancelButtonText: 'Batal',
+                                reverseButtons: true,
+                                buttonsStyling: false, // Penting agar custom class tombol berfungsi
+                                customClass: {
+                                    popup: 'swal-custom-popup',
+                                    title: 'swal-custom-title',
+                                    confirmButton: 'swal-custom-confirm-btn',
+                                    cancelButton: 'swal-custom-cancel-btn'
+                                }
+                            });
+
+                            if (!konfirmasi.isConfirmed) return;
+
+                            const {
+                                value: formValues
+                            } = await Swal.fire({
+                                title: 'Atur Batas Waktu Edit',
+                                buttonsStyling: false,
+                                customClass: {
+                                    popup: 'swal-custom-popup',
+                                    title: 'swal-custom-title',
+                                    confirmButton: 'swal-custom-confirm-btn',
+                                    cancelButton: 'swal-custom-cancel-btn'
+                                },
+                                html: `
+                        <div class="swal-custom-input-container">
+                            <label for="swal-tanggal" class="swal-custom-label">
+                                Data dibuka sampai tanggal
+                            </label>
+                            <input id="swal-tanggal" type="date" class="swal-custom-input">
+
+                            <label for="swal-jam" class="swal-custom-label">
+                                Jam
+                            </label>
+                            <input id="swal-jam" type="time" class="swal-custom-input">
+                        </div>
+                    `,
+                                showCancelButton: true,
+                                confirmButtonText: 'Kirim',
+                                cancelButtonText: 'Batal',
+                                focusConfirm: false,
+                                preConfirm: () => {
+                                    const tanggal = document.getElementById('swal-tanggal').value;
+                                    const jam = document.getElementById('swal-jam').value;
+
+                                    if (!tanggal || !jam) {
+                                        Swal.showValidationMessage('Tanggal dan jam wajib diisi');
+                                        return false;
+                                    }
+
+                                    return {
+                                        tanggal,
+                                        jam
+                                    };
+                                }
+                            });
+
+                            if (!formValues) return;
+
+                            document.getElementById('deadlineTanggal').value = formValues.tanggal;
+                            document.getElementById('deadlineJam').value = formValues.jam;
+
+                            formReminder.submit();
+                        });
+                    }
+
+                    // ==========================================
+                    // 2. SCRIPT UNTUK FORM REMINDER PER DATA
+                    // ==========================================
+                    document.querySelectorAll('.formReminderPerData').forEach(form => {
+                        form.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+
+                            const konfirmasi = await Swal.fire({
+                                title: 'Yakin ingin mengirim reminder?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Ya, lanjut',
+                                cancelButtonText: 'Batal',
+                                reverseButtons: true,
+                                buttonsStyling: false,
+                                customClass: {
+                                    popup: 'swal-custom-popup',
+                                    title: 'swal-custom-title',
+                                    confirmButton: 'swal-custom-confirm-btn',
+                                    cancelButton: 'swal-custom-cancel-btn'
+                                }
+                            });
+
+                            if (!konfirmasi.isConfirmed) return;
+
+                            const {
+                                value: formValues
+                            } = await Swal.fire({
+                                title: 'Atur Batas Waktu Edit',
+                                buttonsStyling: false,
+                                customClass: {
+                                    popup: 'swal-custom-popup',
+                                    title: 'swal-custom-title',
+                                    confirmButton: 'swal-custom-confirm-btn',
+                                    cancelButton: 'swal-custom-cancel-btn'
+                                },
+                                html: `
+                        <div class="swal-custom-input-container">
+                            <label for="swal-tanggal-perdata" class="swal-custom-label">
+                                Data dibuka sampai tanggal
+                            </label>
+                            <input id="swal-tanggal-perdata" type="date" class="swal-custom-input">
+
+                            <label for="swal-jam-perdata" class="swal-custom-label">
+                                Jam
+                            </label>
+                            <input id="swal-jam-perdata" type="time" class="swal-custom-input">
+                        </div>
+                    `,
                                 showCancelButton: true,
                                 confirmButtonText: 'Kirim',
                                 cancelButtonText: 'Batal',

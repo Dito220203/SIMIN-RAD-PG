@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,15 @@
     <link href="{{ asset('client/css/login.css') }}" rel="stylesheet" />
 
 </head>
+
 <body>
     <div class="login-container">
         <div class="login-left">
             <div class="logo-section">
-                <div class="logo">R</div>
+                <div class="logo">
+                    <img src="{{ asset('assets/favicon-96x96') }}" alt="Logo RAD-PG">
+
+                </div>
                 <div class="logo-text">Dashboard RAD-PG</div>
             </div>
 
@@ -30,7 +35,9 @@
                 @if ($errors->any())
                     <div class="error-message">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd" />
                         </svg>
                         Username atau password salah
                     </div>
@@ -39,27 +46,16 @@
                 <div class="form-group">
                     <label for="username">Username</label>
                     <div class="input-wrapper">
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            placeholder="Masukkan username Anda"
-                            required
-                            autofocus
-                        >
+                        <input type="text" id="username" name="username" placeholder="Masukkan username Anda"
+                            required autofocus>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div class="input-wrapper">
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Masukkan password Anda"
-                            required
-                        >
+                        <input type="password" id="password" name="password" placeholder="Masukkan password Anda"
+                            required>
                     </div>
                 </div>
 
@@ -81,4 +77,5 @@
         </div>
     </div>
 </body>
+
 </html>

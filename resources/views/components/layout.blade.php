@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom-layout.css?v=2') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom-layout.css?v=3') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/leaflet/leaflet.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/leaflet/geosearch.css') }}" rel="stylesheet">
